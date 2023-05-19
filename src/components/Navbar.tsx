@@ -25,10 +25,10 @@ export default function Navbar() {
               <div className="border rounded-full border-yellow-500">
                 <Image
                   className="rounded-full text-xs border border-white"
-                  src={user?.photoURL ?? "/default_avatar.bmp"}
+                  src={user.photoURL ?? "/default_avatar.bmp"}
                   width={32}
                   height={32}
-                  alt={user?.displayName ?? "User"}
+                  alt={user.displayName ?? "User"}
                 />
               </div>
             </div>
