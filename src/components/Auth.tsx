@@ -12,7 +12,7 @@ export default function Auth() {
         className="m-2 px-4 py-2 bg-sky-500 text-white text-sm font-bold rounded-md"
         onClick={() => signUp()}
       >
-        LOGIN WITH GOOGLE
+        CONTINUE WITH GOOGLE
       </button>
     </div>
   );
