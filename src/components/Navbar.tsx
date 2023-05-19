@@ -9,7 +9,7 @@ export default function Navbar() {
   const { user } = useAuthContext();
 
   return (
-    <nav className="w-screen h-12 bg-slate-800 border-b border-slate-950 px-4 fixed flex justify-center">
+    <nav className="w-screen h-12 bg-slate-900 border-b border-slate-800 px-4 fixed flex justify-center">
       <div className="w-full max-w-7xl flex justify-between items-center gap-4">
         <div>
           <Link href="/" className="font-bold text-xs text-yellow-500">
