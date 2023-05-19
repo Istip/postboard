@@ -7,7 +7,7 @@ export default function Home() {
   const { user } = useAuthContext();
 
   return (
-    <main className="w-full h-screen bg-slate-50 text-center">
+    <main className="text-center">
       <div className="p-10">
         <h1 className="font-semibold text-sm">This is App</h1>
       </div>
