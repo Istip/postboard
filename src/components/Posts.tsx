@@ -1,24 +1,24 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
-import { auth, db } from "@/utils/firebase";
+import { collection, onSnapshot } from "firebase/firestore";
+import { db } from "@/utils/firebase";
 
 const Posts = () => {
   const [posts, setPosts] = useState([] as any[]);
 
   useEffect(() => {
-    const fetchDada = async () => {
-      const snapshot = await getDocs(collection(db, "posts"));
+    const unsubscribe = onSnapshot(collection(db, "posts"), (snapshot) => {
+      const data: any[] = [];
 
-      let fetched: any[] = [];
+      snapshot.forEach((doc) => {
+        data.push(doc.data());
+      });
 
-      snapshot.forEach((doc) => fetched.push(doc.data()));
+      setPosts(data);
+    });
 
-      setPosts(fetched);
-    };
-
-    fetchDada();
+    return () => unsubscribe();
   }, []);
 
   if (!posts.length) {
