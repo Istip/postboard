@@ -22,13 +22,15 @@ export default function Navbar() {
               <button className="text-xs font-bold px-4 py-2 rounded-md bg-yellow-500 text-slate-950 hover:bg-yellow-600 transition-all">
                 LOGOUT
               </button>
-              <Image
-                className="rounded-full text-xs border border-yellow-500"
-                src={user?.photoURL ?? "/default_avatar.bmp"}
-                width={32}
-                height={32}
-                alt={user?.displayName ?? "User"}
-              />
+              <div className="border rounded-full border-yellow-500">
+                <Image
+                  className="rounded-full text-xs border border-white"
+                  src={user?.photoURL ?? "/default_avatar.bmp"}
+                  width={32}
+                  height={32}
+                  alt={user?.displayName ?? "User"}
+                />
+              </div>
             </div>
           ) : (
             <Auth />
