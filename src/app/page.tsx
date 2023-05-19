@@ -1,8 +1,7 @@
 "use client";
 
-import { Auth } from "@/components";
+import { Auth, Posts } from "@/components";
 import { useAuthContext } from "@/context/AuthContext";
-import Link from "next/link";
 
 export default function Home() {
   const { user } = useAuthContext();
@@ -17,11 +16,7 @@ export default function Home() {
         {!user ? <Auth /> : "You are logged in"}
       </div>
 
-      <div>
-        <Link href="auth" className="text-sky-500 underline font-bold">
-          Go to auth »
-        </Link>
-      </div>
+      <Posts />
     </main>
   );
 }
