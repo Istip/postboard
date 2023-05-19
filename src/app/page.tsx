@@ -8,10 +8,6 @@ export default function Home() {
 
   return (
     <main className="text-center">
-      <div className="p-10">
-        <h1 className="font-semibold text-sm">This is App</h1>
-      </div>
-
       <div className="my-10 mb-16">
         {!user ? <Auth /> : "You are logged in"}
       </div>
