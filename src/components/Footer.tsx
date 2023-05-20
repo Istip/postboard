@@ -1,4 +1,14 @@
+"use client";
+
+import { useAuthContext } from "@/context/AuthContext";
+
 export default function Footer() {
+  const { user } = useAuthContext();
+
+  if (!user) {
+    return null;
+  }
+
   return (
     <div className="w-screen h-12 bg-slate-900 border-t border-slate-800 px-4 fixed flex justify-center bottom-0">
       <div className="w-full max-w-7xl flex justify-between items-center gap-4">
