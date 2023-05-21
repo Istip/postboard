@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import signUp from "@/utils/signUp";
 import Loading from "@/components/Loading/Loading";
 import Posts from "@/components/Posts";
+import { EnterIcon } from "@radix-ui/react-icons";
 
 export default function Home() {
   const { user, loading } = useAuthContext();
@@ -34,7 +35,12 @@ export default function Home() {
             className="m-2 px-4 py-2 bg-yellow-500 text-slate-800 text-xs font-bold rounded-md"
             onClick={() => signUp()}
           >
-            CONTINUE WITH GOOGLE
+            <div className="flex items-center">
+              <div className="mr-2">
+                <EnterIcon />
+              </div>
+              <div>CONTINUE WITH GOOGLE</div>
+            </div>
           </button>
         </div>
       )}
