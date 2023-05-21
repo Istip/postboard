@@ -5,7 +5,6 @@ import { useAuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import signUp from "@/utils/signUp";
 import Loading from "@/components/Loading/Loading";
-import Posts from "@/components/Posts";
 import { EnterIcon } from "@radix-ui/react-icons";
 
 export default function Home() {
@@ -14,7 +13,7 @@ export default function Home() {
 
   useEffect(() => {
     if (user) {
-      router.push("/");
+      router.push("/shopping");
     }
   }, [user, router]);
 
@@ -24,9 +23,7 @@ export default function Home() {
 
   return (
     <main className="text-center">
-      {user ? (
-        <Posts />
-      ) : (
+      {!user && (
         <div className="text-center">
           <h1 className="text-yellow-500 font-bold text-2xl mb-4">POSTBOARD</h1>
           <p className="text-sm mb-4">Please authenticate to continue</p>
