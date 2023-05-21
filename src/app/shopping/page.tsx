@@ -189,38 +189,6 @@ export default function Shopping() {
           <div className="text-slate-600 font-bold text-sm">Pasztor Isti</div>
         </div>
 
-        <div className="bg-slate-900 p-4 text-sm">
-          <div className="uppercase text-lg font-medium">
-            Lorem ipsum dolor sit amet consectetur adipisicing
-          </div>
-
-          <div className="bg-slate-800 bg-opacity-30 p-4 mt-4 rounded-md text-xs">
-            <div className="flex gap-4 items-center">
-              <Image
-                src={user?.photoURL || ""}
-                className="w-4 h-4 border rounded-full bg-slate-950 border-white"
-                width={24}
-                height={24}
-                alt={user?.displayName || ""}
-              />
-
-              <div className="w-full flex gap-2">
-                <input
-                  type="text"
-                  placeholder="Leave a comment..."
-                  className="text-xs w-full bg-slate-900 rounded-md px-2 border-transparent border focus:outline-none focus:border focus:border-slate-950"
-                />
-                <button className="px-4 py-1 bg-yellow-500 text-slate-900 font-bold rounded-md flex items-center gap-1">
-                  <div>
-                    <PaperPlaneIcon />
-                  </div>
-                  <p className="uppercase">POST</p>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-b-md border-t-slate-950 border-t">
           <div className="w-full flex items-center justify-between">
             <div className="text-xs flex gap-2 text-slate-500">
