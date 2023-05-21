@@ -7,6 +7,7 @@ import {
   TrashIcon,
   CheckCircledIcon,
   PaperPlaneIcon,
+  DragHandleHorizontalIcon,
 } from "@radix-ui/react-icons";
 
 export default function Shopping() {
@@ -15,10 +16,10 @@ export default function Shopping() {
   return (
     <main>
       <div className="mb-4 text-slate-200">
-        <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-t-md border-b-slate-950 border-b">
+        <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-t-md hover:bg-opacity-70 transition-all border-b-slate-950 border-b cursor-grab">
           <div className="rounded-full bg-slate-950 border border-yellow-500">
             <Image
-              src={user?.photoURL || ""}
+              src={user?.photoURL || "/default_avatar.bmp"}
               className="w-6 h-6 border rounded-full bg-slate-950 border-white"
               width={24}
               height={24}
@@ -37,7 +38,7 @@ export default function Shopping() {
             <div className=" text-slate-300" style={{ fontSize: 10 }}>
               <div className="flex gap-4 mt-4">
                 <Image
-                  src={user?.photoURL || ""}
+                  src={user?.photoURL || "/default_avatar.bmp"}
                   className="w-4 h-4 border rounded-full bg-slate-950 border-white"
                   width={24}
                   height={24}
@@ -53,7 +54,7 @@ export default function Shopping() {
               </div>
               <div className="flex gap-4 mt-4">
                 <Image
-                  src={user?.photoURL || ""}
+                  src={user?.photoURL || "/default_avatar.bmp"}
                   className="w-4 h-4 border rounded-full bg-slate-950 border-white"
                   width={24}
                   height={24}
@@ -69,7 +70,7 @@ export default function Shopping() {
 
             <div className="flex gap-4 mt-4 items-center">
               <Image
-                src={user?.photoURL || ""}
+                src={user?.photoURL || "/default_avatar.bmp"}
                 className="w-4 h-4 border rounded-full bg-slate-950 border-white"
                 width={24}
                 height={24}
@@ -112,10 +113,10 @@ export default function Shopping() {
       </div>
 
       <div className="mb-4 text-slate-200">
-        <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-t-md border-b-slate-950 border-b">
+        <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-t-md hover:bg-opacity-70 transition-all border-b-slate-950 border-b cursor-grab">
           <div className="rounded-full bg-slate-950 border border-yellow-500">
             <Image
-              src={user?.photoURL || ""}
+              src={user?.photoURL || "/default_avatar.bmp"}
               className="w-6 h-6 border rounded-full bg-slate-950 border-white"
               width={24}
               height={24}
@@ -133,7 +134,7 @@ export default function Shopping() {
           <div className="bg-slate-800 bg-opacity-30 p-4 mt-4 rounded-md text-xs">
             <div className="flex gap-4 items-center">
               <Image
-                src={user?.photoURL || ""}
+                src={user?.photoURL || "/default_avatar.bmp"}
                 className="w-4 h-4 border rounded-full bg-slate-950 border-white"
                 width={24}
                 height={24}
@@ -176,10 +177,10 @@ export default function Shopping() {
       </div>
 
       <div className="mb-4 text-slate-200 opacity-40">
-        <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-t-md">
+        <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-t-md hover:bg-opacity-70 transition-all">
           <div className="rounded-full bg-slate-950 border border-yellow-500">
             <Image
-              src={user?.photoURL || ""}
+              src={user?.photoURL || "/default_avatar.bmp"}
               className="w-6 h-6 border rounded-full bg-slate-950 border-white"
               width={24}
               height={24}
@@ -208,10 +209,10 @@ export default function Shopping() {
       </div>
 
       <div className="mb-4 text-slate-200">
-        <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-t-md border-b-slate-950 border-b">
+        <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-t-md hover:bg-opacity-70 transition-all border-b-slate-950 border-b cursor-grab">
           <div className="rounded-full bg-slate-950 border border-yellow-500">
             <Image
-              src={user?.photoURL || ""}
+              src={user?.photoURL || "/default_avatar.bmp"}
               className="w-6 h-6 border rounded-full bg-slate-950 border-white"
               width={24}
               height={24}
@@ -229,7 +230,7 @@ export default function Shopping() {
           <div className="bg-slate-800 bg-opacity-30 p-4 mt-4 rounded-md text-xs">
             <div className="flex gap-4 items-center">
               <Image
-                src={user?.photoURL || ""}
+                src={user?.photoURL || "/default_avatar.bmp"}
                 className="w-4 h-4 border rounded-full bg-slate-950 border-white"
                 width={24}
                 height={24}
