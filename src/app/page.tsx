@@ -17,10 +17,6 @@ export default function Home() {
     }
   }, [user, router]);
 
-  // if (loading) {
-  //   return <Loading />;
-  // }
-
   return (
     <main className="text-center w-full bg-slate-900 min-h-screen flex justify-center items-center">
       {loading && <Loading />}
