@@ -16,12 +16,21 @@ interface Props {
   children: ReactNode;
 }
 
-export const AuthContext = createContext<{ user: User | null }>({ user: null });
+interface ContextInterface {
+  user: User | null;
+  loading: boolean;
+}
+
+export const AuthContext = createContext<ContextInterface>({
+  user: null,
+  loading: true,
+});
 
 export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthContextProvider: FC<Props> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -30,12 +39,16 @@ export const AuthContextProvider: FC<Props> = ({ children }) => {
       } else {
         setUser(null);
       }
+
+      setLoading(false);
     });
 
     return () => unsubscribe();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, loading }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
