@@ -32,7 +32,7 @@ export default function Home() {
           <p className="text-sm mb-4">Please authenticate to continue</p>
 
           <button
-            className="m-2 px-4 py-2 bg-yellow-500 text-slate-800 text-xs font-bold rounded-md"
+            className="m-2 px-4 py-2 bg-yellow-500 text-slate-800 text-xs font-bold rounded-md hover:bg-yellow-600 transition-all"
             onClick={() => signUp()}
           >
             <div className="flex items-center">
