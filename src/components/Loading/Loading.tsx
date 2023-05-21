@@ -11,17 +11,17 @@ const Loading: React.FC<{ text?: boolean }> = ({ text = true }) => {
 
     return (
       <>
+        <div className="text-yellow-500 font-bold text-sm">Loading</div>
         <div className="text-yellow-500 font-bold text-2xl">POSTBOARD</div>
         {children}
-        <div className="text-yellow-500 font-bold text-sm">Loading</div>
       </>
     );
   };
 
   const Spinner = () => {
     return (
-      <div className={styles.loading}>
-        <div />
+      <div className="p-10">
+        <div className={styles.loading} />
       </div>
     );
   };
