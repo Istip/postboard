@@ -176,7 +176,7 @@ export default function Shopping() {
       </div>
 
       <div className="mb-4 text-slate-200 opacity-40">
-        <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-t-md border-b-slate-950 border-b">
+        <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-t-md">
           <div className="rounded-full bg-slate-950 border border-yellow-500">
             <Image
               src={user?.photoURL || ""}
