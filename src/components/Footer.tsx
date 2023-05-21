@@ -12,7 +12,7 @@ export default function Footer() {
 
   return (
     <div className="w-screen bg-slate-900 border-slate-800 border-t fixed bottom-0">
-      <div className="px-4 py-2 h-16 flex gap-2">
+      <div className="w-full px-4 py-2 h-16 flex gap-2">
         <textarea
           placeholder="Enter your text..."
           className="w-full h-full bg-slate-800 p-2 rounded-md border-transparent border focus:outline-none focus:border focus:border-slate-800 resize-none text-sm"
@@ -21,6 +21,7 @@ export default function Footer() {
           <PlusCircledIcon />
         </button>
       </div>
+
       <div className="px-4 flex justify-center">
         <div className="max-w-7xl flex justify-between items-center gap-4 w-96 py-4">
           <button className="font-bold text-xs bg-yellow-500 px-4 py-2 rounded-md text-slate-950">
