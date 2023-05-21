@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
-import { useAuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
-import signUp from "@/utils/signUp";
-import Loading from "@/components/Loading/Loading";
+import { useAuthContext } from "@/context/AuthContext";
 import { EnterIcon } from "@radix-ui/react-icons";
+import Loading from "@/components/Loading/Loading";
+import signUp from "@/utils/signUp";
 
 export default function Home() {
   const { user, loading } = useAuthContext();
@@ -17,14 +17,15 @@ export default function Home() {
     }
   }, [user, router]);
 
-  if (loading) {
-    return <Loading />;
-  }
+  // if (loading) {
+  //   return <Loading />;
+  // }
 
   return (
-    <main className="text-center">
-      {!user && (
-        <div className="text-center">
+    <main className="text-center w-full bg-slate-900 min-h-screen flex justify-center items-center">
+      {loading && <Loading />}
+      {!user && !loading && (
+        <div className="h-full">
           <h1 className="text-yellow-500 font-bold text-2xl mb-4">POSTBOARD</h1>
           <p className="text-sm mb-4">Please authenticate to continue</p>
 
