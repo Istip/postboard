@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuthContext } from "@/context/AuthContext";
+import useLocalStorage from "@/hooks/useLocalStorage";
 import {
   PlusCircledIcon,
   ListBulletIcon,
@@ -11,6 +12,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const [current, setCurrent] = useLocalStorage(
+    "postboard_last_page",
+    "/shopping"
+  );
+
   const { user } = useAuthContext();
 
   const pathname = usePathname();
@@ -38,7 +44,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="w-screen bg-slate-900 border-slate-800 border-t fixed bottom-0 px-4 flex justify-center">
+    <footer className="w-screen bg-slate-900 border-slate-800 border-t fixed bottom-0 px-4 py-2 flex justify-center">
       <div className="w-full max-w-7xl flex flex-col sm:w-[450px]">
         <div className="py-2 h-16 flex gap-2">
           <textarea
@@ -55,6 +61,7 @@ export default function Footer() {
           {menu.map((item) => {
             return (
               <Link
+                onClick={() => current !== item.title && setCurrent(item.title)}
                 href={item.title}
                 key={item.title}
                 className={`${
