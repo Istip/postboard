@@ -19,13 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="bg-slate-950 text-slate-50 w-full min-h-screen h-auto">
-          <AuthContextProvider>
+        <AuthContextProvider>
+          <div className="bg-slate-950 text-slate-50 w-full min-h-screen h-auto">
             <Navbar />
             <div className="py-16 px-4">{children}</div>
             <Footer />
-          </AuthContextProvider>
-        </div>
+          </div>
+        </AuthContextProvider>
       </body>
     </html>
   );
