@@ -9,6 +9,8 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "PostBoard",
   description: "Post your toughts!",
+  manifest: "/manifest.json",
+  themeColor: "#0f172a",
 };
 
 export default function RootLayout({
