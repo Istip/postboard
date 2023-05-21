@@ -1,8 +1,8 @@
-import { AuthContextProvider } from "@/context/AuthContext";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import { AuthContextProvider } from "@/context/AuthContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +24,7 @@ export default function RootLayout({
         <AuthContextProvider>
           <div className="bg-slate-950 text-slate-50 w-full min-h-screen h-auto">
             <Navbar />
-            <div className="px-4 pt-16 pb-36">{children}</div>
+            {children}
             <Footer />
           </div>
         </AuthContextProvider>
