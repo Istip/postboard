@@ -3,9 +3,23 @@
 import { useAuthContext } from "@/context/AuthContext";
 import Link from "next/link";
 import Image from "next/image";
+import { getAuth, signOut } from "firebase/auth";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const { user } = useAuthContext();
+  const router = useRouter();
+
+  const handleSignOut = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        router.push("/");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
   if (!user) {
     return null;
@@ -22,7 +36,10 @@ export default function Navbar() {
         <div>
           {user && (
             <div className="flex items-center gap-4">
-              <button className="text-xs font-bold px-4 py-2 rounded-md bg-yellow-500 text-slate-950 hover:bg-yellow-600 transition-all">
+              <button
+                className="text-xs font-bold px-4 py-2 rounded-md bg-yellow-500 text-slate-950 hover:bg-yellow-600 transition-all"
+                onClick={handleSignOut}
+              >
                 LOGOUT
               </button>
               <div className="border rounded-full border-yellow-500">
