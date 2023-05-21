@@ -1,11 +1,11 @@
 "use client";
 
-import { Posts } from "@/components";
-import Loading from "@/components/Loading/Loading";
-import { useAuthContext } from "@/context/AuthContext";
-import signUp from "@/utils/signUp";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { useAuthContext } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
+import signUp from "@/utils/signUp";
+import Loading from "@/components/Loading/Loading";
+import Posts from "@/components/Posts";
 
 export default function Home() {
   const { user, loading } = useAuthContext();
