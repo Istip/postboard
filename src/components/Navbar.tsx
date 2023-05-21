@@ -1,10 +1,11 @@
 "use client";
 
-import { useAuthContext } from "@/context/AuthContext";
 import Link from "next/link";
 import Image from "next/image";
-import { getAuth, signOut } from "firebase/auth";
 import { useRouter } from "next/navigation";
+import { useAuthContext } from "@/context/AuthContext";
+import { getAuth, signOut } from "firebase/auth";
+import { ExitIcon } from "@radix-ui/react-icons";
 
 export default function Navbar() {
   const { user } = useAuthContext();
@@ -40,7 +41,12 @@ export default function Navbar() {
                 className="text-xs font-bold px-4 py-2 rounded-md bg-yellow-500 text-slate-950 hover:bg-yellow-600 transition-all"
                 onClick={handleSignOut}
               >
-                LOGOUT
+                <div className="flex items-center">
+                  <div className="mr-2">
+                    <ExitIcon />
+                  </div>
+                  LOGOUT
+                </div>
               </button>
               <div className="border rounded-full border-yellow-500">
                 <Image
