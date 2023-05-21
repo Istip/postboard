@@ -66,9 +66,9 @@ export default function Footer() {
                 key={item.title}
                 className={`${
                   pathname === `/${item.title}`
-                    ? "bg-slate-800 text-yellow-500"
-                    : "text-white"
-                } p-4 flex items-center rounded-md`}
+                    ? "text-yellow-500 border-b border-yellow-500 "
+                    : "text-white border-b border-transparent"
+                } p-4 flex items-center justify-center rounded-t-md w-full`}
               >
                 <div className="font-bold text-xs">{item.icon}</div>
 
