@@ -7,6 +7,7 @@ import {
   ChatBubbleIcon,
   BellIcon,
 } from "@radix-ui/react-icons";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Footer() {
@@ -50,28 +51,33 @@ export default function Footer() {
           </button>
         </div>
 
-        <div className="flex items-center justify-around sm:justify-center gap-4 py-4 w-full cursor-pointer">
+        <div className="flex items-center rounded-md justify-between sm:justify-center gap-4 w-full pb-2">
           {menu.map((item) => {
             return (
-              <div
+              <Link
+                href={item.title}
                 key={item.title}
-                className="flex items-center p-3 rounded-md bg-slate-800"
+                className={`${
+                  pathname === `/${item.title}`
+                    ? "bg-slate-800 text-yellow-500"
+                    : "text-white"
+                } p-4 flex items-center rounded-md`}
               >
-                <button className="font-bold text-xs text-yellow-500">
-                  {item.icon}
-                </button>
-                <div className="text-sm font-bold text-yellow-500 ml-2 hidden sm:block">
+                <div className="font-bold text-xs">{item.icon}</div>
+
+                <div className="text-sm font-bold ml-2 hidden sm:block">
                   {item.title.toUpperCase()}
                 </div>
+
                 {item?.bagde && (
                   <div
-                    className="font-bold w-4 h-4 bg-red-700 flex items-center justify-center rounded-full ml-2"
+                    className="font-bold w-4 h-4 bg-red-700 flex items-center justify-center rounded-full ml-2 text-white"
                     style={{ fontSize: 8 }}
                   >
                     {item.bagde}
                   </div>
                 )}
-              </div>
+              </Link>
             );
           })}
         </div>
