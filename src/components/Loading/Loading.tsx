@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "./loading.module.css";
 
-const Loading: React.FC<{ text?: boolean }> = ({ text = true }) => {
+const Loading: React.FC<{ text?: boolean; title?: string }> = ({
+  text = true,
+  title = "Loading",
+}) => {
   const WrapperText: React.FC<{ children: React.ReactNode }> = ({
     children,
   }) => {
@@ -11,7 +14,7 @@ const Loading: React.FC<{ text?: boolean }> = ({ text = true }) => {
 
     return (
       <>
-        <div className="text-yellow-500 font-bold text-sm">Loading</div>
+        <div className="text-yellow-500 font-bold text-sm">{title}</div>
         <div className="text-yellow-500 font-bold text-2xl">POSTBOARD</div>
         {children}
       </>
@@ -20,7 +23,7 @@ const Loading: React.FC<{ text?: boolean }> = ({ text = true }) => {
 
   const Spinner = () => {
     return (
-      <div className="p-10">
+      <div className="py-[35px]">
         <div className={styles.loading} />
       </div>
     );
