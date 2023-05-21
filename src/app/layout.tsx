@@ -24,7 +24,7 @@ export default function RootLayout({
         <AuthContextProvider>
           <div className="bg-slate-950 text-slate-50 w-full min-h-screen h-auto">
             <Navbar />
-            <div className="py-16 px-4">{children}</div>
+            <div className="px-4 pt-16 pb-32">{children}</div>
             <Footer />
           </div>
         </AuthContextProvider>
