@@ -14,6 +14,7 @@ import { usePathname } from "next/navigation";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import { toast } from "react-hot-toast";
+import { Post } from "@/interfaces/Post";
 
 export default function Footer() {
   const [text, setText] = useState("");
@@ -39,7 +40,7 @@ export default function Footer() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const dataToSend = {
+    const dataToSend: Post = {
       text,
       createdAt: new Date(),
       type: formattedPathname,
