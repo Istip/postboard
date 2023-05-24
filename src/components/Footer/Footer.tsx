@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useAuthContext } from "@/context/AuthContext";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import {
@@ -10,8 +11,13 @@ import {
 } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "@/utils/firebase";
+import { toast } from "react-hot-toast";
 
 export default function Footer() {
+  const [text, setText] = useState("");
+  const [loading, setLoading] = useState(false);
   const [current, setCurrent] = useLocalStorage(
     "postboard_last_page",
     "/shopping"
@@ -20,6 +26,48 @@ export default function Footer() {
   const { user } = useAuthContext();
 
   const pathname = usePathname();
+  const submitPages = ["shopping", "notes"];
+  const formattedPathname = pathname.substring(1, pathname.length);
+  const pageIsSubmit = submitPages.includes(formattedPathname);
+
+  let toastID: string;
+
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setText(e.target.value);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const dataToSend = {
+      text,
+      createdAt: new Date(),
+      type: formattedPathname,
+    };
+
+    toastID = toast.loading("Creating new post!", { id: toastID });
+
+    if (!text.length) {
+      return toast.error("Enter a message!", { id: toastID });
+    }
+
+    setLoading(true);
+
+    await addDoc(collection(db, "posts"), dataToSend)
+      .then(() => {
+        toast.success(`'${text}' has been added!`, { id: toastID });
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Please try again!", { id: toastID });
+      })
+      .finally(() => {
+        setLoading(false);
+        setText("");
+      });
+
+    console.log(dataToSend);
+  };
 
   const menu = [
     {
@@ -46,16 +94,25 @@ export default function Footer() {
   return (
     <footer className="w-screen bg-slate-900 border-slate-800 border-t fixed bottom-0 px-4 py-2 flex justify-center">
       <div className="w-full max-w-7xl flex flex-col sm:w-[450px]">
-        <div className="py-2 h-16 flex gap-2">
-          <textarea
-            placeholder="Enter your text..."
-            className="w-full h-full bg-slate-800 p-2 rounded-md border-transparent border focus:outline-none focus:border focus:border-slate-800 resize-none text-sm"
-          />
-          <button className="h-full bg-yellow-500 rounded-md px-4 py-2 text-slate-950 font-bold flex items-center gap-1.5">
-            <PlusCircledIcon />
-            <div className="text-sm hidden sm:block">Create</div>
-          </button>
-        </div>
+        {pageIsSubmit && (
+          <form
+            onSubmit={(e) => handleSubmit(e)}
+            className="py-2 h-16 flex gap-2"
+          >
+            <textarea
+              onChange={handleChange}
+              value={text}
+              disabled={loading}
+              placeholder="Enter your text..."
+              className="w-full h-full bg-slate-800 p-2 rounded-md border-transparent border focus:outline-none
+              disabled:opacity-50 disabled:cursor-not-allowed focus:border focus:border-slate-800 resize-none text-sm"
+            />
+            <button className="h-full bg-yellow-500 rounded-md px-4 py-2 text-slate-950 font-bold flex items-center gap-1.5">
+              <PlusCircledIcon />
+              <div className="text-sm hidden sm:block">Create</div>
+            </button>
+          </form>
+        )}
 
         <div className="flex items-center rounded-md justify-between sm:justify-center gap-4 w-full pb-2">
           {menu.map((item) => {
