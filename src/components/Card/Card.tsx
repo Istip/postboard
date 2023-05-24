@@ -7,19 +7,26 @@ import {
   TrashIcon,
 } from "@radix-ui/react-icons";
 import { Post } from "@/interfaces/Post";
+import { Timestamp } from "firebase/firestore";
 
 type CardProps = {
   user: User | null;
-  post: Post;
+  post?: Post;
 };
 
 const Card: React.FC<CardProps> = ({ user, post }) => {
+  console.log(post);
+
+  const convertTimestamp = (timestamp: any) => {
+    return timestamp?.toDate().toISOString().split("T")[0];
+  };
+
   return (
     <div className="mb-4 text-slate-200">
       <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-t-md hover:bg-opacity-70 transition-all border-b-slate-950 border-b cursor-grab">
         <div className="rounded-full bg-slate-950 border border-yellow-500">
           <Image
-            src={user?.photoURL || "/default_avatar.bmp"}
+            src={user?.photoURL || "/avatar.bmp"}
             className="w-6 h-6 border rounded-full bg-slate-950 border-white"
             width={24}
             height={24}
@@ -30,7 +37,7 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
       </div>
 
       <div className="bg-slate-900 p-4 text-sm">
-        <div className="uppercase text-lg font-medium">Cherry paradicsom</div>
+        <div className="uppercase text-lg font-medium">{post?.text}</div>
 
         <div className="bg-slate-800 bg-opacity-30 p-4 mt-4 rounded-md text-xs">
           <div className="text-xs font-bold text-slate-500">Comments:</div>
@@ -38,7 +45,7 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
           <div className=" text-slate-300" style={{ fontSize: 10 }}>
             <div className="flex gap-4 mt-4">
               <Image
-                src={user?.photoURL || "/default_avatar.bmp"}
+                src={user?.photoURL || "/avatar.bmp"}
                 className="w-4 h-4 border rounded-full bg-slate-950 border-white"
                 width={24}
                 height={24}
@@ -54,7 +61,7 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
             </div>
             <div className="flex gap-4 mt-4">
               <Image
-                src={user?.photoURL || "/default_avatar.bmp"}
+                src={user?.photoURL || "/avatar.bmp"}
                 className="w-4 h-4 border rounded-full bg-slate-950 border-white"
                 width={24}
                 height={24}
@@ -70,7 +77,7 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
 
           <div className="flex gap-4 mt-4 items-center">
             <Image
-              src={user?.photoURL || "/default_avatar.bmp"}
+              src={user?.photoURL || "/avatar.bmp"}
               className="w-4 h-4 border rounded-full bg-slate-950 border-white"
               width={24}
               height={24}
@@ -97,7 +104,7 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
       <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-b-md border-t-slate-950 border-t">
         <div className="w-full flex items-center justify-between">
           <div className="text-xs flex gap-2 text-slate-500">
-            <CalendarIcon /> <p>2023.05.21</p>
+            <CalendarIcon /> <p>{convertTimestamp(post?.createdAt)}</p>
           </div>
 
           <div className="flex gap-2">
