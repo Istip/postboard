@@ -7,7 +7,6 @@ import {
   TrashIcon,
 } from "@radix-ui/react-icons";
 import { Post } from "@/interfaces/Post";
-import { Timestamp } from "firebase/firestore";
 
 type CardProps = {
   user: User | null;
@@ -15,8 +14,6 @@ type CardProps = {
 };
 
 const Card: React.FC<CardProps> = ({ user, post }) => {
-  console.log(post);
-
   const convertTimestamp = (timestamp: any) => {
     return timestamp?.toDate().toISOString().split("T")[0];
   };
