@@ -4,4 +4,5 @@ export type Post = {
   type: string;
   marked: boolean;
   id?: string;
+  done?: boolean;
 };
