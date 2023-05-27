@@ -5,14 +5,13 @@ import { ArrowLeftIcon, TrashIcon } from "@radix-ui/react-icons";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import { toast } from "react-hot-toast";
-import { useAuthContext } from "@/context/AuthContext";
 
 const Comment: React.FC<{ post: Post | undefined; comment: any }> = ({
   post,
   comment,
 }) => {
   const [overlap, setOverlap] = useState(false);
-  const { user } = useAuthContext();
+  const [loading, setLoading] = useState(false);
   const commentId = comment.id || "";
 
   const handleDelete = () => {
@@ -33,8 +32,17 @@ const Comment: React.FC<{ post: Post | undefined; comment: any }> = ({
 
   if (overlap) {
     return (
-      <div className="w-100 mt-4 left-0 right-0 flex flex-col gap-2 bg-slate-800 text-xs p-2 rounded-md font-light">
-        <div className="mb-1">{comment?.text}</div>
+      <div className="w-100 mt-4 left-0 right-0 flex flex-col bg-slate-800 text-xs p-2 rounded-md font-light">
+        <div className="flex gap-2 mb-2">
+          <Image
+            src={post?.photoUrl || "/avatar.bmp"}
+            className="w-4 h-4 border rounded-full bg-slate-950 border-white"
+            width={24}
+            height={24}
+            alt={post?.displayName || ""}
+          />
+          <div className="mb-1">{comment?.text}</div>
+        </div>
         <div className="flex gap-2">
           <button
             onClick={handleDelete}
