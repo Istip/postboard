@@ -37,6 +37,7 @@ export default function Shopping() {
     <>
       <Toaster
         toastOptions={{
+          duration: 3000,
           success: {
             style: {
               background: "#16a34a",
