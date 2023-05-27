@@ -25,7 +25,7 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
     const postId = post?.id || "";
     deleteDoc(doc(db, "posts", postId))
       .then(() => {
-        toast.success("Something went wrong! Please try again!");
+        toast.success("Item deleted successfully!");
       })
       .catch(() => {
         toast.error("Something went wrong! Please try again!");
