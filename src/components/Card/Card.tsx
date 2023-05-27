@@ -6,7 +6,7 @@ import {
   PaperPlaneIcon,
   TrashIcon,
 } from "@radix-ui/react-icons";
-import { deleteDoc, doc } from "firebase/firestore";
+import { deleteDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import { Post } from "@/interfaces/Post";
 import { toast } from "react-hot-toast";
@@ -21,8 +21,11 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
     return timestamp?.toDate().toISOString().split("T")[0];
   };
 
+  const postId = post?.id || "";
+
+  const cardOpacity = post?.done ? "opacity-50" : "";
+
   const handleDelete = () => {
-    const postId = post?.id || "";
     deleteDoc(doc(db, "posts", postId))
       .then(() => {
         toast.success("Item deleted successfully!");
@@ -32,8 +35,15 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
       });
   };
 
+  const handleStatus = () => {
+    setDoc(doc(db, "posts", postId), {
+      ...post,
+      done: !post?.done,
+    });
+  };
+
   return (
-    <div className="mb-4 text-slate-200">
+    <div className={`mb-4 text-slate-200 ${cardOpacity}`}>
       <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-t-md hover:bg-opacity-70 transition-all border-b-slate-950 border-b cursor-grab">
         <div className="rounded-full bg-slate-950 border border-yellow-500">
           <Image
@@ -44,6 +54,7 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
             alt={user?.displayName || ""}
           />
         </div>
+
         <div className="text-slate-600 font-bold text-sm">Pasztor Isti</div>
       </div>
 
@@ -125,7 +136,10 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
             >
               <TrashIcon />
             </button>
-            <button className="px-4 py-2 bg-green-600 rounded-md">
+            <button
+              className="px-4 py-2 bg-green-600 rounded-md"
+              onClick={handleStatus}
+            >
               <CheckCircledIcon />
             </button>
           </div>
