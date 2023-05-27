@@ -63,7 +63,7 @@ export default function Footer() {
       .then(() => {
         toast.success(
           () => (
-            <div className="flex gap-1 items-center">
+            <div>
               <span className="font-bold text-md">{`${text}`}</span>{" "}
               <span className="opacity-75">added to the shopping list!</span>
             </div>
