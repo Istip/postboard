@@ -9,6 +9,7 @@ import {
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import { Post } from "@/interfaces/Post";
+import { toast } from "react-hot-toast";
 
 type CardProps = {
   user: User | null;
@@ -24,10 +25,10 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
     const postId = post?.id || "";
     deleteDoc(doc(db, "posts", postId))
       .then(() => {
-        console.log("Entire Document has been deleted successfully.");
+        toast.success("Something went wrong! Please try again!");
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        toast.error("Something went wrong! Please try again!");
       });
   };
 
