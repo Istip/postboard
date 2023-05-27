@@ -25,7 +25,7 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
 
   const postId = post?.id || "";
   const cardOpacity = post?.done ? "opacity-50" : "";
-  const cardBorder = post?.marked
+  const cardBorder = !post?.marked
     ? "border-slate-700 border-opacity-50"
     : "border-yellow-500";
 
@@ -76,7 +76,7 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
         <div className="text-slate-600 font-bold text-sm flex gap-2 items-center">
           <div>{user?.displayName}</div>
           <button className="text-yellow-500" onClick={handleMark}>
-            {post?.marked ? <BookmarkIcon /> : <BookmarkFilledIcon />}
+            {!post?.marked ? <BookmarkIcon /> : <BookmarkFilledIcon />}
           </button>
         </div>
       </div>
