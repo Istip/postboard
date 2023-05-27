@@ -45,6 +45,7 @@ export default function Footer() {
       createdAt: new Date(),
       type: formattedPathname,
       marked: false,
+      done: false,
     };
 
     toastID = toast.loading("Creating new post!", { id: toastID });
