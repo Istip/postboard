@@ -37,7 +37,7 @@ export default function Footer() {
     setText(e.target.value);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     const dataToSend: Post = {
@@ -46,6 +46,9 @@ export default function Footer() {
       type: formattedPathname,
       marked: false,
       done: false,
+      displayName: user?.displayName,
+      email: user?.email,
+      photoUrl: user?.photoURL,
     };
 
     toastID = toast.loading("Creating new post!", { id: toastID });
@@ -56,9 +59,17 @@ export default function Footer() {
 
     setLoading(true);
 
-    await addDoc(collection(db, "posts"), dataToSend)
+    addDoc(collection(db, "posts"), dataToSend)
       .then(() => {
-        toast.success(`'${text}' has been added!`, { id: toastID });
+        toast.success(
+          () => (
+            <div className="flex gap-1">
+              <span className="font-bold text-md">{`${text}`}</span>{" "}
+              <span className="opacity-75">removed from shopping list!</span>
+            </div>
+          ),
+          { id: toastID }
+        );
       })
       .catch(() => {
         toast.error("Please try again!", { id: toastID });
