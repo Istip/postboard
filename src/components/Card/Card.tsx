@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { User } from "firebase/auth";
 import {
+  BookmarkFilledIcon,
+  BookmarkIcon,
   CalendarIcon,
   CheckCircledIcon,
   PaperPlaneIcon,
@@ -22,8 +24,8 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
   };
 
   const postId = post?.id || "";
-
   const cardOpacity = post?.done ? "opacity-50" : "";
+  const cardBorder = post?.marked ? "border-slate-700" : "border-yellow-500";
 
   const handleDelete = () => {
     deleteDoc(doc(db, "posts", postId))
@@ -42,8 +44,17 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
     });
   };
 
+  const handleMark = () => {
+    setDoc(doc(db, "posts", postId), {
+      ...post,
+      marked: !post?.marked,
+    });
+  };
+
   return (
-    <div className={`mb-4 text-slate-200 ${cardOpacity}`}>
+    <div
+      className={`mb-4 text-slate-200 rounded-md border ${cardOpacity} ${cardBorder}`}
+    >
       <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-t-md hover:bg-opacity-70 transition-all border-b-slate-950 border-b cursor-grab">
         <div className="rounded-full bg-slate-950 border border-yellow-500">
           <Image
@@ -55,7 +66,12 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
           />
         </div>
 
-        <div className="text-slate-600 font-bold text-sm">Pasztor Isti</div>
+        <div className="text-slate-600 font-bold text-sm flex gap-2 items-center">
+          <div>Pasztor Isti</div>
+          <button className="text-yellow-500" onClick={handleMark}>
+            {post?.marked ? <BookmarkIcon /> : <BookmarkFilledIcon />}
+          </button>
+        </div>
       </div>
 
       <div className="bg-slate-900 p-4 text-sm">
