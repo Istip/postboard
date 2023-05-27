@@ -65,7 +65,11 @@ export default function Shopping() {
         }}
       />
       <main>
-        {!posts?.length && <Message type="warning">No posts found</Message>}
+        {!posts?.length && (
+          <Message type="warning">
+            You have nothing on yout shopping list
+          </Message>
+        )}
 
         {posts.map((post) => (
           <Card key={post.id} user={user} post={post} />
