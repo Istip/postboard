@@ -48,6 +48,7 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
     setDoc(doc(db, "posts", postId), {
       ...post,
       done: !post?.done,
+      marked: false,
     });
   };
 
