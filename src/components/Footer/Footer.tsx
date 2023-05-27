@@ -51,7 +51,7 @@ export default function Footer() {
       photoUrl: user?.photoURL,
     };
 
-    toastID = toast.loading("Creating new post!", { id: toastID });
+    toastID = toast.loading("Creating new post..", { id: toastID });
 
     if (!text.length) {
       return toast.error("Enter a message!", { id: toastID });
