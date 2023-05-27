@@ -5,4 +5,7 @@ export type Post = {
   marked: boolean;
   id?: string;
   done?: boolean;
+  displayName: string | undefined | null;
+  email: string | undefined | null;
+  photoUrl: string | undefined | null;
 };
