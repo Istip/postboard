@@ -34,7 +34,7 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
       .then(() => {
         toast.success(() => (
           <div className="flex gap-1">
-            <span className="font-bold text-md">{`${post?.text}`}</span>{" "}
+            <span className="font-bold text-md items-center">{`${post?.text}`}</span>{" "}
             <span className="opacity-75">removed from shopping list!</span>
           </div>
         ));
