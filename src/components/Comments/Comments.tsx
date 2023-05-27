@@ -23,15 +23,14 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
   // TODO: delete comments that are related to any post
 
   // TODO: fix rerender every time input is changeing
-  console.log("✅  comments:", comments);
 
   let toastID: string;
 
   const handleSubmit = () => {
-    toastID = toast.loading("Creating new post!", { id: toastID });
+    toastID = toast.loading("Addind your comment...", { id: toastID });
 
     if (!comment.length) {
-      return toast.error("Enter a message!", { id: toastID });
+      return toast.error("Enter a comment!", { id: toastID });
     }
 
     const dataToSend = {
@@ -71,6 +70,7 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
       (snapshot) => {
         const data = snapshot.docs.map((doc) => ({
           ...doc.data(),
+          createdAt: Date.now(),
           id: doc.id,
         }));
 
