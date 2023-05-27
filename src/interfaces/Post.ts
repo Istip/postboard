@@ -3,5 +3,5 @@ export type Post = {
   createdAt: Date;
   type: string;
   marked: boolean;
-  id?: string;
+  id: string;
 };
