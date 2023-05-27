@@ -5,11 +5,13 @@ import { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "@/utils/firebase";
+import { Post } from "@/interfaces/Post";
 import Card from "@/components/Card/Card";
 import Loading from "@/components/Loading/Loading";
+import Message from "@/components/Message/Message";
 
 export default function Shopping() {
-  const [posts, setPosts] = useState<any[] | null>(null);
+  const [posts, setPosts] = useState<Post[] | null>(null);
 
   const { user } = useAuthContext();
 
@@ -18,7 +20,7 @@ export default function Shopping() {
       const data: any[] = [];
 
       snapshot.forEach((doc) => {
-        data.push(doc.data());
+        data.push({ ...doc.data(), id: doc.id });
       });
 
       setPosts(data);
@@ -28,7 +30,7 @@ export default function Shopping() {
   }, []);
 
   if (!posts) {
-    return <Loading title="Fetching data for" />;
+    return <Loading title="Loading shopping list" />;
   }
 
   return (
@@ -63,10 +65,10 @@ export default function Shopping() {
         }}
       />
       <main>
-        {!posts?.length && <div>No posts found</div>}
+        {!posts?.length && <Message type="warning">No posts found</Message>}
 
-        {posts.map((post, index) => (
-          <Card key={index} user={user} post={post} />
+        {posts.map((post) => (
+          <Card key={post.id} user={user} post={post} />
         ))}
       </main>
     </>
