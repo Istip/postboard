@@ -1,6 +1,5 @@
 "use client";
 
-import { useAuthContext } from "@/context/AuthContext";
 import { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
@@ -12,8 +11,6 @@ import Message from "@/components/Message/Message";
 
 export default function Shopping() {
   const [posts, setPosts] = useState<Post[] | null>(null);
-
-  const { user } = useAuthContext();
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "posts"), (snapshot) => {
@@ -73,7 +70,7 @@ export default function Shopping() {
         )}
 
         {posts.map((post) => (
-          <Card key={post.id} user={user} post={post} />
+          <Card key={post.id} post={post} />
         ))}
       </main>
     </>

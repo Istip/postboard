@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { User } from "firebase/auth";
 import {
   BookmarkFilledIcon,
   BookmarkIcon,
@@ -14,11 +13,10 @@ import { toast } from "react-hot-toast";
 import Comments from "../Comments/Comments";
 
 type CardProps = {
-  user: User | null;
   post?: Post;
 };
 
-const Card: React.FC<CardProps> = ({ user, post }) => {
+const Card: React.FC<CardProps> = ({ post }) => {
   const convertTimestamp = (timestamp: any) => {
     return timestamp?.toDate().toISOString().split("T")[0];
   };
@@ -66,16 +64,16 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
       <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-t-md hover:bg-opacity-70 transition-all border-b-slate-950 border-b cursor-grab">
         <div className="rounded-full bg-slate-950 border border-yellow-500">
           <Image
-            src={user?.photoURL || "/avatar.bmp"}
+            src={post?.photoUrl || "/avatar.bmp"}
             className="w-6 h-6 border rounded-full bg-slate-950 border-white"
             width={24}
             height={24}
-            alt={user?.displayName || ""}
+            alt={post?.displayName || ""}
           />
         </div>
 
         <div className="text-slate-600 font-bold text-sm flex gap-2 items-center">
-          <div>{user?.displayName}</div>
+          <div>{post?.displayName}</div>
           <button className="text-yellow-500" onClick={handleMark}>
             {!post?.marked ? <BookmarkIcon /> : <BookmarkFilledIcon />}
           </button>
