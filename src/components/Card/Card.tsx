@@ -6,6 +6,8 @@ import {
   PaperPlaneIcon,
   TrashIcon,
 } from "@radix-ui/react-icons";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "@/utils/firebase";
 import { Post } from "@/interfaces/Post";
 
 type CardProps = {
@@ -16,6 +18,17 @@ type CardProps = {
 const Card: React.FC<CardProps> = ({ user, post }) => {
   const convertTimestamp = (timestamp: any) => {
     return timestamp?.toDate().toISOString().split("T")[0];
+  };
+
+  const handleDelete = () => {
+    const postId = post?.id || "";
+    deleteDoc(doc(db, "posts", postId))
+      .then(() => {
+        console.log("Entire Document has been deleted successfully.");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -105,7 +118,10 @@ const Card: React.FC<CardProps> = ({ user, post }) => {
           </div>
 
           <div className="flex gap-2">
-            <button className="px-4 py-2 bg-red-500 rounded-md">
+            <button
+              className="px-4 py-2 bg-red-500 rounded-md"
+              onClick={handleDelete}
+            >
               <TrashIcon />
             </button>
             <button className="px-4 py-2 bg-green-600 rounded-md">
