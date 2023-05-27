@@ -60,16 +60,13 @@ export default function Footer() {
       .then(() => {
         toast.success(`'${text}' has been added!`, { id: toastID });
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         toast.error("Please try again!", { id: toastID });
       })
       .finally(() => {
         setLoading(false);
         setText("");
       });
-
-    console.log(dataToSend);
   };
 
   const menu = [
