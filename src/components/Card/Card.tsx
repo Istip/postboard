@@ -6,7 +6,16 @@ import {
   CheckCircledIcon,
   TrashIcon,
 } from "@radix-ui/react-icons";
-import { deleteDoc, doc, setDoc } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+  writeBatch,
+} from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import { Post } from "@/interfaces/Post";
 import { toast } from "react-hot-toast";
@@ -27,19 +36,32 @@ const Card: React.FC<CardProps> = ({ post }) => {
     ? "border-slate-700 border-opacity-50"
     : "border-yellow-500";
 
-  const handleDelete = () => {
-    deleteDoc(doc(db, "posts", postId))
-      .then(() => {
-        toast.success(() => (
-          <div>
-            <span className="font-bold text-md items-center">{`${post?.text}`}</span>{" "}
-            <span className="opacity-75">removed from shopping list!</span>
-          </div>
-        ));
-      })
-      .catch(() => {
-        toast.error("Something went wrong! Please try again!");
+  const handleDelete = async () => {
+    try {
+      // Delete the post
+      await deleteDoc(doc(db, "posts", postId));
+
+      // Query for comments with the same postId
+      const commentsRef = collection(db, "comments");
+      const q = query(commentsRef, where("id", "==", postId));
+      const querySnapshot = await getDocs(q);
+
+      // Delete the comments
+      const batch = writeBatch(db);
+      querySnapshot.forEach((doc) => {
+        batch.delete(doc.ref);
       });
+      await batch.commit();
+
+      toast.success(() => (
+        <div>
+          <span className="font-bold text-md items-center">{`${post?.text}`}</span>{" "}
+          <span className="opacity-75">removed from shopping list!</span>
+        </div>
+      ));
+    } catch (error) {
+      toast.error("Something went wrong! Please try again!");
+    }
   };
 
   const handleStatus = () => {
