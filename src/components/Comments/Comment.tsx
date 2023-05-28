@@ -11,7 +11,6 @@ const Comment: React.FC<{ post: Post | undefined; comment: any }> = ({
   comment,
 }) => {
   const [overlap, setOverlap] = useState(false);
-  const [loading, setLoading] = useState(false);
   const commentId = comment.id || "";
 
   const handleDelete = () => {
