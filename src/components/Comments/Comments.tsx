@@ -15,6 +15,7 @@ import {
 import { Post } from "@/interfaces/Post";
 import { toast } from "react-hot-toast";
 import Comment from "./Comment";
+import CommentLoading from "./CommentLoading";
 
 const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
   const [comment, setComment] = useState("");
@@ -43,6 +44,8 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
 
     addDoc(collection(db, "comments"), dataToSend)
       .then(() => {
+        setComment("");
+
         toast.success(
           () => (
             <div>
@@ -58,30 +61,32 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
       })
       .finally(() => {
         setLoading(false);
-        setComment("");
       });
   };
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(
-      query(
-        collection(db, "comments"),
-        where("id", "==", post?.id),
-        orderBy("createdAt")
-      ),
-      (snapshot) => {
-        const data = snapshot.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        setComments(data);
-      }
-    );
+    const unsubscribe = () => {
+      setLoading(true);
+
+      onSnapshot(
+        query(
+          collection(db, "comments"),
+          where("id", "==", post?.id),
+          orderBy("createdAt")
+        ),
+        (snapshot) => {
+          const data = snapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }));
+          setComments(data);
+          setLoading(false);
+        }
+      );
+    };
 
     return () => unsubscribe();
   }, [post?.id]);
-
-  // TODO: add loading
 
   return (
     <div className="bg-slate-800 bg-opacity-30 p-4 mt-4 rounded-md text-xs">
@@ -89,16 +94,20 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
         <div className="text-xs font-bold text-slate-500">Comments:</div>
       ) : null}
 
-      {comments.map((comment) => (
-        <Comment key={comment.id} comment={comment} post={post} />
-      ))}
+      {!loading ? (
+        comments.map((comment) => (
+          <Comment key={comment.id} comment={comment} post={post} />
+        ))
+      ) : (
+        <CommentLoading />
+      )}
 
       <div
         className={`flex gap-4 ${comments?.length ? "mt-4" : ""} items-center`}
       >
         <Image
           src={post?.photoUrl || "/avatar.bmp"}
-          className="w-4 h-4 border rounded-full bg-slate-950 border-white"
+          className="w-4 h-4 border rounded-full bg-slate-950 border-slate-500"
           width={24}
           height={24}
           alt={post?.displayName || ""}
