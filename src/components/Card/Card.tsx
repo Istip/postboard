@@ -33,7 +33,7 @@ const Card: React.FC<CardProps> = ({ post }) => {
   const postId = post?.id || "";
   const cardOpacity = post?.done ? "opacity-50" : "";
   const cardBorder = !post?.marked
-    ? "border-slate-700 border-opacity-50"
+    ? "border-slate-700 border-opacity-0"
     : "border-yellow-500";
 
   const handleDelete = async () => {
