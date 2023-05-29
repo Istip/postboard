@@ -146,10 +146,11 @@ export default function Footer() {
 
                 {item?.bagde && (
                   <div
-                    className="font-bold w-4 h-4 bg-red-700 flex items-center justify-center rounded-full ml-2 text-white"
+                    className="relative font-bold w-4 h-4 bg-red-700 flex items-center justify-center rounded-full ml-2 text-white"
                     style={{ fontSize: 8 }}
                   >
-                    {item.bagde}
+                    <span className="animate-ping bg-red-700 absolute inline-flex h-full w-full rounded-full opacity-75" />
+                    <span>{item.bagde}</span>
                   </div>
                 )}
               </Link>
