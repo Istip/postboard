@@ -1,7 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import { Post } from "@/interfaces/Post";
 import Loading from "@/components/Loading/Loading";
@@ -14,7 +20,11 @@ export default function Notes() {
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
-      query(collection(db, "posts"), where("type", "==", "notes")),
+      query(
+        collection(db, "posts"),
+        where("type", "==", "notes"),
+        orderBy("createdAt", "desc")
+      ),
       (snapshot) => {
         const data: any[] = [];
 
