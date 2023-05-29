@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Post } from "@/interfaces/Post";
 import Image from "next/image";
-import { ArrowLeftIcon, TrashIcon } from "@radix-ui/react-icons";
+import { ArrowLeftIcon, CalendarIcon, TrashIcon } from "@radix-ui/react-icons";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "@/utils/firebase";
 import { toast } from "react-hot-toast";
+import { formatDateToYYYYMMDD } from "@/utils/formatDate";
 
 const Comment: React.FC<{ post: Post | undefined; comment: any }> = ({
   post,
@@ -12,6 +13,8 @@ const Comment: React.FC<{ post: Post | undefined; comment: any }> = ({
 }) => {
   const [overlap, setOverlap] = useState(false);
   const commentId = comment.id || "";
+
+  // TODO: Add type for comment
 
   const handleDelete = () => {
     deleteDoc(doc(db, "comments", commentId))
@@ -71,7 +74,15 @@ const Comment: React.FC<{ post: Post | undefined; comment: any }> = ({
           alt={post?.displayName || ""}
         />
 
-        <div>{comment?.text}</div>
+        <div className="flex gap-2 justify-between w-full font-light">
+          <div>
+            <div>{comment?.text}</div>
+          </div>
+
+          <p className="text-slate-400 text-[8px] tabular-nums">
+            {formatDateToYYYYMMDD(comment.createdAt)}
+          </p>
+        </div>
       </div>
     </>
   );
