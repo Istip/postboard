@@ -87,7 +87,7 @@ const Card: React.FC<CardProps> = ({ post }) => {
         <div className="rounded-full bg-slate-950">
           <Image
             src={post?.photoUrl || "/avatar.bmp"}
-            className="w-6 h-6 border rounded-full bg-slate-950 border-slate-600"
+            className="w-6 h-6 border rounded-full bg-slate-950 border-slate-500"
             width={24}
             height={24}
             alt={post?.displayName || ""}
