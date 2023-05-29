@@ -103,7 +103,7 @@ const Card: React.FC<CardProps> = ({ post }) => {
       </div>
 
       <div className="bg-slate-900 p-4 text-sm">
-        <div className="uppercase text-lg font-medium">{post?.text}</div>
+        <div className="text-lg font-light">{post?.text}</div>
 
         <Comments post={post} />
       </div>
