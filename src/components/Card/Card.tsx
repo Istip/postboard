@@ -84,10 +84,10 @@ const Card: React.FC<CardProps> = ({ post }) => {
       className={`mb-4 text-slate-200 rounded-md border ${cardOpacity} ${cardBorder}`}
     >
       <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-t-md hover:bg-opacity-70 transition-all border-b-slate-950 border-b cursor-grab">
-        <div className="rounded-full bg-slate-950 border border-yellow-500">
+        <div className="rounded-full bg-slate-950">
           <Image
             src={post?.photoUrl || "/avatar.bmp"}
-            className="w-6 h-6 border rounded-full bg-slate-950 border-white"
+            className="w-6 h-6 border rounded-full bg-slate-950 border-slate-600"
             width={24}
             height={24}
             alt={post?.displayName || ""}
