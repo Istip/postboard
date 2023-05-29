@@ -8,6 +8,7 @@ import {
   addDoc,
   collection,
   onSnapshot,
+  orderBy,
   query,
   where,
 } from "firebase/firestore";
@@ -19,10 +20,6 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([] as any[]);
   const [loading, setLoading] = useState(false);
-
-  // TODO: delete comments that are related to any post
-
-  // TODO: fix rerender every time input is changeing
 
   let toastID: string;
 
@@ -39,6 +36,7 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
       displayName: post?.displayName,
       email: post?.email,
       photoUrl: post?.photoUrl,
+      createdAt: Date.now(),
     };
 
     setLoading(true);
@@ -66,20 +64,24 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
-      query(collection(db, "comments"), where("id", "==", post?.id)),
+      query(
+        collection(db, "comments"),
+        where("id", "==", post?.id),
+        orderBy("createdAt")
+      ),
       (snapshot) => {
         const data = snapshot.docs.map((doc) => ({
           ...doc.data(),
-          createdAt: Date.now(),
           id: doc.id,
         }));
-
         setComments(data);
       }
     );
 
     return () => unsubscribe();
   }, [post?.id]);
+
+  // TODO: add loading
 
   return (
     <div className="bg-slate-800 bg-opacity-30 p-4 mt-4 rounded-md text-xs">
