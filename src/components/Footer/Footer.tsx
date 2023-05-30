@@ -7,6 +7,8 @@ import {
   ListBulletIcon,
   ChatBubbleIcon,
   BellIcon,
+  CrossCircledIcon,
+  Cross2Icon,
 } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -164,14 +166,24 @@ export default function Footer() {
               onSubmit={(e) => handleSubmit(e)}
               className="py-2 h-16 flex gap-2"
             >
-              <textarea
-                onChange={handleChange}
-                value={text}
-                disabled={loading}
-                placeholder="Enter your text..."
-                className="w-full h-full bg-slate-800 p-2 rounded-md border-transparent border focus:outline-none
-                  disabled:opacity-50 disabled:cursor-not-allowed focus:border focus:border-slate-800 resize-none text-sm"
-              />
+              <div className="relative w-full">
+                {text.length ? (
+                  <button
+                    className="absolute top-3 right-2 py-1 px-2"
+                    onClick={() => setText("")}
+                  >
+                    <Cross2Icon />
+                  </button>
+                ) : null}
+                <textarea
+                  onChange={handleChange}
+                  value={text}
+                  disabled={loading}
+                  placeholder="Enter your text..."
+                  className="w-full h-full bg-slate-800 p-2 rounded-md border-transparent border focus:outline-none
+                    disabled:opacity-50 disabled:cursor-not-allowed focus:border focus:border-slate-800 resize-none text-sm"
+                />
+              </div>
               <button className="h-full bg-yellow-500 rounded-md px-4 py-2 text-slate-950 font-bold flex items-center gap-1.5">
                 <PlusCircledIcon />
                 <div className="text-sm hidden sm:block">Create</div>
