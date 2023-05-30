@@ -149,9 +149,9 @@ export default function Footer() {
           {filteredHints.map((hint) => (
             <div
               key={hint.id}
-              className="rounded-lg text-xs font-light bg-slate-700 p-2 whitespace-nowrap"
+              className="rounded-lg text-xs font-light bg-slate-700 py-2 px-4 whitespace-nowrap"
             >
-              {hint.text}
+              {hint.text.toLowerCase()}
             </div>
           ))}
         </div>
