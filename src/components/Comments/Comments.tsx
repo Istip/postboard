@@ -65,25 +65,23 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = () => {
-      setLoading(true);
+    setLoading(true);
 
-      onSnapshot(
-        query(
-          collection(db, "comments"),
-          where("id", "==", post?.id),
-          orderBy("createdAt")
-        ),
-        (snapshot) => {
-          const data = snapshot.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-          }));
-          setComments(data);
-          setLoading(false);
-        }
-      );
-    };
+    const unsubscribe = onSnapshot(
+      query(
+        collection(db, "comments"),
+        where("id", "==", post?.id),
+        orderBy("createdAt")
+      ),
+      (snapshot) => {
+        const data = snapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setComments(data);
+        setLoading(false);
+      }
+    );
 
     return () => unsubscribe();
   }, [post?.id]);
