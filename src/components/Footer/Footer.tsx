@@ -129,8 +129,6 @@ export default function Footer() {
       );
 
       setFilteredhints(filtered);
-
-      console.log(filtered);
     }
   }, [text, hints]);
 
