@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useAuthContext } from "@/context/AuthContext";
-import useLocalStorage from "@/hooks/useLocalStorage";
 import {
   PlusCircledIcon,
   ListBulletIcon,
@@ -16,13 +15,28 @@ import { db } from "@/utils/firebase";
 import { toast } from "react-hot-toast";
 import { Post } from "@/interfaces/Post";
 
+const menu = [
+  {
+    title: "shopping",
+    icon: <ListBulletIcon />,
+    bagde: null,
+  },
+  {
+    title: "notes",
+    icon: <ChatBubbleIcon />,
+    bagde: null,
+  },
+  {
+    title: "notifications",
+    icon: <BellIcon />,
+    bagde: 10,
+  },
+];
+
 export default function Footer() {
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
-  const [current, setCurrent] = useLocalStorage(
-    "postboard_last_page",
-    "/shopping"
-  );
+  const [current, setCurrent] = useState("/shopping");
 
   const { user } = useAuthContext();
 
@@ -79,24 +93,6 @@ export default function Footer() {
         setText("");
       });
   };
-
-  const menu = [
-    {
-      title: "shopping",
-      icon: <ListBulletIcon />,
-      bagde: null,
-    },
-    {
-      title: "notes",
-      icon: <ChatBubbleIcon />,
-      bagde: null,
-    },
-    {
-      title: "notifications",
-      icon: <BellIcon />,
-      bagde: 10,
-    },
-  ];
 
   if (!user) {
     return null;
