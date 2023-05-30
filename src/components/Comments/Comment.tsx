@@ -6,6 +6,7 @@ import { db } from "@/utils/firebase";
 import { toast } from "react-hot-toast";
 import { formatDateToYYYYMMDD } from "@/utils/formatDate";
 import CommentOverlap from "./CommentOverlap";
+import { useAuthContext } from "@/context/AuthContext";
 
 const Comment: React.FC<{ post: Post | undefined; comment: any }> = ({
   post,
@@ -13,6 +14,10 @@ const Comment: React.FC<{ post: Post | undefined; comment: any }> = ({
 }) => {
   const [overlap, setOverlap] = useState(false);
   const commentId = comment.id || "";
+
+  const { user } = useAuthContext();
+
+  const isUserCommenter = user?.email === comment?.email;
 
   // TODO: Add type for comment
 
@@ -32,7 +37,7 @@ const Comment: React.FC<{ post: Post | undefined; comment: any }> = ({
       });
   };
 
-  if (overlap) {
+  if (overlap && isUserCommenter) {
     return (
       <CommentOverlap
         comment={comment}
