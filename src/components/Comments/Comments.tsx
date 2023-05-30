@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { db } from "@/utils/firebase";
-import { PaperPlaneIcon } from "@radix-ui/react-icons";
+import { PlusCircledIcon } from "@radix-ui/react-icons";
 import {
   addDoc,
   collection,
@@ -87,7 +87,11 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
   }, [post?.id]);
 
   return (
-    <div className="bg-slate-800 bg-opacity-30 p-4 mt-4 rounded-md text-xs">
+    <div
+      className={`bg-slate-800 bg-opacity-30 ${
+        comments?.length ? "py-4 p-2" : "p-2"
+      } mt-4 rounded-2xl text-xs`}
+    >
       {comments.length ? (
         <div className="text-xs font-bold text-slate-500">Comments:</div>
       ) : null}
@@ -111,25 +115,25 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
           alt={post?.displayName || ""}
         />
 
-        <div className="w-full flex gap-2">
+        <div className="w-full flex">
           <input
             onChange={(e) => setComment(e.target.value)}
             value={comment}
             disabled={loading}
             type="text"
             placeholder="Leave a comment..."
-            className="text-xs w-full bg-slate-900 rounded-md px-2 border-transparent border focus:outline-none focus:border focus:border-slate-950"
+            className="text-xs w-full bg-slate-800 rounded-l-md px-2 border-transparent border focus:outline-none focus:border focus:border-slate-950"
           />
           <button
             onClick={handleSubmit}
-            className={`px-4 py-1 bg-yellow-500 text-slate-900 font-bold rounded-md flex items-center gap-1 disabled:opacity-50
+            className={`px-4 py-1 bg-yellow-500 text-slate-900 font-bold rounded-r-md flex items-center gap-1 disabled:opacity-50
              ${loading && "cursor-not-allowed"}`}
             disabled={loading}
           >
             <div>
-              <PaperPlaneIcon />
+              <PlusCircledIcon />
             </div>
-            <p className="uppercase">POST</p>
+            <p className="uppercase">ADD</p>
           </button>
         </div>
       </div>
