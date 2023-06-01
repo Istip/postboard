@@ -33,13 +33,15 @@ const CommentOverlap: React.FC<CommentOverlapInterface> = ({
           onClick={handleDelete}
           className="w-full bg-red-500 px-2 py-1 rounded-l flex items-center gap-1 justify-center"
         >
-          <TrashIcon /> DELETE
+          <TrashIcon />
+          DELETE
         </button>
         <button
           className="w-full bg-slate-700 px-2 py-1 rounded-r flex items-center gap-1 justify-center"
           onClick={() => setOverlap(false)}
         >
-          <ArrowLeftIcon /> CANCEL
+          <ArrowLeftIcon />
+          CANCEL
         </button>
       </div>
     </div>
