@@ -49,25 +49,23 @@ const Comment: React.FC<{ post: Post | undefined; comment: any }> = ({
   }
 
   return (
-    <>
-      <div className="flex gap-4 mt-4" onClick={() => setOverlap(!overlap)}>
-        <Image
-          src={post?.photoUrl || "/avatar.bmp"}
-          className="w-4 h-4 border rounded-full bg-slate-950 border-slate-500"
-          width={24}
-          height={24}
-          alt={post?.displayName || ""}
-        />
-        <div className="flex gap-2 justify-between w-full font-light">
-          <div>
-            <div>{comment?.text}</div>
-          </div>
-          <p className="text-slate-400 text-[8px] tabular-nums">
-            {formatDateToYYYYMMDD(comment.createdAt)}
-          </p>
+    <div className="flex gap-4 mt-4" onClick={() => setOverlap(!overlap)}>
+      <Image
+        src={post?.photoUrl || "/avatar.bmp"}
+        className="w-4 h-4 border rounded-full bg-slate-950 border-slate-500"
+        width={24}
+        height={24}
+        alt={post?.displayName || ""}
+      />
+      <div className="flex gap-2 justify-between w-full font-light">
+        <div>
+          <div>{comment?.text}</div>
         </div>
+        <p className="text-slate-400 text-[8px] tabular-nums">
+          {formatDateToYYYYMMDD(comment.createdAt)}
+        </p>
       </div>
-    </>
+    </div>
   );
 };
 export default Comment;
