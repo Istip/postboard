@@ -9,12 +9,12 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "@/utils/firebase";
+import { AnimatePresence, motion } from "framer-motion";
 import { Post } from "@/interfaces/Post";
 import Loading from "@/components/Loading/Loading";
 import Message from "@/components/Message/Message";
 import Card from "@/components/Card/Card";
 import Toaster from "@/components/Toaster/Toaster";
-import { AnimatePresence, motion } from "framer-motion";
 
 export default function Notes() {
   const [notes, setNotes] = useState<Post[] | null>(null);
