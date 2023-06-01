@@ -9,6 +9,7 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "@/utils/firebase";
+import { AnimatePresence, motion } from "framer-motion";
 import { Post } from "@/interfaces/Post";
 import Card from "@/components/Card/Card";
 import Loading from "@/components/Loading/Loading";
@@ -53,9 +54,18 @@ export default function Shopping() {
           </Message>
         )}
 
-        {posts.map((post) => (
-          <Card key={post.id} post={post} />
-        ))}
+        <AnimatePresence>
+          {posts.map((post) => (
+            <motion.div
+              key={post.id}
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+            >
+              <Card post={post} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </main>
     </>
   );
