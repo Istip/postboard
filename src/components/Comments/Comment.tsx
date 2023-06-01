@@ -25,7 +25,7 @@ const Comment: React.FC<{ post: Post | undefined; comment: any }> = ({
     deleteDoc(doc(db, "comments", commentId))
       .then(() => {
         setOverlap(false);
-        toast.success(() => (
+        toast.error(() => (
           <div>
             <span className="font-bold text-md items-center">{`${comment?.text}`}</span>{" "}
             <span className="opacity-75">comment has been removed!</span>
