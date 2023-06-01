@@ -28,7 +28,7 @@ const CommentOverlap: React.FC<CommentOverlapInterface> = ({
         />
         <div className="mb-1">{comment?.text}</div>
       </div>
-      <div className="flex gap-2">
+      <div className="flex">
         <button
           onClick={handleDelete}
           className="w-full bg-red-500 px-2 py-1 rounded-l flex items-center gap-1 justify-center"
