@@ -14,6 +14,7 @@ import Loading from "@/components/Loading/Loading";
 import Message from "@/components/Message/Message";
 import Card from "@/components/Card/Card";
 import Toaster from "@/components/Toaster/Toaster";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Notes() {
   const [notes, setNotes] = useState<Post[] | null>(null);
@@ -49,13 +50,22 @@ export default function Notes() {
       <main>
         {!notes?.length && (
           <Message type="warning">
-            You have nothing on yout shopping list
+            You have nothing on your shopping list
           </Message>
         )}
 
-        {notes.map((note) => (
-          <Card key={note.id} post={note} />
-        ))}
+        <AnimatePresence>
+          {notes.map((note) => (
+            <motion.div
+              key={note.id}
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+            >
+              <Card post={note} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </main>
     </>
   );
