@@ -12,10 +12,10 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import { AnimatePresence, motion } from "framer-motion";
 import { Post } from "@/interfaces/Post";
 import { toast } from "react-hot-toast";
 import Comment from "./Comment";
-import CommentLoading from "./CommentLoading";
 
 const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
   const [comment, setComment] = useState("");
@@ -96,13 +96,19 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
         <div className="text-xs font-bold text-slate-500">Comments:</div>
       ) : null}
 
-      {!loading ? (
-        comments.map((comment) => (
-          <Comment key={comment.id} comment={comment} post={post} />
-        ))
-      ) : (
-        <CommentLoading />
-      )}
+      <AnimatePresence>
+        {comments.map((comment) => (
+          <motion.div
+            className="cursor-pointer relative"
+            key={comment.id}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+          >
+            <Comment comment={comment} post={post} />
+          </motion.div>
+        ))}
+      </AnimatePresence>
 
       <div
         className={`flex gap-4 ${comments?.length ? "mt-4" : ""} items-center`}
