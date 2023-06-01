@@ -1,5 +1,5 @@
 import { Post } from "@/interfaces/Post";
-import { ArrowLeftIcon, TrashIcon } from "@radix-ui/react-icons";
+import { ArrowRightIcon, TrashIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 
 interface CommentOverlapInterface {
@@ -40,7 +40,7 @@ const CommentOverlap: React.FC<CommentOverlapInterface> = ({
           className="w-full bg-slate-700 px-2 py-1 rounded-r flex items-center gap-1 justify-center"
           onClick={() => setOverlap(false)}
         >
-          <ArrowLeftIcon />
+          <ArrowRightIcon />
           CANCEL
         </button>
       </div>
