@@ -63,7 +63,7 @@ export default function Notes() {
               exit={{ opacity: 0, height: 0 }}
             >
               <div className="py-0.5">
-                <Card post={note} />
+                <Card post={note} acceptable={false} />
               </div>
             </motion.div>
           ))}
