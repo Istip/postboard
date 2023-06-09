@@ -56,6 +56,11 @@ export default function Footer() {
   const pageIsSubmit = submitPages.includes(formattedPathname);
   const isShopping = pathname === "/shopping";
 
+  const createString =
+    formattedPathname === "notes"
+      ? "added to the notes!"
+      : "added to the shopping list!";
+
   let toastID: string;
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -90,7 +95,7 @@ export default function Footer() {
           () => (
             <div>
               <span className="font-bold text-md">{`${text}`}</span>{" "}
-              <span className="opacity-75">added to the shopping list!</span>
+              <span className="opacity-75">{createString}</span>
             </div>
           ),
           { id: toastID }
