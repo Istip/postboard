@@ -99,13 +99,15 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
       <AnimatePresence>
         {comments.map((comment) => (
           <motion.div
-            className="cursor-pointer relative"
+            className="cursor-pointer"
             key={comment.id}
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
           >
-            <Comment comment={comment} post={post} />
+            <div className="py-0.5">
+              <Comment comment={comment} post={post} />
+            </div>
           </motion.div>
         ))}
       </AnimatePresence>
