@@ -62,7 +62,9 @@ export default function Notes() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
             >
-              <Card post={note} />
+              <div className="py-0.5">
+                <Card post={note} />
+              </div>
             </motion.div>
           ))}
         </AnimatePresence>
