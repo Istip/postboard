@@ -20,6 +20,7 @@ import { db } from "@/utils/firebase";
 import { Post } from "@/interfaces/Post";
 import { toast } from "react-hot-toast";
 import Comments from "../Comments/Comments";
+import { usePathname } from "next/navigation";
 
 type CardProps = {
   post?: Post;
@@ -29,6 +30,13 @@ const Card: React.FC<CardProps> = ({ post }) => {
   const convertTimestamp = (timestamp: any) => {
     return timestamp?.toDate().toISOString().split("T")[0];
   };
+
+  const pathname = usePathname();
+
+  const deleteString =
+    pathname.slice(1, pathname.length) === "notes"
+      ? "has been removed from notes!"
+      : "has been removed from the shopping list!";
 
   const postId = post?.id || "";
   const cardOpacity = post?.done ? "opacity-50" : "";
@@ -53,10 +61,10 @@ const Card: React.FC<CardProps> = ({ post }) => {
       });
       await batch.commit();
 
-      toast.success(() => (
+      toast.error(() => (
         <div>
           <span className="font-bold text-md items-center">{`${post?.text}`}</span>{" "}
-          <span className="opacity-75">removed from shopping list!</span>
+          <span className="opacity-75">{deleteString}</span>
         </div>
       ));
     } catch (error) {
