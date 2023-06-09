@@ -1,5 +1,7 @@
+import { useState } from "react";
 import Image from "next/image";
 import {
+  ArrowRightIcon,
   BookmarkFilledIcon,
   BookmarkIcon,
   CalendarIcon,
@@ -19,14 +21,18 @@ import {
 import { db } from "@/utils/firebase";
 import { Post } from "@/interfaces/Post";
 import { toast } from "react-hot-toast";
-import Comments from "../Comments/Comments";
 import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
+import Comments from "../Comments/Comments";
 
 type CardProps = {
   post?: Post;
+  acceptable?: boolean;
 };
 
-const Card: React.FC<CardProps> = ({ post }) => {
+const Card: React.FC<CardProps> = ({ post, acceptable = true }) => {
+  const [confirm, setConfirm] = useState(false);
+
   const convertTimestamp = (timestamp: any) => {
     return timestamp?.toDate().toISOString().split("T")[0];
   };
@@ -71,6 +77,9 @@ const Card: React.FC<CardProps> = ({ post }) => {
       toast.error("Something went wrong! Please try again!");
     }
   };
+
+  const handleDoubleCheck = () => setConfirm(true);
+  const handleCancellation = () => setConfirm(false);
 
   const handleStatus = () => {
     setDoc(doc(db, "posts", postId), {
@@ -123,18 +132,46 @@ const Card: React.FC<CardProps> = ({ post }) => {
           </div>
 
           <div className="flex gap-2">
-            <button
-              className="px-4 py-2 bg-red-500 rounded-md"
-              onClick={handleDelete}
-            >
-              <TrashIcon />
-            </button>
-            <button
-              className="px-4 py-2 bg-green-600 rounded-md"
-              onClick={handleStatus}
-            >
-              <CheckCircledIcon />
-            </button>
+            {confirm ? (
+              <AnimatePresence>
+                <div
+                // initial={{ opacity: 0, width: 0 }}
+                // animate={{ opacity: 1, width: "auto" }}
+                // exit={{ opacity: 0, width: 0 }}
+                >
+                  <div className="flex">
+                    <button
+                      className="px-4 py-2 bg-red-500 rounded-l-md"
+                      onClick={handleDelete}
+                    >
+                      <TrashIcon />
+                    </button>
+                    <button
+                      className="px-4 py-2 bg-slate-700 rounded-r-md"
+                      onClick={handleCancellation}
+                    >
+                      <ArrowRightIcon />
+                    </button>
+                  </div>
+                </div>
+              </AnimatePresence>
+            ) : (
+              <button
+                className="px-4 py-2 bg-red-500 rounded-md"
+                onClick={handleDoubleCheck}
+              >
+                <TrashIcon />
+              </button>
+            )}
+
+            {acceptable && (
+              <button
+                className="px-4 py-2 bg-green-600 rounded-md"
+                onClick={handleStatus}
+              >
+                <CheckCircledIcon />
+              </button>
+            )}
           </div>
         </div>
       </div>
