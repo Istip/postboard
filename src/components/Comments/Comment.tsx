@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 import { formatDateToYYYYMMDD } from "@/utils/formatDate";
 import CommentOverlap from "./CommentOverlap";
 import { useAuthContext } from "@/context/AuthContext";
+import { motion } from "framer-motion";
 
 const Comment: React.FC<{ post: Post | undefined; comment: any }> = ({
   post,
@@ -39,12 +40,18 @@ const Comment: React.FC<{ post: Post | undefined; comment: any }> = ({
 
   if (overlap && isUserCommenter) {
     return (
-      <CommentOverlap
-        comment={comment}
-        post={post}
-        handleDelete={handleDelete}
-        setOverlap={setOverlap}
-      />
+      <motion.div
+        initial={{ opacity: 0, height: 0 }}
+        animate={{ opacity: 1, height: "auto" }}
+        exit={{ opacity: 0, height: 0 }}
+      >
+        <CommentOverlap
+          comment={comment}
+          post={post}
+          handleDelete={handleDelete}
+          setOverlap={setOverlap}
+        />
+      </motion.div>
     );
   }
 
