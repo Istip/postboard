@@ -104,7 +104,6 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: i * 0.1 }}
           >
             <div className="py-0.5">
               <Comment comment={comment} post={post} />
