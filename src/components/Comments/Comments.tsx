@@ -99,7 +99,6 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
       <AnimatePresence>
         {comments.map((comment) => (
           <motion.div
-            className="cursor-pointer"
             key={comment.id}
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
