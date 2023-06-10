@@ -28,8 +28,6 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
 
   let toastID: string;
 
-  console.log(post);
-
   const handleSubmit = () => {
     toastID = toast.loading("Addind your comment...", { id: toastID });
 
