@@ -22,9 +22,10 @@ const Notification: React.FC<{ notification: NotificationType }> = ({
           <span className="font-bold text-green-500">
             {notification.displayName}{" "}
           </span>
-          commented on: <span className="font-bold">{notification.post} </span>{" "}
+          commented on:{" "}
+          <span className="font-bold text-white">{notification.post} </span>{" "}
           where it has been said:{" "}
-          <span className="font-bold">{notification.text}</span>.
+          <span className="font-bold text-white">{notification.text}</span>.
         </>
       );
     }
@@ -36,7 +37,7 @@ const Notification: React.FC<{ notification: NotificationType }> = ({
             {notification.displayName}{" "}
           </span>{" "}
           added new item to the shopping list:{" "}
-          <span className="font-bold">{notification.text}</span>.
+          <span className="font-bold text-white">{notification.text}</span>.
         </>
       );
     }
@@ -48,7 +49,7 @@ const Notification: React.FC<{ notification: NotificationType }> = ({
             {notification.displayName}{" "}
           </span>{" "}
           left a new note:{" "}
-          <span className="font-bold text-green-200">{notification.text}</span>.
+          <span className="font-bold text-white">{notification.text}</span>.
         </>
       );
     }
@@ -67,11 +68,11 @@ const Notification: React.FC<{ notification: NotificationType }> = ({
 
   return (
     <div
-      className={`mb-3 text-slate-200 w-full bg-slate-900 p-1 text-[10px] rounded-l-md flex border-r-2 ${border}`}
+      className={`mb-3 text-slate-300 w-full bg-slate-900 p-2 text-xs rounded-l-md flex border-r-2 ${border}`}
     >
       <div className="flex w-full">
         <Image
-          className="mr-2 w-4 h-4 border rounded-full bg-slate-950 border-white"
+          className="mr-2 mt-1 w-6 h-6 border rounded-full bg-slate-950 border-white"
           src={notification?.photoUrl || "/avatar.bmp"}
           width={24}
           height={24}
