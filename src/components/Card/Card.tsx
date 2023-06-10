@@ -28,9 +28,14 @@ import Comments from "../Comments/Comments";
 type CardProps = {
   post?: Post;
   acceptable?: boolean;
+  comments?: boolean;
 };
 
-const Card: React.FC<CardProps> = ({ post, acceptable = true }) => {
+const Card: React.FC<CardProps> = ({
+  post,
+  acceptable = true,
+  comments = true,
+}) => {
   const [confirm, setConfirm] = useState(false);
 
   const convertTimestamp = (timestamp: any) => {
@@ -122,7 +127,7 @@ const Card: React.FC<CardProps> = ({ post, acceptable = true }) => {
       <div className="bg-slate-900 p-4 text-sm">
         <div className="text-lg font-light">{post?.text}</div>
 
-        <Comments post={post} />
+        {comments && <Comments post={post} />}
       </div>
 
       <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-b-md border-t-slate-950 border-t">
