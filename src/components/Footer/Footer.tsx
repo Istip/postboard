@@ -22,6 +22,7 @@ import {
 import { db } from "@/utils/firebase";
 import { toast } from "react-hot-toast";
 import { Post } from "@/interfaces/Post";
+import { NotificationType } from "@/interfaces/Notification";
 
 const menu = [
   {
@@ -81,6 +82,16 @@ export default function Footer() {
       photoUrl: user?.photoURL,
     };
 
+    const notificationToSend: NotificationType = {
+      text,
+      createdAt: new Date(),
+      type: formattedPathname,
+      displayName: user?.displayName,
+      email: user?.email,
+      photoUrl: user?.photoURL,
+      seen: false,
+    };
+
     toastID = toast.loading("Creating new post..", { id: toastID });
 
     if (!text.length) {
@@ -100,6 +111,8 @@ export default function Footer() {
           ),
           { id: toastID }
         );
+
+        addDoc(collection(db, "notifications"), notificationToSend);
       })
       .catch(() => {
         toast.error("Please try again!", { id: toastID });

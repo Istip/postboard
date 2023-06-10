@@ -13,8 +13,10 @@ import {
   where,
 } from "firebase/firestore";
 import { AnimatePresence, motion } from "framer-motion";
-import { Post } from "@/interfaces/Post";
 import { toast } from "react-hot-toast";
+import { useAuthContext } from "@/context/AuthContext";
+import { NotificationType } from "@/interfaces/Notification";
+import { Post } from "@/interfaces/Post";
 import Comment from "./Comment";
 
 const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
@@ -22,7 +24,11 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
   const [comments, setComments] = useState([] as any[]);
   const [loading, setLoading] = useState(false);
 
+  const { user } = useAuthContext();
+
   let toastID: string;
+
+  console.log(post);
 
   const handleSubmit = () => {
     toastID = toast.loading("Addind your comment...", { id: toastID });
@@ -40,6 +46,17 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
       createdAt: Date.now(),
     };
 
+    const notificationToSend: NotificationType = {
+      text: comment,
+      createdAt: new Date(),
+      type: "comment",
+      displayName: user?.displayName,
+      email: user?.email,
+      photoUrl: user?.photoURL,
+      seen: false,
+      post: post?.text,
+    };
+
     setLoading(true);
 
     addDoc(collection(db, "comments"), dataToSend)
@@ -55,6 +72,8 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
           ),
           { id: toastID }
         );
+
+        addDoc(collection(db, "notifications"), notificationToSend);
       })
       .catch(() => {
         toast.error("Please try again!", { id: toastID });
