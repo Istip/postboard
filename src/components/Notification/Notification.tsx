@@ -1,5 +1,6 @@
 import { NotificationType } from "@/interfaces/Notification";
 import {
+  CalendarIcon,
   ChatBubbleIcon,
   FileIcon,
   ListBulletIcon,
@@ -19,7 +20,7 @@ const Notification: React.FC<{ notification: NotificationType }> = ({
     if (type === "comment") {
       return (
         <>
-          <span className="font-bold text-green-500">
+          <span className="font-bold text-yellow-500">
             {notification.displayName}{" "}
           </span>
           commented on:{" "}
@@ -33,10 +34,10 @@ const Notification: React.FC<{ notification: NotificationType }> = ({
     if (type === "shopping") {
       return (
         <>
-          <span className="font-bold text-green-500">
+          <span className="font-bold text-yellow-500">
             {notification.displayName}{" "}
           </span>{" "}
-          added new item to the shopping list:{" "}
+          added a new item to the shopping list:{" "}
           <span className="font-bold text-white">{notification.text}</span>.
         </>
       );
@@ -45,7 +46,7 @@ const Notification: React.FC<{ notification: NotificationType }> = ({
     if (type === "notes") {
       return (
         <>
-          <span className="font-bold text-green-500">
+          <span className="font-bold text-yellow-500">
             {notification.displayName}{" "}
           </span>{" "}
           left a new note:{" "}
@@ -80,8 +81,8 @@ const Notification: React.FC<{ notification: NotificationType }> = ({
         />
         <div className="w-full">
           <div>{handleText(notification)}</div>
-          <div className="text-slate-500">
-            {convertTimestamp(notification?.createdAt)}
+          <div className="text-slate-500 flex items-center gap-1 pt-1.5">
+            <CalendarIcon /> {convertTimestamp(notification?.createdAt)}
           </div>
         </div>
 
