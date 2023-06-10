@@ -39,9 +39,11 @@ export default function Notifications() {
 
   return (
     <div>
-      {notifications.map((notification, i) => (
-        <Notification key={i} notification={notification} />
-      ))}
+      {notifications
+        .sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
+        .map((notification, i) => (
+          <Notification key={i} notification={notification} />
+        ))}
     </div>
   );
 }
