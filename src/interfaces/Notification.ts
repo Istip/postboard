@@ -1,6 +1,6 @@
 export interface NotificationType {
   text: string;
-  createdAt: Date;
+  createdAt: any;
   type: string;
   displayName: string | null | undefined;
   email: string | null | undefined;
