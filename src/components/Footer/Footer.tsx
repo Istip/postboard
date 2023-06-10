@@ -5,10 +5,9 @@ import { useAuthContext } from "@/context/AuthContext";
 import {
   PlusCircledIcon,
   ListBulletIcon,
-  ChatBubbleIcon,
   BellIcon,
-  CrossCircledIcon,
   Cross2Icon,
+  FileIcon,
 } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -32,7 +31,7 @@ const menu = [
   },
   {
     title: "notes",
-    icon: <ChatBubbleIcon />,
+    icon: <FileIcon />,
     bagde: null,
   },
   {
