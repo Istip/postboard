@@ -17,7 +17,7 @@ import Message from "@/components/Message/Message";
 import Toaster from "@/components/Toaster/Toaster";
 
 export default function Shopping() {
-  const [posts, setPosts] = useState<Post[] | null>(null);
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -40,7 +40,7 @@ export default function Shopping() {
     return () => unsubscribe();
   }, []);
 
-  if (!posts) {
+  if (!posts.length) {
     return <Loading title="Loading shopping list" />;
   }
 
