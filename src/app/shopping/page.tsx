@@ -63,7 +63,7 @@ export default function Shopping() {
               exit={{ opacity: 0, height: 0 }}
             >
               <div className="py-0.5">
-                <Card post={post} />
+                <Card post={post} comments={false} />
               </div>
             </motion.div>
           ))}
