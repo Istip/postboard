@@ -98,7 +98,7 @@ const Card: React.FC<CardProps> = ({ post, acceptable = true }) => {
 
   return (
     <div
-      className={`mb-3 text-slate-200 rounded-md border ${cardOpacity} ${cardBorder}`}
+      className={`mb-3 text-slate-200 rounded-md border overflow-hidden ${cardOpacity} ${cardBorder}`}
     >
       <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-t-md hover:bg-opacity-70 transition-all border-b-slate-950 border-b cursor-grab">
         <div className="rounded-full bg-slate-950">
@@ -132,12 +132,13 @@ const Card: React.FC<CardProps> = ({ post, acceptable = true }) => {
           </div>
 
           <div className="flex gap-2">
-            {confirm ? (
-              <AnimatePresence>
-                <div
-                // initial={{ opacity: 0, width: 0 }}
-                // animate={{ opacity: 1, width: "auto" }}
-                // exit={{ opacity: 0, width: 0 }}
+            <AnimatePresence initial={false} mode="wait">
+              {confirm ? (
+                <motion.div
+                  key={String(confirm)}
+                  initial={{ width: 0 }}
+                  animate={{ width: "auto" }}
+                  exit={{ width: 0 }}
                 >
                   <div className="flex">
                     <button
@@ -153,16 +154,23 @@ const Card: React.FC<CardProps> = ({ post, acceptable = true }) => {
                       <ArrowRightIcon />
                     </button>
                   </div>
-                </div>
-              </AnimatePresence>
-            ) : (
-              <button
-                className="px-4 py-2 bg-red-500 rounded-md"
-                onClick={handleDoubleCheck}
-              >
-                <TrashIcon />
-              </button>
-            )}
+                </motion.div>
+              ) : (
+                <motion.div
+                  key={String(confirm)}
+                  initial={{ width: 0 }}
+                  animate={{ width: "auto" }}
+                  exit={{ width: 0 }}
+                >
+                  <button
+                    className="px-4 py-2 bg-red-500 rounded-md"
+                    onClick={handleDoubleCheck}
+                  >
+                    <TrashIcon />
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             {acceptable && (
               <button
