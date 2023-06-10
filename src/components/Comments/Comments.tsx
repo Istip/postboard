@@ -97,7 +97,7 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
       ) : null}
 
       <AnimatePresence>
-        {comments.map((comment, i) => (
+        {comments.map((comment) => (
           <motion.div
             className="cursor-pointer"
             key={comment.id}
