@@ -17,7 +17,7 @@ import Card from "@/components/Card/Card";
 import Toaster from "@/components/Toaster/Toaster";
 
 export default function Notes() {
-  const [notes, setNotes] = useState<Post[] | null>(null);
+  const [notes, setNotes] = useState<Post[]>([]);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -40,7 +40,7 @@ export default function Notes() {
     return () => unsubscribe();
   }, []);
 
-  if (!notes) {
+  if (!notes.length) {
     return <Loading title="Loading notes" />;
   }
 
