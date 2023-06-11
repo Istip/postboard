@@ -14,3 +14,7 @@ export const formatDateToYYYYMMDD = (seconds: number) => {
 
   return `${year}.${month}.${date}`;
 };
+
+export const convertTimestamp = (timestamp: any) => {
+  return timestamp?.toDate().toISOString().split("T")[0];
+};
