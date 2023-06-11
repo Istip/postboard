@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "@/utils/firebase";
+import { AnimatePresence, motion } from "framer-motion";
 import { NotificationType } from "@/interfaces/Notification";
 import Loading from "@/components/Loading/Loading";
 import Notification from "@/components/Notification/Notification";
@@ -40,13 +41,22 @@ export default function Notifications() {
   }
 
   return (
-    <>
+    <AnimatePresence>
       <Toaster />
       {notifications
         .sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
         .map((notification, i) => (
-          <Notification key={i} notification={notification} />
+          <motion.div
+            key={notification.id}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+          >
+            <div key={i} className="py-0.5">
+              <Notification notification={notification} />
+            </div>
+          </motion.div>
         ))}
-    </>
+    </AnimatePresence>
   );
 }
