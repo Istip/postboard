@@ -3,22 +3,19 @@
 import { useEffect, useState } from "react";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "@/utils/firebase";
-import { useAuthContext } from "@/context/AuthContext";
 import { NotificationType } from "@/interfaces/Notification";
 import Loading from "@/components/Loading/Loading";
 import Notification from "@/components/Notification/Notification";
+import Toaster from "@/components/Toaster/Toaster";
+import Message from "@/components/Message/Message";
 
 export default function Notifications() {
   const [notifications, setNotifications] = useState<NotificationType[]>([]);
-
-  const { user } = useAuthContext();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
-      // TODO: update where function to exclude your email
-      // where("email", "!=", user?.email)
-
-      query(collection(db, "notifications"), where("email", "!=", "shopping")),
+      query(collection(db, "notifications")),
       (snapshot) => {
         const data: any[] = [];
 
@@ -27,23 +24,29 @@ export default function Notifications() {
         });
 
         setNotifications(data);
+        setLoading(false);
       }
     );
 
     return () => unsubscribe();
   }, []);
 
-  if (!notifications.length) {
+  if (loading) {
     return <Loading title="Loading your notifications" />;
   }
 
+  if (!notifications.length) {
+    return <Message type="warning">You have no notifications!</Message>;
+  }
+
   return (
-    <div>
+    <>
+      <Toaster />
       {notifications
         .sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
         .map((notification, i) => (
           <Notification key={i} notification={notification} />
         ))}
-    </div>
+    </>
   );
 }
