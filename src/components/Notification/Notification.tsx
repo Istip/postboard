@@ -1,11 +1,5 @@
 import { NotificationType } from "@/interfaces/Notification";
-import {
-  ArrowRightIcon,
-  CalendarIcon,
-  ChatBubbleIcon,
-  FileIcon,
-  ListBulletIcon,
-} from "@radix-ui/react-icons";
+import { CalendarIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import NotificationIcon from "./NotificationIcon";
 import { NotificationMessage } from "./NotificationMessage";
