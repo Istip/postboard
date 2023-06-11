@@ -141,6 +141,7 @@ const Card: React.FC<CardProps> = ({
                   initial={{ width: 0 }}
                   animate={{ width: "auto" }}
                   exit={{ width: 0 }}
+                  transition={{ duration: 0.1 }}
                 >
                   <div className="flex">
                     <button
