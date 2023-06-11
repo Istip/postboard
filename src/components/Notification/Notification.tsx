@@ -13,18 +13,20 @@ const Notification: React.FC<{ notification: NotificationType }> = ({
   notification,
 }) => {
   const handleStatus = () => {
-    setDoc(doc(db, "notifications", notification.id), {
-      ...notification,
-      seen: true,
-    });
+    if (notification.id) {
+      setDoc(doc(db, "notifications", notification.id), {
+        ...notification,
+        seen: true,
+      });
+    }
   };
 
   const handleRemove = async () => {
     try {
       // Delete the post
-      await deleteDoc(doc(db, "notifications", notification.id));
-
-      toast.error("Notification removed!");
+      if (notification.id) {
+        await deleteDoc(doc(db, "notifications", notification.id));
+      }
     } catch (error) {
       toast.error("Something went wrong! Please try again!");
     }
@@ -32,9 +34,9 @@ const Notification: React.FC<{ notification: NotificationType }> = ({
 
   return (
     <div
-      className={`mb-3 text-slate-300 w-full bg-slate-900 p-2 text-xs rounded-l-md flex border-r-2 ${borderColor(
+      className={`mb-2 text-slate-300 w-full bg-slate-900 p-2 text-xs rounded-l-md flex border-r-2 ${borderColor(
         notification
-      )}`}
+      )} ${notification.seen ? "opacity-50" : ""}`}
     >
       <div className="flex w-full">
         <Image
