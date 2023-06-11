@@ -1,5 +1,6 @@
 import { NotificationType } from "@/interfaces/Notification";
 import {
+  ArrowRightIcon,
   CalendarIcon,
   ChatBubbleIcon,
   FileIcon,
@@ -25,7 +26,7 @@ const Notification: React.FC<{ notification: NotificationType }> = ({
           </span>
           commented on:{" "}
           <span className="font-bold text-white">{notification.post} </span>{" "}
-          where it has been said:{" "}
+          <ArrowRightIcon className="inline-flex" />{" "}
           <span className="font-bold text-white">{notification.text}</span>.
         </>
       );
