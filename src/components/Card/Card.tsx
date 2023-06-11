@@ -18,11 +18,12 @@ import {
   where,
   writeBatch,
 } from "firebase/firestore";
+import { convertTimestamp } from "@/utils/formatDate";
 import { db } from "@/utils/firebase";
-import { Post } from "@/interfaces/Post";
+import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "react-hot-toast";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { Post } from "@/interfaces/Post";
 import Comments from "../Comments/Comments";
 
 type CardProps = {
@@ -37,10 +38,6 @@ const Card: React.FC<CardProps> = ({
   comments = true,
 }) => {
   const [confirm, setConfirm] = useState(false);
-
-  const convertTimestamp = (timestamp: any) => {
-    return timestamp?.toDate().toISOString().split("T")[0];
-  };
 
   const pathname = usePathname();
 
