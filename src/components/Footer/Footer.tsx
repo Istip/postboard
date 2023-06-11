@@ -2,14 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context/AuthContext";
-import {
-  PlusCircledIcon,
-  ListBulletIcon,
-  BellIcon,
-  Cross2Icon,
-  FileIcon,
-} from "@radix-ui/react-icons";
-import Link from "next/link";
+import { PlusCircledIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { usePathname } from "next/navigation";
 import {
   addDoc,
@@ -22,29 +15,12 @@ import { db } from "@/utils/firebase";
 import { toast } from "react-hot-toast";
 import { Post } from "@/interfaces/Post";
 import { NotificationType } from "@/interfaces/Notification";
-
-const menu = [
-  {
-    title: "shopping",
-    icon: <ListBulletIcon />,
-    bagde: null,
-  },
-  {
-    title: "notes",
-    icon: <FileIcon />,
-    bagde: null,
-  },
-  {
-    title: "notifications",
-    icon: <BellIcon />,
-    bagde: 10,
-  },
-];
+import FooterHint from "./FooterHint";
+import FooterMenu from "./FooterMenu";
 
 export default function Footer() {
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
-  const [current, setCurrent] = useState("/shopping");
   const [hints, setHints] = useState<any[]>([]);
   const [filteredHints, setFilteredhints] = useState<any[]>([]);
 
@@ -157,24 +133,11 @@ export default function Footer() {
 
   return (
     <>
-      {isShopping && text.length && filteredHints.length ? (
-        <div className="bg-slate-800 border border-slate-700 fixed w-auto overflow-x-scroll left-2 right-2 rounded-2xl p-2 bottom-36 flex items-center gap-2">
-          {filteredHints.length > 1 && (
-            <div className="rounded-lg text-xs font-extrabold py-2 px-4 bg-green-600 text-slate-50">
-              {filteredHints.length}
-            </div>
-          )}
-
-          {filteredHints.map((hint) => (
-            <div
-              key={hint.id}
-              className="rounded-lg text-xs font-light bg-slate-700 py-2 px-4 whitespace-nowrap"
-            >
-              {hint.text.toLowerCase()}
-            </div>
-          ))}
-        </div>
-      ) : null}
+      <FooterHint
+        isShopping={isShopping}
+        text={text}
+        filteredHints={filteredHints}
+      />
 
       <footer className="w-screen bg-slate-900 border-slate-800 border-t fixed bottom-0 px-4 py-2 flex justify-center">
         <div className="w-full max-w-7xl flex flex-col sm:w-[450px]">
@@ -208,36 +171,7 @@ export default function Footer() {
             </form>
           )}
           <div className="flex items-center rounded-md justify-between sm:justify-center gap-4 w-full pb-2">
-            {menu.map((item) => {
-              return (
-                <Link
-                  onClick={() =>
-                    current !== item.title && setCurrent(item.title)
-                  }
-                  href={item.title}
-                  key={item.title}
-                  className={`${
-                    pathname === `/${item.title}`
-                      ? "text-yellow-500 border-b border-yellow-500 "
-                      : "text-white border-b border-transparent"
-                  } p-4 flex items-center justify-center rounded-t-md w-full`}
-                >
-                  <div className="font-bold text-xs">{item.icon}</div>
-                  <div className="text-sm font-bold ml-2 hidden sm:block">
-                    {item.title.toUpperCase()}
-                  </div>
-                  {item?.bagde && (
-                    <div
-                      className="relative font-bold w-4 h-4 bg-red-700 flex items-center justify-center rounded-full ml-2 text-white"
-                      style={{ fontSize: 8 }}
-                    >
-                      <span className="animate-ping bg-red-700 absolute inline-flex h-full w-full rounded-full opacity-75" />
-                      <span>{item.bagde}</span>
-                    </div>
-                  )}
-                </Link>
-              );
-            })}
+            <FooterMenu />
           </div>
         </div>
       </footer>
