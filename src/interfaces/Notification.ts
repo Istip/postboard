@@ -1,4 +1,5 @@
 export interface NotificationType {
+  id: string;
   text: string;
   createdAt: any;
   type: string;
