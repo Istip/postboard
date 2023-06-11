@@ -1,7 +1,7 @@
 import { NotificationType } from "@/interfaces/Notification";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 
-export const NotificationMessage: React.FC<{
+const NotificationMessage: React.FC<{
   notification: NotificationType;
 }> = ({ notification }) => {
   const { type } = notification;
@@ -46,3 +46,5 @@ export const NotificationMessage: React.FC<{
 
   return null;
 };
+
+export default NotificationMessage;
