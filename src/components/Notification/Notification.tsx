@@ -4,22 +4,16 @@ import Image from "next/image";
 import NotificationIcon from "./NotificationIcon";
 import { NotificationMessage } from "./NotificationMessage";
 import { convertTimestamp } from "@/utils/formatDate";
+import { borderColor } from "./notificationUtils";
 
 const Notification: React.FC<{ notification: NotificationType }> = ({
   notification,
 }) => {
-  const border =
-    notification.type === "notes"
-      ? "border-yellow-500"
-      : notification.type === "shopping"
-      ? "border-green-500"
-      : notification.type === "comment"
-      ? "border-slate-500"
-      : "";
-
   return (
     <div
-      className={`mb-3 text-slate-300 w-full bg-slate-900 p-2 text-xs rounded-l-md flex border-r-2 ${border}`}
+      className={`mb-3 text-slate-300 w-full bg-slate-900 p-2 text-xs rounded-l-md flex border-r-2 ${borderColor(
+        notification
+      )}`}
     >
       <div className="flex w-full">
         <Image
