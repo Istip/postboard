@@ -7,58 +7,13 @@ import {
   ListBulletIcon,
 } from "@radix-ui/react-icons";
 import Image from "next/image";
+import NotificationIcon from "./NotificationIcon";
+import { NotificationMessage } from "./NotificationMessage";
+import { convertTimestamp } from "@/utils/formatDate";
 
 const Notification: React.FC<{ notification: NotificationType }> = ({
   notification,
 }) => {
-  const convertTimestamp = (timestamp: any) => {
-    return timestamp?.toDate().toISOString().split("T")[0];
-  };
-
-  const handleText = (notification: NotificationType) => {
-    const { type } = notification;
-
-    if (type === "comment") {
-      return (
-        <>
-          <span className="font-bold text-yellow-500">
-            {notification.displayName}{" "}
-          </span>
-          commented on:{" "}
-          <span className="font-bold text-white">{notification.post} </span>{" "}
-          <ArrowRightIcon className="inline-flex" />{" "}
-          <span className="font-bold text-white">{notification.text}</span>.
-        </>
-      );
-    }
-
-    if (type === "shopping") {
-      return (
-        <>
-          <span className="font-bold text-yellow-500">
-            {notification.displayName}{" "}
-          </span>{" "}
-          added a new item to the shopping list:{" "}
-          <span className="font-bold text-white">{notification.text}</span>.
-        </>
-      );
-    }
-
-    if (type === "notes") {
-      return (
-        <>
-          <span className="font-bold text-yellow-500">
-            {notification.displayName}{" "}
-          </span>{" "}
-          left a new note:{" "}
-          <span className="font-bold text-white">{notification.text}</span>.
-        </>
-      );
-    }
-
-    return "";
-  };
-
   const border =
     notification.type === "notes"
       ? "border-yellow-500"
@@ -81,29 +36,20 @@ const Notification: React.FC<{ notification: NotificationType }> = ({
           alt={notification?.displayName || ""}
         />
         <div className="w-full">
-          <div>{handleText(notification)}</div>
+          <div>
+            <NotificationMessage notification={notification} />
+          </div>
           <div className="text-slate-500 flex items-center gap-1 pt-1.5">
             <CalendarIcon /> {convertTimestamp(notification?.createdAt)}
           </div>
+
+          <div className="w-full flex gap-1 justify-between bg-slate-800 mt-1 py-1 px-2 rounded-md">
+            <div className="w-full text-center">Remove</div>
+            <div className="w-full text-center">Mark as read</div>
+          </div>
         </div>
 
-        <div className="h-full flex items-center">
-          {notification.type === "shopping" && (
-            <div className="bg-green-500 m-1 p-1.5 flex items-center rounded-full text-black">
-              <ListBulletIcon />
-            </div>
-          )}
-          {notification.type === "notes" && (
-            <div className="bg-yellow-500 m-1 p-1.5 flex items-center rounded-full text-black">
-              <FileIcon />
-            </div>
-          )}
-          {notification.type === "comment" && (
-            <div className="bg-slate-500 m-1 p-1.5 flex items-center rounded-full">
-              <ChatBubbleIcon />
-            </div>
-          )}
-        </div>
+        <NotificationIcon notification={notification} />
       </div>
     </div>
   );
