@@ -38,9 +38,9 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
     const dataToSend = {
       text: comment,
       id: post?.id,
-      displayName: post?.displayName,
-      email: post?.email,
-      photoUrl: post?.photoUrl,
+      displayName: user?.displayName,
+      email: user?.email,
+      photoUrl: user?.photoURL,
       createdAt: Date.now(),
     };
 
@@ -132,11 +132,11 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
         className={`flex gap-4 ${comments?.length ? "mt-4" : ""} items-center`}
       >
         <Image
-          src={post?.photoUrl || "/avatar.bmp"}
+          src={user?.photoURL || "/avatar.bmp"}
           className="w-4 h-4 border rounded-full bg-slate-950 border-slate-500"
           width={24}
           height={24}
-          alt={post?.displayName || ""}
+          alt={user?.displayName || ""}
         />
 
         <div className="w-full flex">
