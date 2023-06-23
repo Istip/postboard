@@ -4,9 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/context/AuthContext";
 import { EnterIcon } from "@radix-ui/react-icons";
-import Loading from "@/components/Loading/Loading";
 import signUp from "@/utils/signUp";
-import Image from "next/image";
 
 export default function Home() {
   const { user, loading } = useAuthContext();
