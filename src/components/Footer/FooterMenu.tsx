@@ -1,7 +1,7 @@
-import { BellIcon, FileIcon, ListBulletIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { BellIcon, FileIcon, ListBulletIcon } from "@radix-ui/react-icons";
 
 const footerMenu = [
   {
