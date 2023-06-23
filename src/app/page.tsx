@@ -6,6 +6,7 @@ import { useAuthContext } from "@/context/AuthContext";
 import { EnterIcon } from "@radix-ui/react-icons";
 import Loading from "@/components/Loading/Loading";
 import signUp from "@/utils/signUp";
+import Image from "next/image";
 
 export default function Home() {
   const { user, loading } = useAuthContext();
@@ -19,7 +20,13 @@ export default function Home() {
 
   return (
     <main className="text-center w-full bg-slate-900 min-h-screen flex justify-center items-center">
-      {loading && <Loading />}
+      {loading && (
+        <div className="text-yellow-500">
+          <p className="text-xl">WELCOME TO</p>
+          <h1 className="text-3xl font-bold">POSTBOARD</h1>
+          <p className="text-sm">Please wait...</p>
+        </div>
+      )}
       {!user && !loading && (
         <div className="h-full">
           <h1 className="text-yellow-500 font-bold text-2xl mb-4">POSTBOARD</h1>
