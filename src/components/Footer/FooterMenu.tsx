@@ -36,6 +36,7 @@ const FooterMenu = () => {
                 ? "text-yellow-500 border-b border-yellow-500 "
                 : "text-white border-b border-transparent"
             } p-4 flex items-center justify-center rounded-t-md w-full`}
+            style={{ WebkitTapHighlightColor: "transparent" }}
           >
             <div className="font-bold text-xs">{item.icon}</div>
             <div className="text-sm font-bold ml-2 hidden sm:block">
