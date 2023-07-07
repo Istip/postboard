@@ -15,11 +15,12 @@ import Card from "@/components/Card/Card";
 import Loading from "@/components/Loading/Loading";
 import Message from "@/components/Message/Message";
 import Toaster from "@/components/Toaster/Toaster";
-import { BookmarkFilledIcon } from "@radix-ui/react-icons";
+import { BookmarkFilledIcon, CheckCircledIcon } from "@radix-ui/react-icons";
 
 export default function Shopping() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [filter, setFilter] = useState(false);
+  const [done, setDone] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -56,34 +57,50 @@ export default function Shopping() {
           </Message>
         )}
 
-        <div className="w-100 flex items-center justify-center gap-1 mb-2 text-sm">
-          <div className="flex">
+        {posts?.length && (
+          <div className="w-100 flex items-center justify-center gap-2 mb-2 text-xs">
             <button
               type="button"
-              onClick={() => setFilter(false)}
-              className={`px-4 py-2 ${
-                !filter ? "bg-yellow-500" : "bg-slate-700"
-              } rounded-l-md`}
+              onClick={() => setDone(!done)}
+              className={`p-2 bg-green-500 rounded-md ${
+                done ? "" : "opacity-50"
+              }`}
             >
-              Show all
+              <CheckCircledIcon />
             </button>
-            <button
-              type="button"
-              onClick={() => setFilter(true)}
-              className={`px-4 py-2 flex items-center gap-1 ${
-                filter ? "bg-yellow-500" : "bg-slate-700"
-              } rounded-r-md`}
-            >
-              <BookmarkFilledIcon /> Marked
-            </button>
+
+            <div className="flex">
+              <button
+                type="button"
+                onClick={() => setFilter(false)}
+                className={`p-2 rounded-l-md ${
+                  !filter ? "bg-yellow-500" : "bg-slate-700"
+                }`}
+              >
+                Show all
+              </button>
+              <button
+                type="button"
+                onClick={() => setFilter(true)}
+                className={`p-2 flex items-center gap-1 rounded-r-md ${
+                  filter ? "bg-yellow-500" : "bg-slate-700"
+                }`}
+              >
+                <BookmarkFilledIcon /> Marked
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
         <AnimatePresence>
           {posts
             .filter((post) => {
               if (!filter) return true;
               return post.marked;
+            })
+            .filter((post) => {
+              if (!done) return true;
+              return !post.done;
             })
             .map((post) => (
               <motion.div
