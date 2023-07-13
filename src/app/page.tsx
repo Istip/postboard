@@ -22,7 +22,7 @@ export default function Home() {
         <div className="text-yellow-500">
           <p className="text-xl">WELCOME TO</p>
           <h1 className="text-3xl font-bold">POSTBOARD</h1>
-          <p className="text-sm">Please wait...</p>
+          <p className="text-sm">Please wait</p>
         </div>
       )}
       {!user && !loading && (
