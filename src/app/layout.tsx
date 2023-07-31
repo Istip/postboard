@@ -1,10 +1,10 @@
-import { Poppins } from "next/font/google";
+import { Inter } from "next/font/google";
 import { AuthContextProvider } from "@/context/AuthContext";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import "./globals.css";
 
-const poppins = Poppins({
+const inter = Inter({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
 });
@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={poppins.className}>
+      <body className={inter.className}>
         <AuthContextProvider>
           <div className="bg-slate-950 text-slate-50 w-full min-h-screen h-auto">
             <Navbar />
