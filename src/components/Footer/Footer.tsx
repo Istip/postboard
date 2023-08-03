@@ -120,7 +120,11 @@ export default function Footer() {
   useEffect(() => {
     if (text.length) {
       const filtered = hints.filter((hint) =>
-        hint.text.toLowerCase().includes(text.toLowerCase())
+        hint.text
+          .normalize("NFD")
+          .replace(/\p{Diacritic}/gu, "")
+          .toLowerCase()
+          .includes(text.toLowerCase())
       );
 
       setFilteredhints(filtered);
