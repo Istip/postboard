@@ -148,12 +148,12 @@ export default function Footer() {
           {pageIsSubmit && (
             <form
               onSubmit={(e) => handleSubmit(e)}
-              className="py-2 h-16 flex gap-2"
+              className="py-2 h-14 flex gap-2"
             >
               <div className="relative w-full">
                 {text.length ? (
                   <button
-                    className="absolute top-3 right-2 py-1 px-2"
+                    className="absolute top-2 right-2 p-1 bg-red-500/75 rounded-xl"
                     onClick={() => setText("")}
                   >
                     <Cross2Icon />
@@ -164,7 +164,7 @@ export default function Footer() {
                   value={text}
                   disabled={loading}
                   placeholder="Enter your text..."
-                  className="w-full h-full bg-stone-800 p-2 rounded-md border-transparent border focus:outline-none
+                  className="w-full h-full bg-stone-800 p-2 rounded-md border-transparent border focus:outline-none overflow-hidden
                     disabled:opacity-50 disabled:cursor-not-allowed focus:border focus:border-stone-800 resize-none text-sm"
                 />
               </div>
