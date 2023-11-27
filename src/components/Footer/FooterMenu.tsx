@@ -33,7 +33,7 @@ const FooterMenu = () => {
             key={item.title}
             className={`${
               pathname === `/${item.title}`
-                ? "bg-yellow-500/50 text-white"
+                ? "border border-yellow-500 text-yellow-500"
                 : "text-white border-b border-transparent"
             } p-4 flex items-center justify-center rounded-md w-full`}
             style={{ WebkitTapHighlightColor: "transparent" }}
