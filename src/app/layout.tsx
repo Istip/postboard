@@ -13,7 +13,7 @@ export const metadata = {
   title: "PostBoard",
   description: "Post your toughts!",
   manifest: "/manifest.json",
-  themeColor: "#1B1C1C",
+  themeColor: "#1C1917",
 };
 
 export default function RootLayout({
