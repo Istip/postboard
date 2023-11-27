@@ -4,7 +4,6 @@ import {
   ArrowRightIcon,
   BookmarkFilledIcon,
   BookmarkIcon,
-  CalendarIcon,
   CheckCircledIcon,
   TrashIcon,
 } from "@radix-ui/react-icons";
@@ -20,7 +19,6 @@ import {
 } from "firebase/firestore";
 import { convertTimestamp } from "@/utils/formatDate";
 import { db } from "@/utils/firebase";
-import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "react-hot-toast";
 import { usePathname } from "next/navigation";
 import { Post } from "@/interfaces/Post";
@@ -102,34 +100,33 @@ const Card: React.FC<CardProps> = ({
     <div
       className={`mb-3 text-stone-200 rounded-md border overflow-hidden ${cardOpacity} ${cardBorder}`}
     >
-      <div className="w-full p-2 bg-stone-900 flex gap-2 justify-between items-center rounded-t-md transition-all border-b-stone-950 border-b">
-        <div className="rounded-full bg-stone-950">
-          <Image
-            src={post?.photoUrl || "/avatar.bmp"}
-            className="w-6 h-6 border rounded-full bg-stone-950 border-stone-500"
-            width={24}
-            height={24}
-            alt={post?.displayName || ""}
-          />
-        </div>
+      <div className="bg-stone-900 p-4 text-sm rounded-t-xl">
+        <div className="text-lg font-light flex items-start justify-between">
+          <div>{post?.text}</div>
 
-        <div className="text-stone-600 font-bold text-sm flex gap-2 items-center">
-          <button className="text-yellow-500" onClick={handleMark}>
-            {!post?.marked ? <BookmarkIcon /> : <BookmarkFilledIcon />}
-          </button>
+          <div className="text-stone-600 font-bold text-sm flex gap-2 items-center h-6">
+            <button className="text-yellow-500" onClick={handleMark}>
+              {!post?.marked ? <BookmarkIcon /> : <BookmarkFilledIcon />}
+            </button>
+          </div>
         </div>
-      </div>
-
-      <div className="bg-stone-900 p-4 text-sm">
-        <div className="text-lg font-light">{post?.text}</div>
 
         {comments && <Comments post={post} />}
       </div>
 
-      <div className="w-full p-2 bg-stone-900 flex gap-2 justify-between items-center rounded-b-md border-t-stone-950 border-t">
+      <div className="w-full p-2 bg-stone-900 flex gap-2 justify-between items-center rounded-b-xl border-t-stone-950 border-t">
         <div className="w-full flex items-center justify-between">
-          <div className="text-xs flex gap-2 text-stone-500">
-            <CalendarIcon /> <p>{convertTimestamp(post?.createdAt)}</p>
+          <div className="text-xs flex gap-2 text-stone-500 items-center justify-center">
+            <div className="rounded-full bg-stone-950">
+              <Image
+                src={post?.photoUrl || "/avatar.bmp"}
+                className="w-6 h-6 border rounded-full bg-stone-950 border-stone-500"
+                width={24}
+                height={24}
+                alt={post?.displayName || ""}
+              />
+            </div>
+            <p>{convertTimestamp(post?.createdAt)}</p>
           </div>
 
           <div className="flex gap-2">
@@ -137,13 +134,13 @@ const Card: React.FC<CardProps> = ({
               <div>
                 <div className="flex">
                   <button
-                    className="px-4 py-2 bg-red-500 rounded-l-md"
+                    className="px-4 py-2 bg-red-500 rounded-l-lg"
                     onClick={handleDelete}
                   >
                     <TrashIcon />
                   </button>
                   <button
-                    className="px-4 py-2 bg-stone-700 rounded-r-md"
+                    className="px-4 py-2 bg-stone-700 rounded-r-lg"
                     onClick={handleCancellation}
                   >
                     <ArrowRightIcon />
@@ -153,7 +150,7 @@ const Card: React.FC<CardProps> = ({
             ) : (
               <div>
                 <button
-                  className="px-4 py-2 bg-red-500 rounded-md"
+                  className="px-4 py-2 bg-red-500 rounded-lg"
                   onClick={handleDoubleCheck}
                 >
                   <TrashIcon />
@@ -163,7 +160,7 @@ const Card: React.FC<CardProps> = ({
 
             {acceptable && (
               <button
-                className="px-4 py-2 bg-green-600 rounded-md"
+                className="px-4 py-2 bg-green-600 rounded-lg"
                 onClick={handleStatus}
               >
                 <CheckCircledIcon />
