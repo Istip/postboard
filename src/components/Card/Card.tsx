@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import {
   ArrowRightIcon,
@@ -36,6 +36,9 @@ const Card: React.FC<CardProps> = ({
   comments = true,
 }) => {
   const [confirm, setConfirm] = useState(false);
+  const [value, setValue] = useState(post?.text as string);
+
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const pathname = usePathname();
 
@@ -96,15 +99,36 @@ const Card: React.FC<CardProps> = ({
     });
   };
 
+  const handleSaveOnBlur = () => {
+    setDoc(doc(db, "posts", postId), {
+      ...post,
+      text: value,
+    });
+  };
+
+  const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const val = evt.target?.value;
+
+    setValue(val);
+  };
+
   return (
     <div
       className={`mb-3 text-stone-200 rounded-md border overflow-hidden ${cardOpacity} ${cardBorder}`}
     >
       <div className="bg-stone-900 p-4 text-sm rounded-t-xl">
         <div className="text-lg font-light flex items-start justify-between">
-          <div>{post?.text}</div>
+          <div className="w-full">
+            <input
+              className="w-full text-stone-50 bg-transparent outline-none focus:bg-stone-700/20 py-1 rounded-lg"
+              onChange={handleChange}
+              placeholder="What did you like or dislike?"
+              value={value}
+              onBlur={handleSaveOnBlur}
+            />
+          </div>
 
-          <div className="text-stone-600 font-bold text-sm flex gap-2 items-center h-6">
+          <div className="text-stone-600 font-bold text-sm pl-1 flex gap-2 items-center h-8">
             <button className="text-yellow-500" onClick={handleMark}>
               {!post?.marked ? <BookmarkIcon /> : <BookmarkFilledIcon />}
             </button>
