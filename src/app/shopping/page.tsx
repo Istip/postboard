@@ -74,7 +74,7 @@ export default function Shopping() {
                 type="button"
                 onClick={() => setFilter(false)}
                 className={`p-2 rounded-l-md ${
-                  !filter ? "bg-yellow-500" : "bg-slate-700"
+                  !filter ? "bg-yellow-500" : "bg-stone-700"
                 }`}
               >
                 Show all
@@ -83,7 +83,7 @@ export default function Shopping() {
                 type="button"
                 onClick={() => setFilter(true)}
                 className={`p-2 flex items-center gap-1 rounded-r-md ${
-                  filter ? "bg-yellow-500" : "bg-slate-700"
+                  filter ? "bg-yellow-500" : "bg-stone-700"
                 }`}
               >
                 <BookmarkFilledIcon /> Marked

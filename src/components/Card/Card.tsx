@@ -49,7 +49,7 @@ const Card: React.FC<CardProps> = ({
   const postId = post?.id || "";
   const cardOpacity = post?.done ? "opacity-50" : "";
   const cardBorder = !post?.marked
-    ? "border-slate-700 border-opacity-0"
+    ? "border-stone-700 border-opacity-0"
     : "border-yellow-500";
 
   const handleDelete = async () => {
@@ -100,35 +100,35 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div
-      className={`mb-3 text-slate-200 rounded-md border overflow-hidden ${cardOpacity} ${cardBorder}`}
+      className={`mb-3 text-stone-200 rounded-md border overflow-hidden ${cardOpacity} ${cardBorder}`}
     >
-      <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-t-md transition-all border-b-slate-950 border-b">
-        <div className="rounded-full bg-slate-950">
+      <div className="w-full p-2 bg-stone-900 flex gap-2 justify-between items-center rounded-t-md transition-all border-b-stone-950 border-b">
+        <div className="rounded-full bg-stone-950">
           <Image
             src={post?.photoUrl || "/avatar.bmp"}
-            className="w-6 h-6 border rounded-full bg-slate-950 border-slate-500"
+            className="w-6 h-6 border rounded-full bg-stone-950 border-stone-500"
             width={24}
             height={24}
             alt={post?.displayName || ""}
           />
         </div>
 
-        <div className="text-slate-600 font-bold text-sm flex gap-2 items-center">
+        <div className="text-stone-600 font-bold text-sm flex gap-2 items-center">
           <button className="text-yellow-500" onClick={handleMark}>
             {!post?.marked ? <BookmarkIcon /> : <BookmarkFilledIcon />}
           </button>
         </div>
       </div>
 
-      <div className="bg-slate-900 p-4 text-sm">
+      <div className="bg-stone-900 p-4 text-sm">
         <div className="text-lg font-light">{post?.text}</div>
 
         {comments && <Comments post={post} />}
       </div>
 
-      <div className="w-full p-2 bg-slate-900 flex gap-2 justify-between items-center rounded-b-md border-t-slate-950 border-t">
+      <div className="w-full p-2 bg-stone-900 flex gap-2 justify-between items-center rounded-b-md border-t-stone-950 border-t">
         <div className="w-full flex items-center justify-between">
-          <div className="text-xs flex gap-2 text-slate-500">
+          <div className="text-xs flex gap-2 text-stone-500">
             <CalendarIcon /> <p>{convertTimestamp(post?.createdAt)}</p>
           </div>
 
@@ -143,7 +143,7 @@ const Card: React.FC<CardProps> = ({
                     <TrashIcon />
                   </button>
                   <button
-                    className="px-4 py-2 bg-slate-700 rounded-r-md"
+                    className="px-4 py-2 bg-stone-700 rounded-r-md"
                     onClick={handleCancellation}
                   >
                     <ArrowRightIcon />

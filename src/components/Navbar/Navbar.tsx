@@ -27,7 +27,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="w-screen h-12 bg-slate-900 border-b border-slate-800 px-4 fixed z-10 flex justify-center">
+    <nav className="w-screen h-12 bg-stone-900 border-b border-stone-800 px-4 fixed z-10 flex justify-center">
       <div className="w-full max-w-7xl flex justify-between items-center gap-4">
         <div>
           <Link
@@ -41,7 +41,7 @@ export default function Navbar() {
           {user && (
             <div className="flex items-center gap-2">
               <button
-                className="text-xs font-bold px-4 py-1 rounded-md bg-yellow-500 text-slate-950 hover:bg-yellow-600 transition-all"
+                className="text-xs font-bold px-4 py-1 rounded-md bg-yellow-500 text-stone-950 hover:bg-yellow-600 transition-all"
                 onClick={handleSignOut}
               >
                 <div className="flex items-center">

@@ -37,13 +37,13 @@ const Notification: React.FC<{ notification: NotificationType }> = ({
 
   return (
     <div
-      className={`mb-2 text-slate-300 w-full bg-slate-900 p-2 text-xs rounded-l-md flex border-r-2 ${borderColor(
+      className={`mb-2 text-stone-300 w-full bg-stone-900 p-2 text-xs rounded-l-md flex border-r-2 ${borderColor(
         notification
       )} ${notification.seen ? "opacity-50" : ""}`}
     >
       <div className="flex w-full">
         <Image
-          className="mr-2 mt-1 w-6 h-6 border rounded-full bg-slate-950 border-white"
+          className="mr-2 mt-1 w-6 h-6 border rounded-full bg-stone-950 border-white"
           src={notification?.photoUrl || "/avatar.bmp"}
           width={24}
           height={24}
@@ -53,12 +53,12 @@ const Notification: React.FC<{ notification: NotificationType }> = ({
           <div>
             <NotificationMessage notification={notification} />
           </div>
-          <div className="text-slate-500 flex items-center gap-1 pt-1.5">
+          <div className="text-stone-500 flex items-center gap-1 pt-1.5">
             <CalendarIcon /> {convertTimestamp(notification?.createdAt)}
           </div>
 
           {!isCreator && (
-            <div className="w-full flex gap-1 justify-between bg-slate-800 mt-2 py-1 px-2 rounded-md">
+            <div className="w-full flex gap-1 justify-between bg-stone-800 mt-2 py-1 px-2 rounded-md">
               <button className="w-full text-center" onClick={handleRemove}>
                 Remove
               </button>
