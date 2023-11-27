@@ -114,7 +114,6 @@ const Card: React.FC<CardProps> = ({
         </div>
 
         <div className="text-slate-600 font-bold text-sm flex gap-2 items-center">
-          <div>{post?.displayName}</div>
           <button className="text-yellow-500" onClick={handleMark}>
             {!post?.marked ? <BookmarkIcon /> : <BookmarkFilledIcon />}
           </button>
@@ -134,46 +133,33 @@ const Card: React.FC<CardProps> = ({
           </div>
 
           <div className="flex gap-2">
-            <AnimatePresence initial={false} mode="wait">
-              {confirm ? (
-                <motion.div
-                  key={String(confirm)}
-                  initial={{ width: 0 }}
-                  animate={{ width: "auto" }}
-                  exit={{ width: 0 }}
-                  transition={{ duration: 0.1 }}
-                >
-                  <div className="flex">
-                    <button
-                      className="px-4 py-2 bg-red-500 rounded-l-md"
-                      onClick={handleDelete}
-                    >
-                      <TrashIcon />
-                    </button>
-                    <button
-                      className="px-4 py-2 bg-slate-700 rounded-r-md"
-                      onClick={handleCancellation}
-                    >
-                      <ArrowRightIcon />
-                    </button>
-                  </div>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key={String(confirm)}
-                  initial={{ width: 0 }}
-                  animate={{ width: "auto" }}
-                  exit={{ width: 0 }}
-                >
+            {confirm ? (
+              <div>
+                <div className="flex">
                   <button
-                    className="px-4 py-2 bg-red-500 rounded-md"
-                    onClick={handleDoubleCheck}
+                    className="px-4 py-2 bg-red-500 rounded-l-md"
+                    onClick={handleDelete}
                   >
                     <TrashIcon />
                   </button>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                  <button
+                    className="px-4 py-2 bg-slate-700 rounded-r-md"
+                    onClick={handleCancellation}
+                  >
+                    <ArrowRightIcon />
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div>
+                <button
+                  className="px-4 py-2 bg-red-500 rounded-md"
+                  onClick={handleDoubleCheck}
+                >
+                  <TrashIcon />
+                </button>
+              </div>
+            )}
 
             {acceptable && (
               <button
