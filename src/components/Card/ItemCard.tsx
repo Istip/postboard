@@ -117,7 +117,7 @@ const ItemCard: React.FC<CardProps> = ({
         <div className="text-lg font-light flex items-start justify-between">
           <div className="w-full">
             <input
-              className="w-full text-stone-50 text-[10px]  bg-transparent outline-none focus:bg-stone-700/20 py-1 rounded-lg"
+              className="w-full text-stone-50 text-[12px]  bg-transparent outline-none focus:bg-stone-700/20 py-1 rounded-lg"
               onChange={handleChange}
               placeholder="What did you like or dislike?"
               value={value}
