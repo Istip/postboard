@@ -141,7 +141,7 @@ const ItemCard: React.FC<CardProps> = ({
             <div className="rounded-full bg-stone-950">
               <Image
                 src={post?.photoUrl || "/avatar.bmp"}
-                className="w-6 h-6 border rounded-lg bg-stone-950 border-stone-500"
+                className="w-8 h-8 border rounded-lg bg-stone-950 border-stone-500"
                 width={24}
                 height={24}
                 alt={post?.displayName || ""}
