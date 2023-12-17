@@ -154,13 +154,13 @@ const ItemCard: React.FC<CardProps> = ({
               <div>
                 <div className="flex">
                   <button
-                    className="px-1 py-1 bg-red-500 rounded-l-lg"
+                    className="px-2 py-2 bg-red-500 rounded-l-lg"
                     onClick={handleDelete}
                   >
                     <TrashIcon />
                   </button>
                   <button
-                    className="px-1 py-1 bg-stone-700 rounded-r-lg"
+                    className="px-2 py-2 bg-stone-700 rounded-r-lg"
                     onClick={handleCancellation}
                   >
                     <ArrowRightIcon />
@@ -170,7 +170,7 @@ const ItemCard: React.FC<CardProps> = ({
             ) : (
               <div>
                 <button
-                  className="px-1 py-1 bg-red-500 rounded-lg"
+                  className="px-2 py-2 bg-red-500 rounded-lg"
                   onClick={handleDoubleCheck}
                 >
                   <TrashIcon />
@@ -180,7 +180,7 @@ const ItemCard: React.FC<CardProps> = ({
 
             {acceptable && (
               <button
-                className="px-1 py-1 bg-green-600 rounded-lg"
+                className="px-2 py-2 bg-green-600 rounded-lg"
                 onClick={handleStatus}
               >
                 <CheckCircledIcon />
