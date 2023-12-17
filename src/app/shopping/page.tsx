@@ -11,7 +11,7 @@ import {
 import { db } from "@/utils/firebase";
 import { AnimatePresence, motion } from "framer-motion";
 import { Post } from "@/interfaces/Post";
-import Card from "@/components/Card/Card";
+import ItemCard from "@/components/Card/ItemCard";
 import Loading from "@/components/Loading/Loading";
 import Message from "@/components/Message/Message";
 import Toaster from "@/components/Toaster/Toaster";
@@ -92,29 +92,31 @@ export default function Shopping() {
           </div>
         )}
 
-        <AnimatePresence>
-          {posts
-            .filter((post) => {
-              if (!filter) return true;
-              return post.marked;
-            })
-            .filter((post) => {
-              if (!done) return true;
-              return !post.done;
-            })
-            .map((post) => (
-              <motion.div
-                key={post.id}
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-              >
-                <div className="py-0.5">
-                  <Card post={post} comments={false} />
-                </div>
-              </motion.div>
-            ))}
-        </AnimatePresence>
+        <div className="grid grid-cols-2 gap-x-1">
+          <AnimatePresence>
+            {posts
+              .filter((post) => {
+                if (!filter) return true;
+                return post.marked;
+              })
+              .filter((post) => {
+                if (!done) return true;
+                return !post.done;
+              })
+              .map((post) => (
+                <motion.div
+                  key={post.id}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                >
+                  <div className="py-0.5">
+                    <ItemCard post={post} comments={false} />
+                  </div>
+                </motion.div>
+              ))}
+          </AnimatePresence>
+        </div>
       </main>
     </>
   );
