@@ -15,12 +15,15 @@ import ItemCard from "@/components/Card/ItemCard";
 import Loading from "@/components/Loading/Loading";
 import Message from "@/components/Message/Message";
 import Toaster from "@/components/Toaster/Toaster";
-import { BookmarkFilledIcon, CheckCircledIcon } from "@radix-ui/react-icons";
+import {
+  TriangleDownIcon,
+  BookmarkFilledIcon,
+  CheckCircledIcon,
+} from "@radix-ui/react-icons";
 
 export default function Shopping() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [filter, setFilter] = useState(false);
-  const [done, setDone] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -59,16 +62,6 @@ export default function Shopping() {
 
         {posts?.length && (
           <div className="w-100 flex items-center justify-center gap-2 mb-2 text-xs">
-            <button
-              type="button"
-              onClick={() => setDone(!done)}
-              className={`p-2 bg-green-500 rounded-md ${
-                done ? "" : "opacity-50"
-              }`}
-            >
-              <CheckCircledIcon />
-            </button>
-
             <div className="flex">
               <button
                 type="button"
@@ -104,8 +97,37 @@ export default function Shopping() {
                 return post.marked;
               })
               .filter((post) => {
-                if (!done) return true;
                 return !post.done;
+              })
+              .map((post) => (
+                <motion.div
+                  key={post.id}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                >
+                  <div className="py-0.5">
+                    <ItemCard post={post} comments={false} />
+                  </div>
+                </motion.div>
+              ))}
+          </AnimatePresence>
+        </div>
+
+        {posts.some((post) => post.done) && (
+          <div className="font-bold mt-6 mb-2 flex items-center gap-1">
+            Recent
+            <span>
+              <TriangleDownIcon />
+            </span>
+          </div>
+        )}
+
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-1">
+          <AnimatePresence>
+            {posts
+              .filter((post) => {
+                return post.done;
               })
               .map((post) => (
                 <motion.div
