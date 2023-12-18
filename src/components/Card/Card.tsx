@@ -130,6 +130,9 @@ const Card: React.FC<CardProps> = ({
 
           <div className="text-stone-600 font-bold text-sm pl-1 flex gap-2 items-center h-8">
             <button className="text-yellow-500" onClick={handleMark}>
+              <div className="sr-only">
+                {!post?.marked ? "Bookmark this post" : "Remove from bookmarks"}
+              </div>
               {!post?.marked ? <BookmarkIcon /> : <BookmarkFilledIcon />}
             </button>
           </div>
@@ -161,12 +164,14 @@ const Card: React.FC<CardProps> = ({
                     className="px-4 py-2 bg-red-500 rounded-l-lg"
                     onClick={handleDelete}
                   >
+                    <div className="sr-only">Remove</div>
                     <TrashIcon />
                   </button>
                   <button
                     className="px-4 py-2 bg-stone-700 rounded-r-lg"
                     onClick={handleCancellation}
                   >
+                    <div className="sr-only">Cancel remove</div>
                     <ArrowRightIcon />
                   </button>
                 </div>
@@ -177,6 +182,7 @@ const Card: React.FC<CardProps> = ({
                   className="px-4 py-2 bg-red-500 rounded-lg"
                   onClick={handleDoubleCheck}
                 >
+                  <div className="sr-only">Remove</div>
                   <TrashIcon />
                 </button>
               </div>
@@ -187,6 +193,7 @@ const Card: React.FC<CardProps> = ({
                 className="px-4 py-2 bg-green-600 rounded-lg"
                 onClick={handleStatus}
               >
+                <div className="sr-only">Mark as complete</div>
                 <CheckCircledIcon />
               </button>
             )}

@@ -96,7 +96,7 @@ export default function Shopping() {
           </div>
         )}
 
-        <div className="grid grid-cols-2 gap-x-1">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-1">
           <AnimatePresence>
             {posts
               .filter((post) => {
