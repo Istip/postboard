@@ -42,6 +42,7 @@ const FooterMenu = () => {
             <div className="text-sm font-bold ml-2 hidden sm:block">
               {item.title.toUpperCase()}
             </div>
+            <span className="sr-only">{item.title.toUpperCase()}</span>
           </Link>
         );
       })}

@@ -171,6 +171,7 @@ export default function Footer() {
               <button className="h-full bg-yellow-500 rounded-md px-4 py-2 text-stone-950 font-bold flex items-center gap-1.5">
                 <PlusCircledIcon />
                 <div className="text-sm hidden sm:block">Create</div>
+                <span className="sr-only">Create</span>
               </button>
             </form>
           )}
