@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning={true}>
         <AuthContextProvider>
           <div className="bg-stone-950 text-stone-50 w-full min-h-screen h-auto">
             <Navbar />
