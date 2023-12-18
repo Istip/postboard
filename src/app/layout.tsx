@@ -1,11 +1,11 @@
-import { Inter } from "next/font/google";
+import { Figtree } from "next/font/google";
 import { AuthContextProvider } from "@/context/AuthContext";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import "./globals.css";
 
-const inter = Inter({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+const font = Figtree({
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
 });
 
@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className} suppressHydrationWarning={true}>
+      <body className={font.className} suppressHydrationWarning={true}>
         <AuthContextProvider>
           <div className="bg-stone-950 text-stone-50 w-full min-h-screen h-auto">
             <Navbar />
