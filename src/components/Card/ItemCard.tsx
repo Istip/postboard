@@ -113,13 +113,13 @@ const ItemCard: React.FC<CardProps> = ({
     <div
       className={`ext-stone-200 rounded-md border overflow-hidden ${cardOpacity} ${cardBorder}`}
     >
-      <div className="bg-stone-900 p-4 text-sm rounded-t-xl">
+      <div className="bg-stone-900 py-4 px-2 text-sm rounded-t-xl">
         <div className="text-lg font-light flex items-start justify-between">
           <div className="w-full">
             <input
-              className="w-full text-stone-50 text-[12px]  bg-transparent outline-none focus:bg-stone-700/20 py-1 rounded-lg"
+              className="w-full text-stone-50 text-[12px]  bg-transparent outline-none transition-all focus:bg-stone-700/20 focus:pl-3 py-1 rounded-lg"
               onChange={handleChange}
-              placeholder="What did you like or dislike?"
+              placeholder="Please type here..."
               value={value}
               onBlur={handleSaveOnBlur}
             />
