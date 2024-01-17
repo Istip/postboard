@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import {
   ArrowRightIcon,
@@ -37,8 +37,6 @@ const Card: React.FC<CardProps> = ({
 }) => {
   const [confirm, setConfirm] = useState(false);
   const [value, setValue] = useState(post?.text as string);
-
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   const pathname = usePathname();
 
