@@ -120,7 +120,7 @@ const Card: React.FC<CardProps> = ({
             <input
               className="w-full text-stone-50 bg-transparent outline-none focus:bg-stone-700/20 py-1 rounded-lg"
               onChange={handleChange}
-              placeholder="What did you like or dislike?"
+              placeholder="Please type here..."
               value={value}
               onBlur={handleSaveOnBlur}
             />
