@@ -111,7 +111,7 @@ const ItemCard: React.FC<CardProps> = ({
 
   return (
     <div
-      className={`ext-stone-200 rounded-md border overflow-hidden ${cardOpacity} ${cardBorder}`}
+      className={`text-stone-200 rounded-md border overflow-hidden ${cardOpacity} ${cardBorder}`}
     >
       <div className="bg-stone-900 py-4 px-2 text-sm rounded-t-xl">
         <div className="text-lg font-light flex items-start justify-between">
