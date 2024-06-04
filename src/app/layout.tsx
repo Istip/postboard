@@ -22,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={font.className} suppressHydrationWarning={true}>
+    <html lang="en" suppressHydrationWarning={true}>
+      <body className={font.className}>
         <AuthContextProvider>
           <div className="bg-stone-950 text-stone-50 w-full min-h-screen h-auto">
             <Navbar />
