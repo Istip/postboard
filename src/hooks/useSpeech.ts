@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
+let recognition: SpeechRecognition | null = null;
+
+if ("webkitSpeechRecognition" in window) {
+  recognition = new webkitSpeechRecognition();
+
+  recognition.continuous = true;
+  recognition.lang = "hu-HU";
+}
+
 const useSpeech = () => {
-  let recognition: SpeechRecognition | null = null;
-
-  if ("webkitSpeechRecognition" in window) {
-    recognition = new webkitSpeechRecognition();
-
-    recognition.continuous = true;
-    recognition.lang = "hu-HU";
-  }
-
   const [text, setText] = useState<string>("");
   const [isListening, setIsListening] = useState<boolean>(false);
 
@@ -18,10 +18,10 @@ const useSpeech = () => {
 
     recognition.onresult = (event: SpeechRecognitionEvent) => {
       setText(event.results[0][0].transcript);
-      recognition.stop();
+      recognition?.stop();
       setIsListening(false);
     };
-  }, [recognition]);
+  }, []);
 
   const startListening = () => {
     setText("");
