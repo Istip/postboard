@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context/AuthContext";
-import { PlusCircledIcon, Cross2Icon } from "@radix-ui/react-icons";
+import { PlusCircledIcon, Cross2Icon, PlayIcon } from "@radix-ui/react-icons";
 import { usePathname } from "next/navigation";
 import {
   addDoc,
@@ -17,12 +17,22 @@ import { Post } from "@/interfaces/Post";
 import { NotificationType } from "@/interfaces/Notification";
 import FooterHint from "./FooterHint";
 import FooterMenu from "./FooterMenu";
+import useSpeech from "@/hooks/useSpeech";
+import MicrophoneIcon from "./MicrophoneIcon";
 
 export default function Footer() {
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
   const [hints, setHints] = useState<any[]>([]);
   const [filteredHints, setFilteredhints] = useState<any[]>([]);
+
+  const {
+    text: recordedText,
+    startListening,
+    hasRecognition,
+    isListening,
+    stopListening,
+  } = useSpeech();
 
   const { user } = useAuthContext();
 
@@ -59,6 +69,7 @@ export default function Footer() {
 
     const notificationToSend: NotificationType = {
       text,
+
       createdAt: new Date(),
       type: formattedPathname,
       displayName: user?.displayName,
@@ -131,6 +142,11 @@ export default function Footer() {
     }
   }, [text, hints]);
 
+  useEffect(() => {
+    setText("");
+    setText(recordedText);
+  }, [recordedText]);
+
   if (!user) {
     return null;
   }
@@ -168,7 +184,23 @@ export default function Footer() {
                     disabled:opacity-50 disabled:cursor-not-allowed focus:border focus:border-stone-800 resize-none text-sm"
                 />
               </div>
-              <button className="h-full bg-yellow-500 rounded-md px-4 py-2 text-stone-950 font-bold flex items-center gap-1.5">
+              {hasRecognition && (
+                <button
+                  type="button"
+                  onTouchStart={startListening}
+                  onTouchEnd={stopListening}
+                  onClick={isListening ? stopListening : startListening}
+                  className="h-full bg-red-500 rounded-md px-4 py-2 text-stone-950 font-bold flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <MicrophoneIcon size="15" />
+                  <div className="text-sm hidden sm:block">Record</div>
+                  <span className="sr-only">Record</span>
+                </button>
+              )}
+              <button
+                disabled={isListening}
+                className="h-full bg-yellow-500 rounded-md px-4 py-2 text-stone-950 font-bold flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
                 <PlusCircledIcon />
                 <div className="text-sm hidden sm:block">Create</div>
                 <span className="sr-only">Create</span>
