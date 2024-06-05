@@ -46,9 +46,9 @@ const ItemCard: React.FC<CardProps> = ({
 
   const postId = post?.id || "";
   const cardOpacity = post?.done ? "opacity-50" : "";
-  const cardBorder = !post?.marked
-    ? "border-stone-700 border-opacity-0"
-    : "border-yellow-500";
+  const background = post?.marked ? "bg-yellow-500" : "bg-stone-900";
+  const successButton = !post?.marked ? "bg-green-600" : "bg-green-800";
+  const dangerButton = !post?.marked ? "bg-red-500" : "bg-red-700";
 
   const handleDelete = async () => {
     try {
@@ -110,14 +110,14 @@ const ItemCard: React.FC<CardProps> = ({
   };
 
   return (
-    <div
-      className={`text-stone-200 rounded-md border overflow-hidden ${cardOpacity} ${cardBorder}`}
-    >
-      <div className="bg-stone-900 py-4 px-2 text-sm rounded-t-xl">
+    <div className={`text-stone-200 rounded-xl overflow-hidden ${cardOpacity}`}>
+      <div className={`${background} py-4 px-2 text-sm rounded-t-xl`}>
         <div className="text-lg font-light flex items-start justify-between">
           <div className="w-full">
             <input
-              className="w-full text-stone-50 text-[12px]  bg-transparent outline-none transition-all focus:bg-stone-700/20 focus:pl-3 py-1 rounded-lg"
+              className={`${
+                post?.marked ? "text-stone-950 font-bold" : "text-stone-50"
+              } w-full text-[12px] bg-transparent outline-none transition-all focus:bg-stone-700/20 focus:pl-3 py-1 rounded-lg`}
               onChange={handleChange}
               placeholder="Please type here..."
               value={value}
@@ -130,7 +130,13 @@ const ItemCard: React.FC<CardProps> = ({
               <div className="sr-only">
                 {!post?.marked ? "Bookmark this post" : "Remove from bookmarks"}
               </div>
-              {!post?.marked ? <BookmarkIcon /> : <BookmarkFilledIcon />}
+              <div
+                className={`${
+                  !post?.marked ? "text-yellow-500" : "text-yellow-700"
+                }`}
+              >
+                {!post?.marked ? <BookmarkIcon /> : <BookmarkFilledIcon />}
+              </div>
             </button>
           </div>
         </div>
@@ -138,13 +144,15 @@ const ItemCard: React.FC<CardProps> = ({
         {comments && <Comments post={post} />}
       </div>
 
-      <div className="w-full p-2 bg-stone-900 flex gap-2 justify-between items-center rounded-b-xl border-t-stone-950 border-t">
+      <div
+        className={`${background} w-full p-2 flex gap-2 justify-between items-center rounded-b-xl border-t-stone-950 border-t`}
+      >
         <div className="w-full flex items-center justify-between">
           <div className="text-xs flex gap-2 text-stone-500 items-center justify-center">
             <div className="rounded-full bg-stone-950">
               <Image
                 src={post?.photoUrl || "/avatar.jpg"}
-                className="w-8 h-8 border rounded-lg bg-stone-950 border-stone-500"
+                className="w-8 h-8 border rounded-lg bg-stone-950 border-stone-800"
                 width={24}
                 height={24}
                 alt={post?.displayName || ""}
@@ -158,7 +166,7 @@ const ItemCard: React.FC<CardProps> = ({
               <div>
                 <div className="flex">
                   <button
-                    className="px-2 py-2 bg-red-500 rounded-l-lg"
+                    className={`${dangerButton} px-2 py-2 rounded-l-lg`}
                     onClick={handleDelete}
                   >
                     <div className="sr-only">Remove</div>
@@ -176,7 +184,7 @@ const ItemCard: React.FC<CardProps> = ({
             ) : (
               <div>
                 <button
-                  className="px-2 py-2 bg-red-500 rounded-lg"
+                  className={`${dangerButton} px-2 py-2 rounded-lg`}
                   onClick={handleDoubleCheck}
                 >
                   <div className="sr-only">Remove</div>
@@ -187,7 +195,7 @@ const ItemCard: React.FC<CardProps> = ({
 
             {acceptable && (
               <button
-                className="px-2 py-2 bg-green-600 rounded-lg"
+                className={`${successButton} px-2 py-2 rounded-lg`}
                 onClick={handleStatus}
               >
                 <div className="sr-only">Mark as complete</div>
