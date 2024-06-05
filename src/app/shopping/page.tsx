@@ -15,8 +15,8 @@ import ItemCard from "@/components/Card/ItemCard";
 import Loading from "@/components/Loading/Loading";
 import Message from "@/components/Message/Message";
 import Toaster from "@/components/Toaster/Toaster";
-import { TriangleDownIcon } from "@radix-ui/react-icons";
 import Filter from "@/components/Filter/Filter";
+import { TriangleDownIcon } from "@radix-ui/react-icons";
 
 export default function Shopping() {
   const [posts, setPosts] = useState<Post[]>([]);
