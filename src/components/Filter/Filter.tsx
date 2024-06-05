@@ -19,7 +19,7 @@ export default function Filter({ posts, filter, setFilter }: Props) {
             <button
               type="button"
               onClick={() => setFilter(false)}
-              className={`px-2 py-4 rounded-l-md w-full ${
+              className={`px-2 py-4 rounded-l-xl w-full ${
                 !filter ? activeStyle : inactiveStyle
               }`}
             >
@@ -28,7 +28,7 @@ export default function Filter({ posts, filter, setFilter }: Props) {
             <button
               type="button"
               onClick={() => setFilter(true)}
-              className={`px-2 py-4 flex items-center justify-center w-full gap-1 rounded-r-md ${
+              className={`px-2 py-4 flex items-center justify-center w-full gap-1 rounded-r-xl ${
                 filter ? activeStyle : inactiveStyle
               }`}
             >
