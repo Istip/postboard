@@ -44,7 +44,7 @@ const Notification: React.FC<{ notification: NotificationType }> = ({
       <div className="flex w-full">
         <Image
           className="mr-2 mt-1 w-6 h-6 border rounded-full bg-stone-950 border-white"
-          src={notification?.photoUrl || "/avatar.bmp"}
+          src={notification?.photoUrl || "/avatar.jpg"}
           width={24}
           height={24}
           alt={notification?.displayName || ""}

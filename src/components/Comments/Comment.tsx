@@ -53,7 +53,7 @@ const Comment: React.FC<{ post: Post | undefined; comment: any }> = ({
   return (
     <div className="flex gap-4 mt-3" onClick={() => setOverlap(!overlap)}>
       <Image
-        src={comment?.photoUrl || "/avatar.bmp"}
+        src={comment?.photoUrl || "/avatar.jpg"}
         className="w-4 h-4 border rounded-full bg-stone-950 border-stone-500"
         width={24}
         height={24}

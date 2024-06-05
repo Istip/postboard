@@ -144,7 +144,7 @@ const Card: React.FC<CardProps> = ({
           <div className="text-xs flex gap-2 text-stone-500 items-center justify-center">
             <div className="rounded-full bg-stone-950">
               <Image
-                src={post?.photoUrl || "/avatar.bmp"}
+                src={post?.photoUrl || "/avatar.jpg"}
                 className="w-6 h-6 border rounded-full bg-stone-950 border-stone-500"
                 width={24}
                 height={24}

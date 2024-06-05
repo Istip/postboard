@@ -132,7 +132,7 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
         className={`flex gap-4 ${comments?.length ? "mt-4" : ""} items-center`}
       >
         <Image
-          src={user?.photoURL || "/avatar.bmp"}
+          src={user?.photoURL || "/avatar.jpg"}
           className="w-4 h-4 border rounded-full bg-stone-950 border-stone-500"
           width={24}
           height={24}
