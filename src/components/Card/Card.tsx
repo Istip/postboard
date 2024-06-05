@@ -106,7 +106,6 @@ const Card: React.FC<CardProps> = ({
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const val = evt.target?.value;
-
     setValue(val);
   };
 
