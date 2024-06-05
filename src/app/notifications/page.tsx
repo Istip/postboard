@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAuthContext } from "@/context/AuthContext";
 import {
   collection,
   deleteDoc,
@@ -20,6 +22,15 @@ import { toast } from "react-hot-toast";
 export default function Notifications() {
   const [notifications, setNotifications] = useState<NotificationType[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const { user } = useAuthContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user) {
+      router.push("/");
+    }
+  }, [user, router]);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -55,6 +66,10 @@ export default function Notifications() {
       toast.error("Error clearing notifications, please try again!");
     }
   };
+
+  if (!user) {
+    return <Loading title="Redirecting" />;
+  }
 
   if (loading) {
     return <Loading title="Loading your notifications" />;

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useAuthContext } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 import {
   collection,
   onSnapshot,
@@ -18,6 +20,15 @@ import Toaster from "@/components/Toaster/Toaster";
 
 export default function Notes() {
   const [notes, setNotes] = useState<Post[]>([]);
+
+  const { user } = useAuthContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user) {
+      router.push("/");
+    }
+  }, [user, router]);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -39,6 +50,10 @@ export default function Notes() {
 
     return () => unsubscribe();
   }, []);
+
+  if (!user) {
+    return <Loading title="Redirecting" />;
+  }
 
   if (!notes.length) {
     return <Loading title="Loading notes" />;

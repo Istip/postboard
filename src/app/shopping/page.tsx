@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useAuthContext } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
 import {
   collection,
   onSnapshot,
@@ -22,6 +24,15 @@ export default function Shopping() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [filter, setFilter] = useState(false);
 
+  const { user } = useAuthContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!user) {
+      router.push("/");
+    }
+  }, [user, router]);
+
   useEffect(() => {
     const unsubscribe = onSnapshot(
       query(
@@ -42,6 +53,10 @@ export default function Shopping() {
 
     return () => unsubscribe();
   }, []);
+
+  if (!user) {
+    return <Loading title="Redirecting" />;
+  }
 
   if (!posts.length) {
     return <Loading title="Loading shopping list" />;
