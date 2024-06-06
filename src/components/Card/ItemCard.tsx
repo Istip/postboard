@@ -116,7 +116,7 @@ const ItemCard: React.FC<CardProps> = ({
           <div className="w-full">
             <input
               className={`${
-                post?.marked ? "text-stone-950 font-bold" : "text-stone-50"
+                post?.marked ? "text-stone-950" : "text-stone-50"
               } w-full text-[12px] bg-transparent outline-none transition-all focus:bg-stone-700/20 focus:pl-3 py-1 rounded-lg`}
               onChange={handleChange}
               placeholder="Please type here..."
