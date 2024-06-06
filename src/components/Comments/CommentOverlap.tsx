@@ -7,7 +7,7 @@ interface CommentOverlapInterface {
   comment: any;
   post: Post | undefined;
   handleDelete: () => void;
-  setOverlap: (value: React.SetStateAction<boolean>) => void;
+  setOverlap: any;
 }
 
 const CommentOverlap: React.FC<CommentOverlapInterface> = ({
