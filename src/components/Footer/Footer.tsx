@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context/AuthContext";
-import { PlusCircledIcon, Cross2Icon, PlayIcon } from "@radix-ui/react-icons";
+import { PlusCircledIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { usePathname } from "next/navigation";
 import {
   addDoc,
