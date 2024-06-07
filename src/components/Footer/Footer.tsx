@@ -56,7 +56,9 @@ export default function Footer() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const dataToSend: Post = {
+    const texts = text.split(",").map((t) => t.trim());
+
+    const dataToSend: Post[] = texts.map((text) => ({
       text,
       createdAt: new Date(),
       type: formattedPathname,
@@ -65,18 +67,17 @@ export default function Footer() {
       displayName: user?.displayName,
       email: user?.email,
       photoUrl: user?.photoURL,
-    };
+    }));
 
-    const notificationToSend: NotificationType = {
+    const notificationsToSend: NotificationType[] = texts.map((text) => ({
       text,
-
       createdAt: new Date(),
       type: formattedPathname,
       displayName: user?.displayName,
       email: user?.email,
       photoUrl: user?.photoURL,
       seen: false,
-    };
+    }));
 
     toastID = toast.loading("Creating new post..", { id: toastID });
 
@@ -86,7 +87,7 @@ export default function Footer() {
 
     setLoading(true);
 
-    addDoc(collection(db, "posts"), dataToSend)
+    Promise.all(dataToSend.map((data) => addDoc(collection(db, "posts"), data)))
       .then(() => {
         toast.success(
           () => (
@@ -98,7 +99,11 @@ export default function Footer() {
           { id: toastID }
         );
 
-        addDoc(collection(db, "notifications"), notificationToSend);
+        Promise.all(
+          notificationsToSend.map((notification) =>
+            addDoc(collection(db, "notifications"), notification)
+          )
+        );
       })
       .catch(() => {
         toast.error("Please try again!", { id: toastID });
