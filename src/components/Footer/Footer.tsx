@@ -169,7 +169,7 @@ export default function Footer() {
           {pageIsSubmit && (
             <form
               onSubmit={(e) => handleSubmit(e)}
-              className="py-2 h-14 flex gap-2"
+              className="mb-2 h-10 flex gap-2 bg-stone-800 rounded-md active:ring-[1px] active:ring-yellow-500/25"
             >
               <div className="relative w-full">
                 {text.length ? (
@@ -185,8 +185,8 @@ export default function Footer() {
                   value={text}
                   disabled={loading}
                   placeholder="Enter your text..."
-                  className="w-full h-full bg-stone-800 p-2 rounded-md border-transparent border focus:outline-none overflow-hidden
-                    disabled:opacity-50 disabled:cursor-not-allowed focus:border focus:border-stone-800 resize-none text-sm"
+                  className="w-full h-full p-2 rounded-md bg-transparent focus:outline-none overflow-hidden
+                    disabled:opacity-50 disabled:cursor-not-allowed resize-none text-sm"
                 />
               </div>
               {hasRecognition && (
@@ -195,7 +195,7 @@ export default function Footer() {
                   onTouchStart={startListening}
                   onTouchEnd={stopListening}
                   onClick={isListening ? stopListening : startListening}
-                  className="h-full bg-red-500 rounded-md px-4 py-2 text-stone-950 font-bold flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="h-full text-red-500 rounded-md px-4 py-2 font-bold flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <MicrophoneIcon size="15" />
                   <div className="text-sm hidden sm:block">Record</div>
