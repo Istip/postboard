@@ -1,9 +1,9 @@
+import { Metadata, Viewport } from "next";
 import { Figtree } from "next/font/google";
 import { AuthContextProvider } from "@/context/AuthContext";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import "./globals.css";
-import { Metadata, Viewport } from "next";
 
 const font = Figtree({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
