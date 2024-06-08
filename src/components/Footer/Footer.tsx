@@ -186,7 +186,7 @@ export default function Footer() {
                   disabled={loading}
                   placeholder="Enter your text..."
                   className="w-full h-full p-2 rounded-md bg-transparent focus:outline-none overflow-hidden
-                    disabled:opacity-50 disabled:cursor-not-allowed resize-none text-sm"
+                    disabled:opacity-50 disabled:cursor-not-allowed resize-none text-sm placeholder:text-stone-50/30"
                 />
               </div>
               <div className="flex items-center justify-center">
