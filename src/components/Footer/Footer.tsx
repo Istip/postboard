@@ -189,27 +189,29 @@ export default function Footer() {
                     disabled:opacity-50 disabled:cursor-not-allowed resize-none text-sm"
                 />
               </div>
-              {hasRecognition && (
+              <div className="flex items-center justify-center">
+                {hasRecognition && (
+                  <button
+                    type="button"
+                    onTouchStart={startListening}
+                    onTouchEnd={stopListening}
+                    onClick={isListening ? stopListening : startListening}
+                    className="h-full text-red-500 rounded-md px-4 py-2 font-bold flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <MicrophoneIcon size="20" />
+                    <div className="text-sm hidden sm:block">Record</div>
+                    <span className="sr-only">Record</span>
+                  </button>
+                )}
                 <button
-                  type="button"
-                  onTouchStart={startListening}
-                  onTouchEnd={stopListening}
-                  onClick={isListening ? stopListening : startListening}
-                  className="h-full text-red-500 rounded-md px-4 py-2 font-bold flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={isListening}
+                  className="h-full text-stone-50 rounded-md px-4 py-2 font-bold flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <MicrophoneIcon size="20" />
-                  <div className="text-sm hidden sm:block">Record</div>
-                  <span className="sr-only">Record</span>
+                  <PaperPlaneIcon />
+                  <div className="text-sm hidden sm:block">Create</div>
+                  <span className="sr-only">Create</span>
                 </button>
-              )}
-              <button
-                disabled={isListening}
-                className="h-full text-stone-50 rounded-md px-4 py-2 font-bold flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <PaperPlaneIcon />
-                <div className="text-sm hidden sm:block">Create</div>
-                <span className="sr-only">Create</span>
-              </button>
+              </div>
             </form>
           )}
           <div className="flex items-center rounded-md justify-between sm:justify-center gap-4 w-full pb-2">
