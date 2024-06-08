@@ -1,5 +1,5 @@
 import { Post } from "@/interfaces/Post";
-import { BookmarkFilledIcon } from "@radix-ui/react-icons";
+import { BookmarkFilledIcon, DashboardIcon } from "@radix-ui/react-icons";
 
 interface Props {
   posts: Post[];
@@ -8,8 +8,8 @@ interface Props {
 }
 
 export default function Filter({ posts, filter, setFilter }: Props) {
-  const activeStyle = "bg-sky-500 text-stone-900 border-sky-500 border";
-  const inactiveStyle = "bg-stone-700 text-stone-50 border-stone-700 border";
+  const activeStyle = "bg-stone-900 text-stone-50 border border-stone-800";
+  const inactiveStyle = "bg-stone-800 text-stone-50/25 border border-stone-800";
 
   return (
     <>
@@ -19,11 +19,14 @@ export default function Filter({ posts, filter, setFilter }: Props) {
             <button
               type="button"
               onClick={() => setFilter(false)}
-              className={`px-2 py-4 rounded-l-xl w-full ${
+              className={`px-2 py-4 flex items-center justify-center w-full gap-1 rounded-l-xl ${
                 !filter ? activeStyle : inactiveStyle
               }`}
             >
-              Show all
+              <div>
+                <DashboardIcon />
+              </div>
+              <div>Show all</div>
             </button>
             <button
               type="button"
@@ -34,7 +37,7 @@ export default function Filter({ posts, filter, setFilter }: Props) {
             >
               <div>
                 <BookmarkFilledIcon />
-              </div>{" "}
+              </div>
               <div>Marked</div>
             </button>
           </div>
