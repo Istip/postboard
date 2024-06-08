@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context/AuthContext";
-import { PlusCircledIcon, Cross2Icon } from "@radix-ui/react-icons";
+import { Cross2Icon, PaperPlaneIcon } from "@radix-ui/react-icons";
 import { usePathname } from "next/navigation";
 import {
   addDoc,
@@ -204,9 +204,9 @@ export default function Footer() {
               )}
               <button
                 disabled={isListening}
-                className="h-full bg-yellow-500 rounded-md px-4 py-2 text-stone-950 font-bold flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="h-full text-stone-50 rounded-md px-4 py-2 font-bold flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <PlusCircledIcon />
+                <PaperPlaneIcon />
                 <div className="text-sm hidden sm:block">Create</div>
                 <span className="sr-only">Create</span>
               </button>
