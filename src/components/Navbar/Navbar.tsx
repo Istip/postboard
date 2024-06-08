@@ -1,26 +1,14 @@
 "use client";
 
+import { useAuthContext } from "@/context/AuthContext";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useAuthContext } from "@/context/AuthContext";
-import { getAuth, signOut } from "firebase/auth";
-import { ExitIcon, ReaderIcon } from "@radix-ui/react-icons";
+import Logo from "./Logo";
+import AvatarMenu from "./AvatarMenu";
+import * as Popover from "@radix-ui/react-popover";
 
 export default function Navbar() {
   const { user } = useAuthContext();
-  const router = useRouter();
-
-  const handleSignOut = () => {
-    const auth = getAuth();
-    signOut(auth)
-      .then(() => {
-        router.push("/");
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
 
   if (!user) {
     return null;
@@ -30,37 +18,29 @@ export default function Navbar() {
     <nav className="w-screen h-12 bg-stone-900 border-b border-stone-800 px-4 fixed z-10 flex justify-center">
       <div className="w-full max-w-7xl flex justify-between items-center gap-4">
         <div>
-          <Link
-            href="/"
-            className="font-bold text-sm text-yellow-500 flex gap-1 items-center"
-          >
-            <ReaderIcon /> POSTBOARD
+          <Link href="/">
+            <Logo />
           </Link>
         </div>
-        <div>
+        <div className="font-black text-lg text-yellow-500">POSTBOARD</div>
+        <div className="-mb-[7px]">
           {user && (
-            <div className="flex items-center gap-2">
-              <button
-                className="text-xs font-bold px-4 py-1 rounded-md bg-yellow-500 text-stone-950 hover:bg-yellow-600 transition-all"
-                onClick={handleSignOut}
-              >
-                <div className="flex items-center">
-                  <div className="mr-2">
-                    <ExitIcon />
-                  </div>
-                  LOGOUT
-                </div>
-              </button>
-              <div className="border rounded-full border-yellow-500">
+            <Popover.Root>
+              <Popover.Trigger>
                 <Image
-                  className="rounded-full text-xs border border-white"
+                  className="rounded-full border border-stone-950 cursor-pointer"
                   src={user.photoURL ?? "/default_avatar.jpg"}
-                  width={24}
-                  height={24}
+                  width={32}
+                  height={32}
                   alt={user.displayName ?? "User"}
                 />
-              </div>
-            </div>
+              </Popover.Trigger>
+              <Popover.Portal>
+                <Popover.Content sideOffset={16}>
+                  <AvatarMenu user={user} />
+                </Popover.Content>
+              </Popover.Portal>
+            </Popover.Root>
           )}
         </div>
       </div>
