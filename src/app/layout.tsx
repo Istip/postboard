@@ -3,16 +3,20 @@ import { AuthContextProvider } from "@/context/AuthContext";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import "./globals.css";
+import { Metadata, Viewport } from "next";
 
 const font = Figtree({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "PostBoard",
   description: "Post your toughts!",
   manifest: "/manifest.json",
+};
+
+export const viewport: Viewport = {
   themeColor: "#1C1917",
 };
 
