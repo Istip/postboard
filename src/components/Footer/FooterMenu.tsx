@@ -33,9 +33,9 @@ const FooterMenu = () => {
             key={item.title}
             className={`${
               pathname === `/${item.title}`
-                ? "border border-yellow-500 text-yellow-500"
+                ? "border-b border-yellow-500 text-yellow-500"
                 : "text-white border-b border-transparent"
-            } p-4 flex items-center justify-center rounded-md w-full`}
+            } p-4 flex items-center justify-center rounded-t-md w-full`}
             style={{ WebkitTapHighlightColor: "transparent" }}
           >
             <div className="font-bold text-xs">{item.icon}</div>
