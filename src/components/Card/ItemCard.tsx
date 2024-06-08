@@ -47,8 +47,8 @@ const ItemCard: React.FC<CardProps> = ({
   const postId = post?.id || "";
   const cardOpacity = post?.done ? "opacity-50" : "";
   const background = post?.marked ? "bg-yellow-500" : "bg-stone-900";
-  const successButton = !post?.marked ? "bg-green-600" : "bg-green-800";
-  const dangerButton = !post?.marked ? "bg-red-500" : "bg-red-700";
+  const successButton = !post?.marked ? "bg-green-600" : "bg-green-700";
+  const dangerButton = !post?.marked ? "bg-red-500" : "bg-red-600";
 
   const handleDelete = async () => {
     try {
