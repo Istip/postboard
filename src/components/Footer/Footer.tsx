@@ -197,7 +197,7 @@ export default function Footer() {
                   onClick={isListening ? stopListening : startListening}
                   className="h-full text-red-500 rounded-md px-4 py-2 font-bold flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <MicrophoneIcon size="15" />
+                  <MicrophoneIcon size="20" />
                   <div className="text-sm hidden sm:block">Record</div>
                   <span className="sr-only">Record</span>
                 </button>
