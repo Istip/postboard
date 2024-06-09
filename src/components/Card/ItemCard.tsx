@@ -111,13 +111,15 @@ const ItemCard: React.FC<CardProps> = ({
 
   return (
     <div className={`text-stone-200 rounded-xl overflow-hidden ${cardOpacity}`}>
-      <div className={`${background} py-4 px-2 text-sm rounded-t-xl`}>
+      <div className={`${background} pb-2 pt-2 px-2 text-sm rounded-t-xl`}>
         <div className="text-lg font-light flex items-start justify-between">
           <div className="w-full">
             <input
               className={`${
-                post?.marked ? "text-stone-950" : "text-stone-50"
-              } w-full text-[12px] bg-transparent outline-none transition-all focus:bg-stone-700/20 focus:pl-3 py-1 rounded-lg`}
+                post?.marked
+                  ? "text-stone-950 focus:bg-stone-700/20 focus:pl-3"
+                  : "text-stone-50 focus:bg-stone-700/40 focus:pl-3"
+              } w-full text-[12px] bg-transparent outline-none transition-all py-1 rounded-lg`}
               onChange={handleChange}
               placeholder="Please type here..."
               value={value}
