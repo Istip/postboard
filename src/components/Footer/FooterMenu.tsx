@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { BellIcon, FileIcon, ListBulletIcon } from "@radix-ui/react-icons";
+import { FileIcon, ListBulletIcon } from "@radix-ui/react-icons";
 
 const footerMenu = [
   {
@@ -11,10 +11,6 @@ const footerMenu = [
   {
     title: "notes",
     icon: <FileIcon />,
-  },
-  {
-    title: "notifications",
-    icon: <BellIcon />,
   },
 ];
 
