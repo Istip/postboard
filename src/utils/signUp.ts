@@ -19,6 +19,7 @@ export default async function signUp() {
       photoURL: photoURL || "",
     });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(error);
   }
 }
