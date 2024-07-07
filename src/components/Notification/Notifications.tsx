@@ -80,7 +80,7 @@ export default function Notifications() {
   }
 
   return (
-    <div className="h-[200px] pt-2">
+    <div className="h-[200px] pt-2 overflow-auto">
       <Toaster />
       <div className="w-full mb-2">
         <button
