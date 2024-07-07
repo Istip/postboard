@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, RefObject } from "react";
 
 // Define the types for the callback functions
 type SwipeCallback = () => void;
 
 const useSwipe = (
+  elementRef: RefObject<HTMLElement>,
   onSwipeUp: SwipeCallback,
   onSwipeDown: SwipeCallback,
   threshold: number = 50
@@ -39,18 +40,22 @@ const useSwipe = (
       resetTouch();
     };
 
-    // Adding touch event listeners
-    document.addEventListener("touchstart", handleTouchStart);
-    document.addEventListener("touchmove", handleTouchMove);
-    document.addEventListener("touchend", handleTouchEnd);
+    const element = elementRef.current;
 
-    // Cleanup function to remove event listeners
-    return () => {
-      document.removeEventListener("touchstart", handleTouchStart);
-      document.removeEventListener("touchmove", handleTouchMove);
-      document.removeEventListener("touchend", handleTouchEnd);
-    };
-  }, [touchStart, touchEnd, onSwipeUp, onSwipeDown, threshold]);
+    if (element) {
+      // Adding touch event listeners to the specific element
+      element.addEventListener("touchstart", handleTouchStart);
+      element.addEventListener("touchmove", handleTouchMove);
+      element.addEventListener("touchend", handleTouchEnd);
+
+      // Cleanup function to remove event listeners
+      return () => {
+        element.removeEventListener("touchstart", handleTouchStart);
+        element.removeEventListener("touchmove", handleTouchMove);
+        element.removeEventListener("touchend", handleTouchEnd);
+      };
+    }
+  }, [elementRef, touchStart, touchEnd, onSwipeUp, onSwipeDown, threshold]);
 };
 
 export default useSwipe;

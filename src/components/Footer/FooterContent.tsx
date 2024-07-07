@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import MicrophoneIcon from "./MicrophoneIcon";
 import FooterMenu from "./FooterMenu";
 import useSwipe from "@/hooks/useSwipe";
+import { useRef } from "react";
 
 interface Props {
   // eslint-disable-next-line no-unused-vars
@@ -39,14 +40,16 @@ export default function FooterContent({
   const pathname = usePathname();
   const formattedPathname = pathname.substring(1, pathname.length);
   const pageIsSubmit = submitPages.includes(formattedPathname);
+  const ref = useRef<HTMLDivElement>(null);
 
   const handleSwipeUp = () => setNotifications(true);
   const handleSwipeDown = () => setNotifications(false);
 
-  useSwipe(handleSwipeUp, handleSwipeDown, 50);
+  useSwipe(ref, handleSwipeUp, handleSwipeDown);
 
   return (
     <div
+      ref={ref}
       className={`w-full max-w-7xl flex flex-col sm:w-[450px] transition-shadow ${
         notifications ? "shadow-xl" : ""
       }`}
