@@ -44,7 +44,7 @@ export default function FooterContent({
   useSwipe(handleSwipeUp, handleSwipeDown, 100);
 
   return (
-    <div className="w-full max-w-7xl flex flex-col sm:w-[450px]">
+    <div className="w-full max-w-7xl flex flex-col sm:w-[450px] shadow-xl">
       {pageIsSubmit && (
         <form
           onSubmit={(e) => handleSubmit(e)}
