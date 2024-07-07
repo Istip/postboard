@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useAuthContext } from "@/context/AuthContext";
 import { usePathname } from "next/navigation";
 import {
@@ -113,6 +113,25 @@ export default function Footer() {
       });
   };
 
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        contentRef.current &&
+        !contentRef.current.contains(event.target as Node)
+      ) {
+        setNotifications(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   useEffect(() => {
     if (isShopping) {
       const unsubscribe = onSnapshot(
@@ -167,7 +186,7 @@ export default function Footer() {
         <div className="w-full justify-center flex items-center pb-2">
           <div className="flex items-center justify-center h-1 bg-stone-950/50 w-20 rounded-full" />
         </div>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center" ref={contentRef}>
           <FooterContent
             handleSubmit={handleSubmit}
             handleChange={handleChange}
