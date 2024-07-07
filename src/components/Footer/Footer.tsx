@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useAuthContext } from "@/context/AuthContext";
-import { Cross2Icon, PaperPlaneIcon } from "@radix-ui/react-icons";
 import { usePathname } from "next/navigation";
 import {
   addDoc,
@@ -16,11 +15,13 @@ import { toast } from "react-hot-toast";
 import { Post } from "@/interfaces/Post";
 import { NotificationType } from "@/interfaces/Notification";
 import FooterHint from "./FooterHint";
-import FooterMenu from "./FooterMenu";
 import useSpeech from "@/hooks/useSpeech";
-import MicrophoneIcon from "./MicrophoneIcon";
+import Notifications from "../Notification/Notifications";
+import { AnimatePresence, motion } from "framer-motion";
+import FooterContent from "./FooterContent";
 
 export default function Footer() {
+  const [notifications, setNotifications] = useState(false);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(false);
   const [hints, setHints] = useState<any[]>([]);
@@ -37,9 +38,7 @@ export default function Footer() {
   const { user } = useAuthContext();
 
   const pathname = usePathname();
-  const submitPages = ["shopping", "notes"];
   const formattedPathname = pathname.substring(1, pathname.length);
-  const pageIsSubmit = submitPages.includes(formattedPathname);
   const isShopping = pathname === "/shopping";
 
   const createString =
@@ -164,60 +163,35 @@ export default function Footer() {
         filteredHints={filteredHints}
       />
 
-      <footer className="w-screen bg-stone-900 border-stone-800 border-t fixed bottom-0 px-4 py-2 flex justify-center">
-        <div className="w-full max-w-7xl flex flex-col sm:w-[450px]">
-          {pageIsSubmit && (
-            <form
-              onSubmit={(e) => handleSubmit(e)}
-              className="mb-2 h-10 flex gap-2 bg-stone-800 rounded-xl active:ring-[1px] active:ring-yellow-500"
-            >
-              <div className="relative w-full">
-                {text.length ? (
-                  <button
-                    className="absolute top-2 right-2 p-1 bg-red-500/75 rounded-xl"
-                    onClick={() => setText("")}
-                  >
-                    <Cross2Icon />
-                  </button>
-                ) : null}
-                <textarea
-                  onChange={handleChange}
-                  value={text}
-                  disabled={loading}
-                  placeholder="Enter your text..."
-                  className="w-full h-full p-2 rounded-md bg-transparent focus:outline-none overflow-hidden
-                    disabled:opacity-50 disabled:cursor-not-allowed resize-none text-sm placeholder:text-stone-50/30"
-                />
-              </div>
-              <div className="flex items-center justify-center">
-                {hasRecognition && (
-                  <button
-                    type="button"
-                    onTouchStart={startListening}
-                    onTouchEnd={stopListening}
-                    onClick={isListening ? stopListening : startListening}
-                    className="h-full text-red-500 rounded-md px-4 py-2 font-bold flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    <MicrophoneIcon size="20" />
-                    <div className="text-sm hidden sm:block">Record</div>
-                    <span className="sr-only">Record</span>
-                  </button>
-                )}
-                <button
-                  disabled={isListening}
-                  className="h-full text-stone-50 rounded-md px-4 py-2 font-bold flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <PaperPlaneIcon />
-                  <div className="text-sm hidden sm:block">Create</div>
-                  <span className="sr-only">Create</span>
-                </button>
-              </div>
-            </form>
-          )}
-          <div className="flex items-center rounded-md justify-between sm:justify-center gap-4 w-full pb-2">
-            <FooterMenu />
-          </div>
+      <footer className="w-screen bg-stone-900 border-stone-800 border-t fixed bottom-0 px-4 py-2">
+        <div className="w-full justify-center flex items-center pb-2">
+          <div className="flex items-center justify-center h-1 bg-stone-950/50 w-1/4 rounded-full" />
         </div>
+        <FooterContent
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          text={text}
+          loading={loading}
+          startListening={startListening}
+          stopListening={stopListening}
+          isListening={isListening}
+          hasRecognition={hasRecognition}
+          setText={setText}
+          setNotifications={setNotifications}
+        />
+        <AnimatePresence>
+          {notifications && (
+            <motion.div
+              className="h-[200px]"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.1 }}
+            >
+              <Notifications />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </footer>
     </>
   );
