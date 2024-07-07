@@ -165,20 +165,23 @@ export default function Footer() {
 
       <footer className="w-screen bg-stone-900 border-stone-800 border-t fixed bottom-0 px-4 py-2">
         <div className="w-full justify-center flex items-center pb-2">
-          <div className="flex items-center justify-center h-1 bg-stone-950/50 w-1/4 rounded-full" />
+          <div className="flex items-center justify-center h-1 bg-stone-950/50 w-20 rounded-full" />
         </div>
-        <FooterContent
-          handleSubmit={handleSubmit}
-          handleChange={handleChange}
-          text={text}
-          loading={loading}
-          startListening={startListening}
-          stopListening={stopListening}
-          isListening={isListening}
-          hasRecognition={hasRecognition}
-          setText={setText}
-          setNotifications={setNotifications}
-        />
+        <div className="flex items-center justify-center">
+          <FooterContent
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+            text={text}
+            loading={loading}
+            startListening={startListening}
+            stopListening={stopListening}
+            isListening={isListening}
+            hasRecognition={hasRecognition}
+            setText={setText}
+            setNotifications={setNotifications}
+            notifications={notifications}
+          />
+        </div>
         <AnimatePresence>
           {notifications && (
             <motion.div

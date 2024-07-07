@@ -19,6 +19,7 @@ interface Props {
   hasRecognition: boolean;
   // eslint-disable-next-line no-unused-vars
   setNotifications: (notifications: boolean) => void;
+  notifications: boolean;
 }
 
 export default function FooterContent({
@@ -32,6 +33,7 @@ export default function FooterContent({
   isListening,
   hasRecognition,
   setNotifications,
+  notifications,
 }: Props) {
   const submitPages = ["shopping", "notes"];
   const pathname = usePathname();
@@ -41,10 +43,14 @@ export default function FooterContent({
   const handleSwipeUp = () => setNotifications(true);
   const handleSwipeDown = () => setNotifications(false);
 
-  useSwipe(handleSwipeUp, handleSwipeDown, 100);
+  useSwipe(handleSwipeUp, handleSwipeDown, 50);
 
   return (
-    <div className="w-full max-w-7xl flex flex-col sm:w-[450px] shadow-xl">
+    <div
+      className={`w-full max-w-7xl flex flex-col sm:w-[450px] transition-shadow ${
+        notifications ? "shadow-xl" : ""
+      }`}
+    >
       {pageIsSubmit && (
         <form
           onSubmit={(e) => handleSubmit(e)}
