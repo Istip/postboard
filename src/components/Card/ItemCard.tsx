@@ -1,11 +1,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import {
-  ArrowRightIcon,
   BookmarkFilledIcon,
   BookmarkIcon,
   CheckCircledIcon,
-  TrashIcon,
 } from "@radix-ui/react-icons";
 import {
   collection,
@@ -22,6 +20,7 @@ import { toast } from "react-hot-toast";
 import { usePathname } from "next/navigation";
 import { Post } from "@/interfaces/Post";
 import Comments from "../Comments/Comments";
+import DoubleCheckRemove from "./DoubleCheckRemove";
 
 type CardProps = {
   post?: Post;
@@ -149,55 +148,29 @@ const ItemCard: React.FC<CardProps> = ({
       <div
         className={`${background} w-full p-2 flex gap-2 justify-between items-center rounded-b-xl border-t-stone-950 border-t`}
       >
-        <div className="w-full flex items-center justify-between">
-          <div className="text-xs flex gap-2 text-stone-500 items-center justify-center">
-            <div className="rounded-full bg-stone-950">
-              <Image
-                src={post?.photoUrl || "/avatar.jpg"}
-                className="w-8 h-8 border rounded-lg bg-stone-950 border-stone-800"
-                width={24}
-                height={24}
-                alt={post?.displayName || ""}
-                title={post?.displayName || ""}
-              />
-            </div>
-          </div>
+        <div className="w-full flex items-center justify-between gap-2">
+          <Image
+            src={post?.photoUrl || "/avatar.jpg"}
+            className="w-7 h-7 border rounded-lg bg-stone-950 border-stone-800"
+            width={24}
+            height={24}
+            alt={post?.displayName || ""}
+            title={post?.displayName || ""}
+          />
 
-          <div className="flex gap-2">
-            {confirm ? (
-              <div>
-                <div className="flex">
-                  <button
-                    className={`${dangerButton} px-2 py-2 rounded-l-lg`}
-                    onClick={handleDelete}
-                  >
-                    <div className="sr-only">Remove</div>
-                    <TrashIcon />
-                  </button>
-                  <button
-                    className="px-2 py-2 bg-stone-700 rounded-r-lg"
-                    onClick={handleCancellation}
-                  >
-                    <div className="sr-only">Cancel remove</div>
-                    <ArrowRightIcon />
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div>
-                <button
-                  className={`${dangerButton} px-2 py-2 rounded-lg`}
-                  onClick={handleDoubleCheck}
-                >
-                  <div className="sr-only">Remove</div>
-                  <TrashIcon />
-                </button>
-              </div>
-            )}
+          <div className="flex w-full gap-2">
+            <DoubleCheckRemove
+              confirm={confirm}
+              dangerButton={dangerButton}
+              handleDelete={handleDelete}
+              handleCancellation={handleCancellation}
+              handleDoubleCheck={handleDoubleCheck}
+              doubleCheck={false}
+            />
 
             {acceptable && (
               <button
-                className={`${successButton} px-2 py-2 rounded-lg`}
+                className={`${successButton} flex items-center justify-center px-2 py-2 rounded-lg w-full`}
                 onClick={handleStatus}
               >
                 <div className="sr-only">Mark as complete</div>
