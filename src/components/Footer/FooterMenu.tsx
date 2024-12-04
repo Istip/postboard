@@ -68,11 +68,11 @@ const FooterMenu = () => {
               </div>
               <span className="sr-only">{item.title.toUpperCase()}</span>
 
-              <div className="text-[8px] w-4 h-4 flex items-center justify-center opacity-50 font-bold bg-stone-600 rounded-full ">
-                {isCountFetched && (
-                  <span>{i === 0 ? shoppingCount : notesCount}</span>
-                )}
-              </div>
+              {isCountFetched && (
+                <div className="text-[8px] w-4 h-4 flex items-center justify-center opacity-50 font-bold bg-stone-600 rounded-full ">
+                  {i === 0 ? shoppingCount : notesCount}
+                </div>
+              )}
             </div>
           </Link>
         );
