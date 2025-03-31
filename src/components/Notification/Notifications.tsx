@@ -18,6 +18,7 @@ import Notification from "@/components/Notification/Notification";
 import Toaster from "@/components/Toaster/Toaster";
 import Message from "@/components/Message/Message";
 import { toast } from "react-hot-toast";
+import { TrashIcon } from "@radix-ui/react-icons";
 
 export default function Notifications() {
   const [notifications, setNotifications] = useState<NotificationType[]>([]);
@@ -80,32 +81,35 @@ export default function Notifications() {
   }
 
   return (
-    <div className="h-[200px] pt-2 overflow-auto">
-      <Toaster />
-      <div className="w-full mb-2">
-        <button
-          className="w-full bg-red-600 border border-red-500 hover:bg-red-500 transition-all text-sm font-bold p-1 rounded-md disabled:cursor-not-allowed disabled:opacity-50"
-          onClick={removeNotificationsCollection}
-        >
-          Remove notifications
-        </button>
+    <div className="max-w-7xl flex flex-col justify-center bg-stone-800 px-4 mx-auto pt-4 pb-2 rounded-xl shadow-stone-700 border border-stone-700">
+      <div className="h-[200px] min-h-[200px] overflow-auto max-w-7xl no-scrollbar">
+        <Toaster />
+        <div className="w-full mb-2">
+          <button
+            className="w-full bg-red-500 text-sm font-bold p-2 rounded-md disabled:cursor-not-allowed disabled:opacity-50 flex items-center justify-center gap-2"
+            onClick={removeNotificationsCollection}
+          >
+            <TrashIcon />
+            <p>Remove notifications</p>
+          </button>
+        </div>
+        <AnimatePresence>
+          {notifications
+            .sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
+            .map((notification, i) => (
+              <motion.div
+                key={notification.id}
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+              >
+                <div key={i} className="py-0.5">
+                  <Notification notification={notification} />
+                </div>
+              </motion.div>
+            ))}
+        </AnimatePresence>
       </div>
-      <AnimatePresence>
-        {notifications
-          .sort((a, b) => b.createdAt.seconds - a.createdAt.seconds)
-          .map((notification, i) => (
-            <motion.div
-              key={notification.id}
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-            >
-              <div key={i} className="py-0.5">
-                <Notification notification={notification} />
-              </div>
-            </motion.div>
-          ))}
-      </AnimatePresence>
     </div>
   );
 }
