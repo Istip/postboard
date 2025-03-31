@@ -48,6 +48,10 @@ export default function Footer() {
 
   let toastID: string;
 
+  const toggleNotifications = () => {
+    setNotifications((prev) => !prev);
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
@@ -182,9 +186,12 @@ export default function Footer() {
         filteredHints={filteredHints}
       />
 
-      <footer className="w-screen bg-stone-900 border-stone-800 border-t fixed bottom-0 px-4 py-2">
-        <div className="w-full justify-center flex items-center pb-2">
-          <div className="flex items-center justify-center h-1 bg-stone-950/50 w-20 rounded-full" />
+      <footer className="w-screen bg-stone-900 border-stone-800 border-t fixed bottom-0 px-4 pb-2">
+        <div
+          className="w-full justify-center gap-2 flex items-center p-3 cursor-pointer"
+          onClick={toggleNotifications}
+        >
+          <div className="flex items-center justify-center bg-stone-950/75 rounded-full h-2 w-20 hover:w-32 transition-all" />
         </div>
         <div className="flex items-center justify-center" ref={contentRef}>
           <FooterContent
