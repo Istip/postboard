@@ -37,7 +37,7 @@ const Notification: React.FC<{ notification: NotificationType }> = ({
 
   return (
     <div
-      className={`mb-2 text-stone-300 w-full bg-stone-900 p-2 text-xs rounded-l-md flex border-r-2 ${borderColor(
+      className={`mb-2 text-stone-300 w-full bg-stone-900 p-2 text-xs rounded-l-md flex border-r-4 ${borderColor(
         notification
       )} ${notification.seen ? "opacity-50" : ""}`}
     >
@@ -49,7 +49,7 @@ const Notification: React.FC<{ notification: NotificationType }> = ({
           height={24}
           alt={notification?.displayName || ""}
         />
-        <div className="w-full">
+        <div className="w-full mr-2">
           <div>
             <NotificationMessage notification={notification} />
           </div>
