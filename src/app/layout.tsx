@@ -1,5 +1,5 @@
 import { Metadata, Viewport } from "next";
-import { Inter, Mona_Sans } from "next/font/google";
+import { Mona_Sans } from "next/font/google";
 import { AuthContextProvider } from "@/context/AuthContext";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
