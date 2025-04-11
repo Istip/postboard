@@ -1,0 +1,9 @@
+import { defineConfig } from "eslint-define-config";
+
+export default defineConfig({
+  extends: "next/core-web-vitals",
+  rules: {
+    "no-console": "warn",
+    "no-unused-vars": "error",
+  },
+});
