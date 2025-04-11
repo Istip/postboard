@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 const PageLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathname = usePathname();
 
-  const paddingBottom = pathname === "/notifications" ? "pb-20" : "pb-36";
+  const paddingBottom = pathname === "/notifications" ? "pb-20" : "pb-40";
 
   return (
     <section
