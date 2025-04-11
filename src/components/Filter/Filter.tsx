@@ -14,7 +14,7 @@ export default function Filter({ posts, filter, setFilter }: Props) {
   return (
     <>
       {posts?.length && (
-        <div className="w-100 flex items-center justify-center gap-2 mb-2 text-xs">
+        <div className="flex items-center justify-center gap-2 mb-2 text-xs">
           <div className="flex w-full">
             <button
               type="button"

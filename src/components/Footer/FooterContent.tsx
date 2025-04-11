@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation";
 import MicrophoneIcon from "./MicrophoneIcon";
 import FooterMenu from "./FooterMenu";
 import useSwipe from "@/hooks/useSwipe";
-import { useRef } from "react";
+import React, { useRef } from "react";
 
 interface Props {
   // eslint-disable-next-line no-unused-vars
@@ -45,7 +45,7 @@ export default function FooterContent({
   const handleSwipeUp = () => setNotifications(true);
   const handleSwipeDown = () => setNotifications(false);
 
-  useSwipe(ref, handleSwipeUp, handleSwipeDown);
+  useSwipe(ref as React.RefObject<HTMLElement>, handleSwipeUp, handleSwipeDown);
 
   return (
     <div
@@ -73,7 +73,7 @@ export default function FooterContent({
               value={text}
               disabled={loading}
               placeholder="Enter your text..."
-              className="w-full h-full p-2 rounded-md bg-transparent focus:outline-none overflow-hidden
+              className="w-full h-full p-2 pl- rounded-md bg-transparent focus:outline-none overflow-hidden
                     disabled:opacity-50 disabled:cursor-not-allowed resize-none text-sm placeholder:text-stone-50/30"
             />
           </div>

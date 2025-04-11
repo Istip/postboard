@@ -48,7 +48,7 @@ const Card: React.FC<CardProps> = ({
   const postId = post?.id || "";
   const cardOpacity = post?.done ? "opacity-50" : "";
   const cardBorder = !post?.marked
-    ? "border-stone-700 border-opacity-0"
+    ? "border-opacity-50 border-transparent"
     : "border-yellow-500";
 
   const handleDelete = async () => {
@@ -111,9 +111,9 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div
-      className={`mb-3 text-stone-200 rounded-md border overflow-hidden ${cardOpacity} ${cardBorder}`}
+      className={`mb-3 text-stone-200 rounded-lg border overflow-hidden ${cardOpacity} ${cardBorder}`}
     >
-      <div className="bg-stone-900 p-4 text-sm rounded-t-xl">
+      <div className="bg-stone-900 p-4 text-sm rounded-t-lg">
         <div className="text-lg font-light flex items-start justify-between">
           <div className="w-full">
             <input

@@ -17,7 +17,7 @@ const CommentOverlap: React.FC<CommentOverlapInterface> = ({
   setOverlap,
 }) => {
   return (
-    <div className="w-100 mt-4 left-0 right-0 flex flex-col bg-stone-800 text-xs p-2 rounded-md font-light">
+    <div className="w-full mt-4 left-0 right-0 flex flex-col bg-stone-800 text-xs p-2 rounded-md font-light">
       <div className="flex gap-2 mb-2">
         <Image
           src={post?.photoUrl || "/avatar.jpg"}

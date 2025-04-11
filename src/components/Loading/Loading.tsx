@@ -30,7 +30,7 @@ const Loading: React.FC<{ text?: boolean; title?: string }> = ({
   };
 
   return (
-    <div className="w-100 overflow-hidden flex flex-wrap flex-col items-center justify-center">
+    <div className="w-full overflow-hidden flex flex-wrap flex-col items-center justify-center">
       <WrapperText>
         <Spinner />
       </WrapperText>

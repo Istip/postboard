@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 .no-scrollbar {
   -ms-overflow-style: none; /* Internet Explorer 10+ */
@@ -12,5 +10,5 @@
 }
 
 * {
-  @apply no-scrollbar;
+  letter-spacing: 0.25px;
 }

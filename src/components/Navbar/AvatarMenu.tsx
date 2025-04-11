@@ -18,7 +18,7 @@ export default function AvatarMenu({ user }: { user: User }) {
   };
 
   return (
-    <div className="relative mx-2 bg-stone-900 rounded-xl p-2 border  border-stone-800 shadow-xl shadow-yellow-500/20">
+    <div className="relative mx-2 bg-stone-900 rounded-xl p-2 border  border-stone-800 shadow-xl shadow-stone-950/50">
       <div className="text-center text-stone-300 mb-4">
         <h3 className="text-2xl">Hello,</h3>
         <h3 className="font-bold">{user!.displayName}</h3>

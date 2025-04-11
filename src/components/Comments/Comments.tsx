@@ -105,7 +105,7 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
 
   return (
     <div
-      className={`bg-stone-800 bg-opacity-30 ${
+      className={`${
         comments?.length ? "py-4 p-2" : "p-2"
       } mt-4 rounded-2xl text-xs`}
     >
