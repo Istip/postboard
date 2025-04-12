@@ -180,13 +180,15 @@ export default function Footer() {
 
   return (
     <>
+      {notifications && (
+        <div className="h-screen pointer-events-auto fixed top-0 w-screen left-0 z-10 bg-zinc-950/90" />
+      )}
       <FooterHint
         isShopping={isShopping}
         text={text}
         filteredHints={filteredHints}
       />
-
-      <footer className="w-screen bg-zinc-900 border-zinc-800 border-t fixed bottom-0 px-4 pb-2">
+      <footer className="w-screen bg-zinc-900 border-zinc-800 border-t fixed bottom-0 z-20 px-4 pb-2">
         <div
           className="w-full justify-center gap-2 flex items-center p-3 cursor-pointer"
           onClick={toggleNotifications}
