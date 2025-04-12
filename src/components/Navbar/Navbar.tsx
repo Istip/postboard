@@ -2,10 +2,10 @@
 
 import { useAuthContext } from "@/context/AuthContext";
 import Link from "next/link";
-import Image from "next/image";
 import Logo from "./Logo";
 import AvatarMenu from "./AvatarMenu";
 import * as Popover from "@radix-ui/react-popover";
+import { DashboardIcon } from "@radix-ui/react-icons";
 
 export default function Navbar() {
   const { user } = useAuthContext();
@@ -27,13 +27,7 @@ export default function Navbar() {
           {user && (
             <Popover.Root>
               <Popover.Trigger>
-                <Image
-                  className="rounded-full border border-zinc-950 cursor-pointer"
-                  src={user.photoURL ?? "/default_avatar.jpg"}
-                  width={32}
-                  height={32}
-                  alt={user.displayName ?? "User"}
-                />
+                <DashboardIcon className="text-amber-500 hover:cursor-pointer" />
               </Popover.Trigger>
               <Popover.Portal>
                 <Popover.Content sideOffset={16}>

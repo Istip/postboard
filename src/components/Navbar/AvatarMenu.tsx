@@ -2,6 +2,7 @@ import { useRouter } from "next/navigation";
 import { User, getAuth, signOut } from "firebase/auth";
 import { ExitIcon } from "@radix-ui/react-icons";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 export default function AvatarMenu({ user }: { user: User }) {
   const router = useRouter();
@@ -19,20 +20,30 @@ export default function AvatarMenu({ user }: { user: User }) {
 
   return (
     <div className="relative mx-2 bg-zinc-900 rounded-xl p-2 border  border-zinc-800 shadow-xl shadow-zinc-950/50">
-      <div className="text-center text-zinc-300 mb-4">
-        <h3 className="text-2xl">Hello,</h3>
+      <div className="flex items-center justify-center mb-2">
+        <Image
+          className="rounded-full border border-zinc-950"
+          src={user.photoURL ?? "/default_avatar.jpg"}
+          width={64}
+          height={64}
+          alt={user.displayName ?? "User"}
+        />
+      </div>
+
+      <div className="text-center text-zinc-300 mb-3">
+        <h3 className="text-xl">Hello,</h3>
         <h3 className="font-bold">{user!.displayName}</h3>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center">
         <button
           className="font-bold px-4 py-1 rounded-md bg-amber-500 text-zinc-950 hover:bg-amber-600 transition-all"
           onClick={handleSignOut}
         >
-          <div className="flex items-center">
+          <div className="flex items-center font-light text-xs">
             <div className="mr-2">
               <ExitIcon />
             </div>
-            LOGOUT
+            Logout
           </div>
         </button>
       </div>
