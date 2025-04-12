@@ -9,7 +9,7 @@ const NotificationMessage: React.FC<{
   if (type === "comment") {
     return (
       <>
-        <span className="font-bold text-yellow-500">
+        <span className="font-bold text-amber-500">
           {notification.displayName}{" "}
         </span>
         commented on:{" "}
@@ -23,7 +23,7 @@ const NotificationMessage: React.FC<{
   if (type === "shopping") {
     return (
       <>
-        <span className="font-bold text-yellow-500">
+        <span className="font-bold text-amber-500">
           {notification.displayName}{" "}
         </span>{" "}
         added a new item to the shopping list:{" "}
@@ -35,7 +35,7 @@ const NotificationMessage: React.FC<{
   if (type === "notes") {
     return (
       <>
-        <span className="font-bold text-yellow-500">
+        <span className="font-bold text-amber-500">
           {notification.displayName}{" "}
         </span>{" "}
         left a new note:{" "}

@@ -22,7 +22,7 @@ export default function Navbar() {
             <Logo />
           </Link>
         </div>
-        <div className="font-black text-lg text-yellow-500">POSTBOARD</div>
+        <div className="font-black text-lg text-amber-500">POSTBOARD</div>
         <div className="-mb-[7px]">
           {user && (
             <Popover.Root>

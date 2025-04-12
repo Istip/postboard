@@ -49,7 +49,7 @@ const Card: React.FC<CardProps> = ({
   const cardOpacity = post?.done ? "opacity-50" : "";
   const cardBorder = !post?.marked
     ? "border-opacity-50 border-transparent"
-    : "border-yellow-500";
+    : "border-amber-500";
 
   const handleDelete = async () => {
     try {
@@ -126,7 +126,7 @@ const Card: React.FC<CardProps> = ({
           </div>
 
           <div className="text-zinc-600 font-bold text-sm pl-1 flex gap-2 items-center h-8">
-            <button className="text-yellow-500" onClick={handleMark}>
+            <button className="text-amber-500" onClick={handleMark}>
               <div className="sr-only">
                 {!post?.marked ? "Bookmark this post" : "Remove from bookmarks"}
               </div>

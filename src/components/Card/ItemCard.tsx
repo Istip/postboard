@@ -45,7 +45,7 @@ const ItemCard: React.FC<CardProps> = ({
 
   const postId = post?.id || "";
   const cardOpacity = post?.done ? "opacity-50" : "";
-  const background = post?.marked ? "bg-yellow-500" : "bg-zinc-900";
+  const background = post?.marked ? "bg-amber-500" : "bg-zinc-900";
   const successButton = !post?.marked ? "bg-green-600" : "bg-green-700";
   const dangerButton = !post?.marked ? "bg-red-500" : "bg-red-600";
 
@@ -127,13 +127,13 @@ const ItemCard: React.FC<CardProps> = ({
           </div>
 
           <div className="text-zinc-600 font-bold text-sm pl-1 flex gap-2 items-center h-8">
-            <button className="text-yellow-500" onClick={handleMark}>
+            <button className="text-amber-500" onClick={handleMark}>
               <div className="sr-only">
                 {!post?.marked ? "Bookmark this post" : "Remove from bookmarks"}
               </div>
               <div
                 className={`${
-                  !post?.marked ? "text-yellow-500" : "text-yellow-700"
+                  !post?.marked ? "text-amber-500" : "text-amber-700"
                 }`}
               >
                 {!post?.marked ? <BookmarkIcon /> : <BookmarkFilledIcon />}

@@ -16,7 +16,7 @@ const NotificationIcon: React.FC<{ notification: NotificationType }> = ({
         </div>
       )}
       {notification.type === "notes" && (
-        <div className="bg-yellow-500 m-1 p-1.5 flex items-center rounded-full text-black">
+        <div className="bg-amber-500 m-1 p-1.5 flex items-center rounded-full text-black">
           <FileIcon />
         </div>
       )}
