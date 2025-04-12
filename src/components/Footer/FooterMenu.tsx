@@ -56,7 +56,7 @@ const FooterMenu = () => {
             key={item.title}
             className={`${
               pathname === `/${item.title}`
-                ? "bg-yellow-500 text-stone-950"
+                ? "bg-yellow-500 text-zinc-950"
                 : "text-white border-b border-transparent"
             } p-4 flex items-center justify-center rounded-xl w-full`}
             style={{ WebkitTapHighlightColor: "transparent" }}
@@ -69,7 +69,7 @@ const FooterMenu = () => {
               <span className="sr-only">{item.title.toUpperCase()}</span>
 
               {isCountFetched && (
-                <div className="text-[8px] w-4 h-4 flex items-center justify-center opacity-50 font-bold bg-stone-600 rounded-full ">
+                <div className="text-[8px] w-4 h-4 flex items-center justify-center opacity-50 font-bold bg-zinc-600 rounded-full ">
                   {i === 0 ? shoppingCount : notesCount}
                 </div>
               )}

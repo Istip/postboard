@@ -17,11 +17,11 @@ const CommentOverlap: React.FC<CommentOverlapInterface> = ({
   setOverlap,
 }) => {
   return (
-    <div className="w-full mt-4 left-0 right-0 flex flex-col bg-stone-800 text-xs p-2 rounded-md font-light">
+    <div className="w-full mt-4 left-0 right-0 flex flex-col bg-zinc-800 text-xs p-2 rounded-md font-light">
       <div className="flex gap-2 mb-2">
         <Image
           src={post?.photoUrl || "/avatar.jpg"}
-          className="w-4 h-4 border rounded-full bg-stone-950 border-white"
+          className="w-4 h-4 border rounded-full bg-zinc-950 border-white"
           width={24}
           height={24}
           alt={post?.displayName || ""}
@@ -37,7 +37,7 @@ const CommentOverlap: React.FC<CommentOverlapInterface> = ({
           DELETE
         </button>
         <button
-          className="w-full bg-stone-700 px-2 py-1 rounded-r flex items-center gap-1 justify-center"
+          className="w-full bg-zinc-700 px-2 py-1 rounded-r flex items-center gap-1 justify-center"
           onClick={() => setOverlap(false)}
         >
           <ArrowRightIcon />

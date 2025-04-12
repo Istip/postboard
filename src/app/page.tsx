@@ -17,7 +17,7 @@ export default function Home() {
   }, [user, router]);
 
   return (
-    <main className="text-center w-full bg-stone-900 min-h-screen flex justify-center items-center">
+    <main className="text-center w-full bg-zinc-900 min-h-screen flex justify-center items-center">
       {loading && (
         <div className="text-yellow-500">
           <p className="text-xl">WELCOME TO</p>
@@ -31,7 +31,7 @@ export default function Home() {
           <p className="text-sm mb-4">Please authenticate to continue</p>
 
           <button
-            className="m-2 px-4 py-2 bg-yellow-500 text-stone-800 text-xs font-bold rounded-md hover:bg-yellow-600 transition-all"
+            className="m-2 px-4 py-2 bg-yellow-500 text-zinc-800 text-xs font-bold rounded-md hover:bg-yellow-600 transition-all"
             onClick={() => signUp()}
           >
             <div className="flex items-center">

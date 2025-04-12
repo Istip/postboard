@@ -6,5 +6,5 @@ export const borderColor = (notification: NotificationType) =>
     : notification.type === "shopping"
     ? "border-green-500"
     : notification.type === "comment"
-    ? "border-stone-500"
+    ? "border-zinc-500"
     : "";

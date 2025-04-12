@@ -15,7 +15,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="w-screen h-12 bg-stone-900 border-b border-stone-800 px-4 fixed z-10 flex justify-center">
+    <nav className="w-screen h-12 bg-zinc-900 border-b border-zinc-800 px-4 fixed z-10 flex justify-center">
       <div className="w-full max-w-7xl flex justify-between items-center gap-4">
         <div>
           <Link href="/">
@@ -28,7 +28,7 @@ export default function Navbar() {
             <Popover.Root>
               <Popover.Trigger>
                 <Image
-                  className="rounded-full border border-stone-950 cursor-pointer"
+                  className="rounded-full border border-zinc-950 cursor-pointer"
                   src={user.photoURL ?? "/default_avatar.jpg"}
                   width={32}
                   height={32}

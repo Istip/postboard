@@ -21,7 +21,7 @@ const NotificationIcon: React.FC<{ notification: NotificationType }> = ({
         </div>
       )}
       {notification.type === "comment" && (
-        <div className="bg-stone-500 m-1 p-1.5 flex items-center rounded-full">
+        <div className="bg-zinc-500 m-1 p-1.5 flex items-center rounded-full">
           <ChatBubbleIcon />
         </div>
       )}

@@ -45,7 +45,7 @@ const ItemCard: React.FC<CardProps> = ({
 
   const postId = post?.id || "";
   const cardOpacity = post?.done ? "opacity-50" : "";
-  const background = post?.marked ? "bg-yellow-500" : "bg-stone-900";
+  const background = post?.marked ? "bg-yellow-500" : "bg-zinc-900";
   const successButton = !post?.marked ? "bg-green-600" : "bg-green-700";
   const dangerButton = !post?.marked ? "bg-red-500" : "bg-red-600";
 
@@ -109,15 +109,15 @@ const ItemCard: React.FC<CardProps> = ({
   };
 
   return (
-    <div className={`text-stone-200 rounded-xl overflow-hidden ${cardOpacity}`}>
+    <div className={`text-zinc-200 rounded-xl overflow-hidden ${cardOpacity}`}>
       <div className={`${background} pb-2 pt-2 px-2 text-sm rounded-t-xl`}>
         <div className="text-lg font-light flex items-start justify-between">
           <div className="w-full">
             <input
               className={`${
                 post?.marked
-                  ? "text-stone-950 focus:bg-stone-700/20 focus:pl-3"
-                  : "text-stone-50 focus:bg-stone-700/40 focus:pl-3"
+                  ? "text-zinc-950 focus:bg-zinc-700/20 focus:pl-3"
+                  : "text-zinc-50 focus:bg-zinc-700/40 focus:pl-3"
               } w-full text-[12px] bg-transparent outline-none transition-all py-1 rounded-lg`}
               onChange={handleChange}
               placeholder="Please type here..."
@@ -126,7 +126,7 @@ const ItemCard: React.FC<CardProps> = ({
             />
           </div>
 
-          <div className="text-stone-600 font-bold text-sm pl-1 flex gap-2 items-center h-8">
+          <div className="text-zinc-600 font-bold text-sm pl-1 flex gap-2 items-center h-8">
             <button className="text-yellow-500" onClick={handleMark}>
               <div className="sr-only">
                 {!post?.marked ? "Bookmark this post" : "Remove from bookmarks"}
@@ -146,12 +146,12 @@ const ItemCard: React.FC<CardProps> = ({
       </div>
 
       <div
-        className={`${background} w-full p-2 flex gap-2 justify-between items-center rounded-b-xl border-t-stone-950 border-t`}
+        className={`${background} w-full p-2 flex gap-2 justify-between items-center rounded-b-xl border-t-zinc-950 border-t`}
       >
         <div className="w-full flex items-center justify-between gap-2">
           <Image
             src={post?.photoUrl || "/avatar.jpg"}
-            className="w-7 h-7 border rounded-lg bg-stone-950 border-stone-800"
+            className="w-7 h-7 border rounded-lg bg-zinc-950 border-zinc-800"
             width={24}
             height={24}
             alt={post?.displayName || ""}

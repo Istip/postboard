@@ -10,9 +10,9 @@ const Message: React.FC<{
 }> = ({ children, type = "success" }) => {
   const tokens = {
     warning: {
-      bg: "bg-stone-600",
-      border: "border-stone-500",
-      text: "text-stone-300",
+      bg: "bg-zinc-600",
+      border: "border-zinc-500",
+      text: "text-zinc-300",
       icon: <InfoCircledIcon />,
     },
     error: {
