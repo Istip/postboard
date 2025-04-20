@@ -14,8 +14,8 @@ const Loading: React.FC<{ text?: boolean; title?: string }> = ({
 
     return (
       <>
-        <div className="text-amber-500 font-bold text-sm">{title}</div>
-        <div className="text-amber-500 font-bold text-2xl">POSTBOARD</div>
+        <div className="text-yellow-500 font-bold text-sm">{title}</div>
+        <div className="text-yellow-500 font-bold text-2xl">POSTBOARD</div>
         {children}
       </>
     );

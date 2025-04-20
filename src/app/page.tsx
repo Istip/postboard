@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <main className="text-center w-full bg-zinc-900 min-h-screen flex justify-center items-center">
       {loading && (
-        <div className="text-amber-500">
+        <div className="text-yellow-500">
           <p className="text-xl">WELCOME TO</p>
           <h1 className="text-3xl font-bold">POSTBOARD</h1>
           <p className="text-sm">Please wait</p>
@@ -27,11 +27,11 @@ export default function Home() {
       )}
       {!user && !loading && (
         <div className="h-full">
-          <h1 className="text-amber-500 font-bold text-2xl mb-4">POSTBOARD</h1>
+          <h1 className="text-yellow-500 font-bold text-2xl mb-4">POSTBOARD</h1>
           <p className="text-sm mb-4">Please authenticate to continue</p>
 
           <button
-            className="m-2 px-4 py-2 bg-amber-500 text-zinc-800 text-xs font-bold rounded-md hover:bg-amber-600 transition-all"
+            className="m-2 px-4 py-2 bg-yellow-500 text-zinc-800 text-xs font-bold rounded-md hover:bg-yellow-600 transition-all"
             onClick={() => signUp()}
           >
             <div className="flex items-center">

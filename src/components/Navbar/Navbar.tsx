@@ -22,12 +22,12 @@ export default function Navbar() {
             <Logo />
           </Link>
         </div>
-        <div className="font-black text-lg text-amber-500">POSTBOARD</div>
+        <div className="font-black text-lg text-yellow-500">POSTBOARD</div>
         <div className="-mb-[7px]">
           {user && (
             <Popover.Root>
               <Popover.Trigger>
-                <DashboardIcon className="text-amber-500 hover:cursor-pointer" />
+                <DashboardIcon className="text-yellow-500 hover:cursor-pointer" />
               </Popover.Trigger>
               <Popover.Portal>
                 <Popover.Content sideOffset={16}>

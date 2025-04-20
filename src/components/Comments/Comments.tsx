@@ -150,7 +150,7 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
           />
           <button
             onClick={handleSubmit}
-            className={`px-4 py-1 bg-amber-500 text-zinc-900 font-bold rounded-r-md flex items-center gap-1 disabled:opacity-50
+            className={`px-4 py-1 bg-yellow-500 text-zinc-900 font-bold rounded-r-md flex items-center gap-1 disabled:opacity-50
              ${loading && "cursor-not-allowed"}`}
             disabled={loading}
           >

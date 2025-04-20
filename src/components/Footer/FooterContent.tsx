@@ -57,7 +57,7 @@ export default function FooterContent({
       {pageIsSubmit && (
         <form
           onSubmit={(e) => handleSubmit(e)}
-          className="mb-2 h-10 flex gap-2 bg-zinc-800 rounded-xl active:ring-[1px] active:ring-amber-500"
+          className="mb-2 h-10 flex gap-2 bg-zinc-800 rounded-xl active:ring-[1px] active:ring-yellow-500"
         >
           <div className="relative w-full">
             {text.length ? (

@@ -36,7 +36,7 @@ export default function AvatarMenu({ user }: { user: User }) {
       </div>
       <div className="flex items-center">
         <button
-          className="font-bold px-4 py-1 rounded-md bg-amber-500 text-zinc-950 hover:bg-amber-600 transition-all"
+          className="font-bold px-4 py-1 rounded-md bg-yellow-500 text-zinc-950 hover:bg-yellow-600 transition-all"
           onClick={handleSignOut}
         >
           <div className="flex items-center font-light text-xs">
