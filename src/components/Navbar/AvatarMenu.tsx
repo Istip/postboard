@@ -46,12 +46,6 @@ export default function AvatarMenu({ user }: { user: User }) {
             Logout
           </div>
         </button>
-
-        <div>
-          <a href="http://www.google.com/maps/dir//Vitality+Klinika+Strada+Budv%C3%A1r+41+Odorheiu+Secuiesc+535600/@46.2931494,25.2867029,12z/data=!4m5!4m4!1m0!1m2!1m1!1s0x474b173c5ab01cfd:0x68305d582f69bd90">
-            VISIT ME
-          </a>
-        </div>
       </div>
     </div>
   );
