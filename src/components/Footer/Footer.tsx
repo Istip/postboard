@@ -27,6 +27,10 @@ export default function Footer() {
   const [hints, setHints] = useState<any[]>([]);
   const [filteredHints, setFilteredhints] = useState<any[]>([]);
 
+  const contentRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const { user } = useAuthContext();
+
   const {
     text: recordedText,
     startListening,
@@ -35,9 +39,6 @@ export default function Footer() {
     stopListening,
   } = useSpeech();
 
-  const { user } = useAuthContext();
-
-  const pathname = usePathname();
   const formattedPathname = pathname.substring(1, pathname.length);
   const isShopping = pathname === "/shopping";
 
@@ -45,8 +46,6 @@ export default function Footer() {
     formattedPathname === "notes"
       ? "added to the notes!"
       : "added to the shopping list!";
-
-  let toastID: string;
 
   const toggleNotifications = () => {
     setNotifications((prev) => !prev);
@@ -56,6 +55,7 @@ export default function Footer() {
     setText(e.target.value);
   };
 
+  let toastID: string;
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -117,8 +117,6 @@ export default function Footer() {
       });
   };
 
-  const contentRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -152,7 +150,6 @@ export default function Footer() {
 
       return () => unsubscribe();
     }
-    // eslint-disable-next-line
   }, [pathname, hints.length]);
 
   useEffect(() => {
@@ -174,56 +171,56 @@ export default function Footer() {
     setText(recordedText);
   }, [recordedText]);
 
-  if (!user) {
-    return null;
-  }
-
   return (
     <>
-      {notifications && (
-        <div className="h-screen pointer-events-auto fixed top-0 w-screen left-0 z-10 bg-zinc-950/90" />
-      )}
-      <FooterHint
-        isShopping={isShopping}
-        text={text}
-        filteredHints={filteredHints}
-      />
-      <footer className="w-screen bg-zinc-900 border-zinc-800 border-t fixed bottom-0 z-20 px-4 pb-2">
-        <div
-          className="w-full justify-center gap-2 flex items-center p-3 cursor-pointer"
-          onClick={toggleNotifications}
-        >
-          <div className="flex items-center justify-center bg-zinc-950/75 rounded-full h-2 w-20 hover:w-32 transition-all" />
-        </div>
-        <div className="flex items-center justify-center" ref={contentRef}>
-          <FooterContent
-            handleSubmit={handleSubmit}
-            handleChange={handleChange}
-            text={text}
-            loading={loading}
-            startListening={startListening}
-            stopListening={stopListening}
-            isListening={isListening}
-            hasRecognition={hasRecognition}
-            setText={setText}
-            setNotifications={setNotifications}
-            notifications={notifications}
-          />
-        </div>
-        <AnimatePresence>
+      {user ? (
+        <>
           {notifications && (
-            <motion.div
-              className="h-[200px]"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.1 }}
-            >
-              <Notifications />
-            </motion.div>
+            <div className="h-screen pointer-events-auto fixed top-0 w-screen left-0 z-10 bg-zinc-950/90" />
           )}
-        </AnimatePresence>
-      </footer>
+          <FooterHint
+            isShopping={isShopping}
+            text={text}
+            filteredHints={filteredHints}
+          />
+          <footer className="w-screen bg-zinc-900 border-zinc-800 border-t fixed bottom-0 z-20 px-4 pb-2">
+            <div
+              className="w-full justify-center gap-2 flex items-center p-3 cursor-pointer"
+              onClick={toggleNotifications}
+            >
+              <div className="flex items-center justify-center bg-zinc-950/75 rounded-full h-2 w-20 hover:w-32 transition-all" />
+            </div>
+            <div className="flex items-center justify-center" ref={contentRef}>
+              <FooterContent
+                handleSubmit={handleSubmit}
+                handleChange={handleChange}
+                text={text}
+                loading={loading}
+                startListening={startListening}
+                stopListening={stopListening}
+                isListening={isListening}
+                hasRecognition={hasRecognition}
+                setText={setText}
+                setNotifications={setNotifications}
+                notifications={notifications}
+              />
+            </div>
+            <AnimatePresence>
+              {notifications && (
+                <motion.div
+                  className="h-[200px]"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.1 }}
+                >
+                  <Notifications />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </footer>
+        </>
+      ) : null}
     </>
   );
 }
