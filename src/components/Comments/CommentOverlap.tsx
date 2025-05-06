@@ -1,4 +1,3 @@
-import { Post } from "@/interfaces/Post";
 import { ArrowRightIcon, TrashIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 
