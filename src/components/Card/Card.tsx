@@ -5,7 +5,8 @@ import {
   BookmarkFilledIcon,
   BookmarkIcon,
   CheckCircledIcon,
-  HamburgerMenuIcon,
+  EyeClosedIcon,
+  EyeOpenIcon,
   TrashIcon,
 } from "@radix-ui/react-icons";
 import {
@@ -134,7 +135,7 @@ const Card: React.FC<CardProps> = ({
                 {showComments ? "Hide comments" : "Show comments"}
               </div>
               <div className="text-yellow-500">
-                <HamburgerMenuIcon />
+                {showComments ? <EyeClosedIcon /> : <EyeOpenIcon />}
               </div>
             </button>
 
