@@ -5,7 +5,7 @@ import Link from "next/link";
 import Logo from "./Logo";
 import AvatarMenu from "./AvatarMenu";
 import * as Popover from "@radix-ui/react-popover";
-import { DashboardIcon } from "@radix-ui/react-icons";
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 
 export default function Navbar() {
   const { user } = useAuthContext();
@@ -27,10 +27,10 @@ export default function Navbar() {
           {user && (
             <Popover.Root>
               <Popover.Trigger>
-                <DashboardIcon className="text-yellow-500 hover:cursor-pointer" />
+                <HamburgerMenuIcon className="text-yellow-500 hover:cursor-pointer" />
               </Popover.Trigger>
               <Popover.Portal>
-                <Popover.Content sideOffset={16}>
+                <Popover.Content sideOffset={22}>
                   <AvatarMenu user={user} />
                 </Popover.Content>
               </Popover.Portal>
