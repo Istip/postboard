@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Post } from "@/interfaces/Post";
 import Image from "next/image";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "@/utils/firebase";
@@ -8,10 +7,7 @@ import { formatDateToYYYYMMDD } from "@/utils/formatDate";
 import CommentOverlap from "./CommentOverlap";
 import { motion } from "framer-motion";
 
-const Comment: React.FC<{ post: Post | undefined; comment: any }> = ({
-  post,
-  comment,
-}) => {
+const Comment: React.FC<{ comment: any }> = ({ comment }) => {
   const [overlap, setOverlap] = useState(false);
   const commentId = comment.id || "";
 
@@ -42,7 +38,6 @@ const Comment: React.FC<{ post: Post | undefined; comment: any }> = ({
       >
         <CommentOverlap
           comment={comment}
-          post={post}
           handleDelete={handleDelete}
           setOverlap={setOverlap}
         />

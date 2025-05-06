@@ -5,26 +5,26 @@ import Image from "next/image";
 interface CommentOverlapInterface {
   // TODO: update type when comment type is ready
   comment: any;
-  post: Post | undefined;
   handleDelete: () => void;
   setOverlap: any;
 }
 
 const CommentOverlap: React.FC<CommentOverlapInterface> = ({
   comment,
-  post,
   handleDelete,
   setOverlap,
 }) => {
+  console.log("✅ comment:", comment);
+
   return (
     <div className="w-full mt-4 left-0 right-0 flex flex-col bg-zinc-800 text-xs p-2 rounded-md font-light">
       <div className="flex gap-2 mb-2">
         <Image
-          src={post?.photoUrl || "/avatar.jpg"}
+          src={comment?.photoUrl || "/avatar.jpg"}
           className="w-4 h-4 border rounded-full bg-zinc-950 border-white"
           width={24}
           height={24}
-          alt={post?.displayName || ""}
+          alt={comment?.displayName || ""}
         />
         <div className="mb-1">{comment?.text}</div>
       </div>

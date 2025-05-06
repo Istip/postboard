@@ -19,7 +19,10 @@ import { NotificationType } from "@/interfaces/Notification";
 import { Post } from "@/interfaces/Post";
 import Comment from "./Comment";
 
-const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
+const Comments: React.FC<{
+  post: Post | undefined;
+  showComments?: boolean;
+}> = ({ post, showComments }) => {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([] as any[]);
   const [loading, setLoading] = useState(false);
@@ -113,20 +116,22 @@ const Comments: React.FC<{ post: Post | undefined }> = ({ post }) => {
         <div className="text-xs font-bold text-zinc-500">Comments:</div>
       ) : null}
 
-      <AnimatePresence>
-        {comments.map((comment) => (
-          <motion.div
-            key={comment.id}
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-          >
-            <div className="py-0.5">
-              <Comment comment={comment} post={post} />
-            </div>
-          </motion.div>
-        ))}
-      </AnimatePresence>
+      {showComments && (
+        <AnimatePresence>
+          {comments.map((comment) => (
+            <motion.div
+              key={comment.id}
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+            >
+              <div className="py-0.5">
+                <Comment comment={comment} />
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      )}
 
       <div
         className={`flex gap-4 ${comments?.length ? "mt-4" : ""} items-center`}
