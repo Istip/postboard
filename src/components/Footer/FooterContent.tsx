@@ -57,7 +57,7 @@ export default function FooterContent({
       {pageIsSubmit && (
         <form
           onSubmit={(e) => handleSubmit(e)}
-          className="mb-2 h-10 flex gap-2 bg-zinc-800 rounded-xl active:ring-[1px] active:ring-yellow-500"
+          className="mb-2 h-10 flex gap-2 bg-stone-800 rounded-xl active:ring-[1px] active:ring-yellow-500"
         >
           <div className="relative w-full">
             {text.length ? (
@@ -74,7 +74,7 @@ export default function FooterContent({
               disabled={loading}
               placeholder="Enter your text..."
               className="w-full h-full p-2 pl- rounded-md bg-transparent focus:outline-none overflow-hidden
-                    disabled:opacity-50 disabled:cursor-not-allowed resize-none text-sm placeholder:text-zinc-50/30"
+                    disabled:opacity-50 disabled:cursor-not-allowed resize-none text-sm placeholder:text-stone-50/30"
             />
           </div>
           <div className="flex items-center justify-center">
@@ -93,7 +93,7 @@ export default function FooterContent({
             )}
             <button
               disabled={isListening}
-              className="h-full text-zinc-50 rounded-md px-4 py-2 font-bold flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="h-full text-stone-50 rounded-md px-4 py-2 font-bold flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <PaperPlaneIcon />
               <div className="text-sm hidden sm:block">Create</div>

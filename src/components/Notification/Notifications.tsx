@@ -81,7 +81,7 @@ export default function Notifications() {
   }
 
   return (
-    <div className="max-w-7xl flex flex-col justify-center bg-zinc-800 px-4 mx-auto pt-4 pb-2 rounded-xl shadow-zinc-700 border border-zinc-700">
+    <div className="max-w-7xl flex flex-col justify-center bg-stone-800 px-4 mx-auto pt-4 pb-2 rounded-xl shadow-stone-700 border border-stone-700">
       <div className="h-[200px] min-h-[200px] overflow-auto max-w-7xl no-scrollbar">
         <Toaster />
         <div className="w-full mb-2">

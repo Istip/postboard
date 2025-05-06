@@ -8,8 +8,8 @@ interface Props {
 }
 
 export default function Filter({ posts, filter, setFilter }: Props) {
-  const activeStyle = "bg-zinc-900 text-zinc-50 border border-zinc-800";
-  const inactiveStyle = "bg-zinc-800 text-zinc-50/25 border border-zinc-800";
+  const activeStyle = "bg-stone-900 text-stone-50 border border-stone-800";
+  const inactiveStyle = "bg-stone-800 text-stone-50/25 border border-stone-800";
 
   return (
     <>

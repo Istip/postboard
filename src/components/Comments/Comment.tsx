@@ -49,7 +49,7 @@ const Comment: React.FC<{ comment: any }> = ({ comment }) => {
     <div className="flex gap-4 mt-3" onClick={() => setOverlap(!overlap)}>
       <Image
         src={comment?.photoUrl || "/avatar.jpg"}
-        className="w-4 h-4 border rounded-full bg-zinc-950 border-zinc-500"
+        className="w-4 h-4 border rounded-full bg-stone-950 border-stone-500"
         width={24}
         height={24}
         alt={comment?.displayName || ""}
@@ -58,7 +58,7 @@ const Comment: React.FC<{ comment: any }> = ({ comment }) => {
         <div>
           <div>{comment?.text}</div>
         </div>
-        <p className="text-zinc-400 text-[8px] tabular-nums">
+        <p className="text-stone-400 text-[8px] tabular-nums">
           {formatDateToYYYYMMDD(comment.createdAt)}
         </p>
       </div>

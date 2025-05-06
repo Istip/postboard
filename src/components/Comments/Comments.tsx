@@ -113,7 +113,7 @@ const Comments: React.FC<{
       } mt-4 rounded-2xl text-xs`}
     >
       {comments.length ? (
-        <div className="text-xs font-bold text-zinc-500">Comments:</div>
+        <div className="text-xs font-bold text-stone-500">Comments:</div>
       ) : null}
 
       {showComments && (
@@ -138,7 +138,7 @@ const Comments: React.FC<{
       >
         <Image
           src={user?.photoURL || "/avatar.jpg"}
-          className="w-4 h-4 border rounded-full bg-zinc-950 border-zinc-500"
+          className="w-4 h-4 border rounded-full bg-stone-950 border-stone-500"
           width={24}
           height={24}
           alt={user?.displayName || ""}
@@ -151,11 +151,11 @@ const Comments: React.FC<{
             disabled={loading}
             type="text"
             placeholder="Leave a comment..."
-            className="text-xs w-full bg-zinc-800 rounded-l-md px-2 border-transparent border focus:outline-none focus:border focus:border-zinc-950"
+            className="text-xs w-full bg-stone-800 rounded-l-md px-2 border-transparent border focus:outline-none focus:border focus:border-stone-950"
           />
           <button
             onClick={handleSubmit}
-            className={`px-4 py-1 bg-yellow-500 text-zinc-900 font-bold rounded-r-md flex items-center gap-1 disabled:opacity-50
+            className={`px-4 py-1 bg-yellow-500 text-stone-900 font-bold rounded-r-md flex items-center gap-1 disabled:opacity-50
              ${loading && "cursor-not-allowed"}`}
             disabled={loading}
           >

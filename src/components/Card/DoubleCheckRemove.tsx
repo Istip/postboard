@@ -45,7 +45,7 @@ export default function DoubleCheckRemove({
                       <TrashIcon />
                     </button>
                     <button
-                      className="px-2 py-2 bg-zinc-700 rounded-r-lg"
+                      className="px-2 py-2 bg-stone-700 rounded-r-lg"
                       onClick={handleCancellation}
                     >
                       <div className="sr-only">Cancel remove</div>

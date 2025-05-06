@@ -15,7 +15,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="w-screen h-12 bg-zinc-900 border-b border-zinc-800 px-4 fixed z-10 flex justify-center">
+    <nav className="w-screen h-12 bg-stone-900 border-b border-stone-800 px-4 fixed z-10 flex justify-center">
       <div className="w-full max-w-7xl flex justify-between items-center gap-4">
         <div>
           <Link href="/">

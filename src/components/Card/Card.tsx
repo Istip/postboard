@@ -115,13 +115,13 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div
-      className={`mb-3 text-zinc-200 rounded-lg border overflow-hidden ${cardOpacity} ${cardBorder}`}
+      className={`mb-3 text-stone-200 rounded-lg border overflow-hidden ${cardOpacity} ${cardBorder}`}
     >
-      <div className="bg-zinc-900 p-4 text-sm rounded-t-lg">
+      <div className="bg-stone-900 p-4 text-sm rounded-t-lg">
         <div className="text-lg font-light flex items-start justify-between">
           <div className="w-full">
             <input
-              className="w-full text-zinc-50 bg-transparent outline-none focus:bg-zinc-700/20 py-1 rounded-lg"
+              className="w-full text-stone-50 bg-transparent outline-none focus:bg-stone-700/20 py-1 rounded-lg"
               onChange={handleChange}
               placeholder="Please type here..."
               value={value}
@@ -129,7 +129,7 @@ const Card: React.FC<CardProps> = ({
             />
           </div>
 
-          <div className="text-zinc-600 font-bold text-sm pl-1 flex gap-2 items-center h-8">
+          <div className="text-stone-600 font-bold text-sm pl-1 flex gap-2 items-center h-8">
             <button onClick={toggleComments}>
               <div className="sr-only">
                 {showComments ? "Hide comments" : "Show comments"}
@@ -151,13 +151,13 @@ const Card: React.FC<CardProps> = ({
         {comments && <Comments post={post} showComments={showComments} />}
       </div>
 
-      <div className="w-full p-2 bg-zinc-900 flex gap-2 justify-between items-center rounded-b-xl border-t-zinc-950 border-t">
+      <div className="w-full p-2 bg-stone-900 flex gap-2 justify-between items-center rounded-b-xl border-t-stone-950 border-t">
         <div className="w-full flex items-center justify-between">
-          <div className="text-xs flex gap-2 text-zinc-500 items-center justify-center">
-            <div className="rounded-full bg-zinc-950">
+          <div className="text-xs flex gap-2 text-stone-500 items-center justify-center">
+            <div className="rounded-full bg-stone-950">
               <Image
                 src={post?.photoUrl || "/avatar.jpg"}
-                className="w-6 h-6 border rounded-full bg-zinc-950 border-zinc-500"
+                className="w-6 h-6 border rounded-full bg-stone-950 border-stone-500"
                 width={24}
                 height={24}
                 alt={post?.displayName || ""}
@@ -178,7 +178,7 @@ const Card: React.FC<CardProps> = ({
                     <TrashIcon />
                   </button>
                   <button
-                    className="px-4 py-2 bg-zinc-700 rounded-r-lg"
+                    className="px-4 py-2 bg-stone-700 rounded-r-lg"
                     onClick={handleCancellation}
                   >
                     <div className="sr-only">Cancel remove</div>

@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning={true}>
       <body className={font.className}>
         <AuthContextProvider>
-          <div className="bg-zinc-950 text-zinc-50 w-full min-h-screen h-auto">
+          <div className="bg-stone-950 text-stone-50 w-full min-h-screen h-auto">
             <Navbar />
             {children}
             <Footer />
