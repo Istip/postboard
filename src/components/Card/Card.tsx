@@ -5,6 +5,7 @@ import {
   BookmarkFilledIcon,
   BookmarkIcon,
   CheckCircledIcon,
+  HamburgerMenuIcon,
   TrashIcon,
 } from "@radix-ui/react-icons";
 import {
@@ -37,6 +38,7 @@ const Card: React.FC<CardProps> = ({
 }) => {
   const [confirm, setConfirm] = useState(false);
   const [value, setValue] = useState(post?.text as string);
+  const [showComments, setShowComments] = useState(true);
 
   const pathname = usePathname();
 
@@ -79,6 +81,7 @@ const Card: React.FC<CardProps> = ({
     }
   };
 
+  const toggleComments = () => setShowComments((prev) => !prev);
   const handleDoubleCheck = () => setConfirm(true);
   const handleCancellation = () => setConfirm(false);
 
@@ -126,6 +129,15 @@ const Card: React.FC<CardProps> = ({
           </div>
 
           <div className="text-zinc-600 font-bold text-sm pl-1 flex gap-2 items-center h-8">
+            <button onClick={toggleComments}>
+              <div className="sr-only">
+                {showComments ? "Hide comments" : "Show comments"}
+              </div>
+              <div className="text-yellow-500">
+                <HamburgerMenuIcon />
+              </div>
+            </button>
+
             <button className="text-yellow-500" onClick={handleMark}>
               <div className="sr-only">
                 {!post?.marked ? "Bookmark this post" : "Remove from bookmarks"}
@@ -135,7 +147,7 @@ const Card: React.FC<CardProps> = ({
           </div>
         </div>
 
-        {comments && <Comments post={post} />}
+        {comments && <Comments post={post} showComments={showComments} />}
       </div>
 
       <div className="w-full p-2 bg-zinc-900 flex gap-2 justify-between items-center rounded-b-xl border-t-zinc-950 border-t">
