@@ -8,7 +8,7 @@ export default function Logo() {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <rect width="32" height="32" rx="16" fill="#E4B525" />
+        <rect width="32" height="32" rx="16" fill="oklch(79.5% 0.184 86.047)" />
         <path
           fillRule="evenodd"
           clipRule="evenodd"
