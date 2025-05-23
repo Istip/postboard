@@ -6,6 +6,9 @@ const IdeasContent = () => {
   const [frequent, setFrequent] = useState(frequentIdeas);
   return (
     <div className="overflow-scroll w-full h-full p-4">
+      <h1 className="font-extralight text-xl text-center pb-6 text-stone-300">
+        Gyakori ötletek
+      </h1>
       {Object.entries(frequent).map(([category, items]) => (
         <Group
           setFrequent={setFrequent}
