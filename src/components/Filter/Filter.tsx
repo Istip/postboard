@@ -12,7 +12,7 @@ export default function Filter({ posts, filter, setFilter }: Props) {
   const inactiveStyle = "bg-stone-800 text-stone-50/25 border border-stone-800";
 
   return (
-    <>
+    <div className="w-full">
       {posts?.length && (
         <div className="flex items-center justify-center gap-2 mb-2 text-xs">
           <div className="flex w-full">
@@ -43,6 +43,6 @@ export default function Filter({ posts, filter, setFilter }: Props) {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
