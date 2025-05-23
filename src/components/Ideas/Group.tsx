@@ -82,9 +82,7 @@ const Group = ({ category, items, setFrequent, frequent }: Props) => {
         className="flex items-center justify-between cursor-pointer"
         onClick={() => setOpen(!open)}
       >
-        <h2 className="font-black text-sm">
-          {capitalizeFirstLetter(category)}
-        </h2>
+        <h2 className="text-sm">{capitalizeFirstLetter(category)}</h2>
         <button className="bg-yellow-500 p-2 rounded-full cursor-pointer flex items-center justify-center">
           <ChevronIcon open={open} />
         </button>
