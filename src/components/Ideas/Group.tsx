@@ -92,7 +92,7 @@ const Group = ({ category, items, setFrequent, frequent }: Props) => {
             <button
               onClick={() => handleAddItem(item)}
               key={index}
-              className="bg-stone-800 px-4 py-4 rounded-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              className="bg-stone-800 px-4 py-4 rounded-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed text-[12px]"
               disabled={loading === item}
             >
               <li>{item}</li>
