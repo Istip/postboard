@@ -1,5 +1,6 @@
 import { useAuthContext } from "@/context/AuthContext";
 import { Post } from "@/interfaces/Post";
+import { capitalizeFirstLetter } from "@/utils/common";
 import { db } from "@/utils/firebase";
 import { ChevronDownIcon, ChevronUpIcon } from "@radix-ui/react-icons";
 import { addDoc, collection } from "firebase/firestore";
@@ -95,7 +96,7 @@ const Group = ({ category, items, setFrequent, frequent }: Props) => {
               className="bg-stone-800 px-4 py-4 rounded-md cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed text-[12px]"
               disabled={loading === item}
             >
-              <li>{item}</li>
+              <li>{capitalizeFirstLetter(item)}</li>
             </button>
           ))}
         </ul>
