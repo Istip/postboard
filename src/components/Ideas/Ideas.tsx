@@ -6,7 +6,7 @@ const Ideas = () => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <div className="bg-yellow-500 w-[50px] h-[50px] rounded-xl flex items-center justify-center cursor-pointer">
+        <div className="bg-yellow-500 min-w-[50px] w-[50px] min-h-[50px] h-[50px] rounded-xl flex items-center justify-center cursor-pointer">
           <LightningBoltIcon className="text-stone-950" />
         </div>
       </Dialog.Trigger>
