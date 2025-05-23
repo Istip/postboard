@@ -5,6 +5,7 @@ export const frequent = {
     "só",
     "tojás",
     "rizs",
+    "humusz",
     "tagliatelle",
     "olaj",
     "ecet",
