@@ -19,6 +19,7 @@ import Message from "@/components/Message/Message";
 import Toaster from "@/components/Toaster/Toaster";
 import Filter from "@/components/Filter/Filter";
 import { TriangleDownIcon } from "@radix-ui/react-icons";
+import Ideas from "@/components/Ideas/Ideas";
 
 export default function Shopping() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -71,7 +72,10 @@ export default function Shopping() {
             You have nothing on yout shopping list
           </Message>
         )}
-        <Filter posts={posts} filter={filter} setFilter={setFilter} />
+        <div className="flex gap-2 w-full">
+          <Filter posts={posts} filter={filter} setFilter={setFilter} />
+          <Ideas />
+        </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-x-1">
           <AnimatePresence>
             {posts
