@@ -9,7 +9,6 @@ export const frequent = {
     "tagliatelle",
     "olaj",
     "ecet",
-    "tonhal",
     "zöldséges tonhal",
     "kávé - plikkes",
     "coffetta",
