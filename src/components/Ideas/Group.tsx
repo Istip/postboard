@@ -11,7 +11,8 @@ interface Props {
   category: string;
   items: string[];
   setFrequent: React.Dispatch<React.SetStateAction<any>>;
-  frequent: any;
+  activeGroup: string | null;
+  setActiveGroup: (category: string | null) => void;
 }
 
 const ChevronIcon = ({ open }: { open: boolean }) => {
@@ -22,11 +23,26 @@ const ChevronIcon = ({ open }: { open: boolean }) => {
   );
 };
 
-const Group = ({ category, items, setFrequent, frequent }: Props) => {
-  const [open, setOpen] = useState(false);
+const Group = ({
+  category,
+  items,
+  setFrequent,
+  activeGroup,
+  setActiveGroup,
+}: Props) => {
   const [loading, setLoading] = useState<string | null>(null);
 
   const { user } = useAuthContext();
+
+  const isOpen = activeGroup === category;
+
+  const toggleOpen = () => {
+    if (isOpen) {
+      setActiveGroup(null);
+    } else {
+      setActiveGroup(category);
+    }
+  };
 
   const handleAddItem = async (item: string) => {
     setLoading(item);
@@ -80,14 +96,14 @@ const Group = ({ category, items, setFrequent, frequent }: Props) => {
     <div key={category} className="flex flex-col gap-2 mb-4">
       <div
         className="flex items-center justify-between cursor-pointer"
-        onClick={() => setOpen(!open)}
+        onClick={toggleOpen}
       >
         <h2 className="text-sm">{capitalizeFirstLetter(category)}</h2>
         <button className="bg-yellow-500 p-2 rounded-full cursor-pointer flex items-center justify-center">
-          <ChevronIcon open={open} />
+          <ChevronIcon open={isOpen} />
         </button>
       </div>
-      {open && (
+      {isOpen && (
         <ul className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
           {[...items].sort().map((item, index) => (
             <button

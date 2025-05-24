@@ -4,6 +4,8 @@ import Group from "./Group";
 
 const IdeasContent = () => {
   const [frequent, setFrequent] = useState(frequentIdeas);
+  const [activeGroup, setActiveGroup] = useState<string | null>(null);
+
   return (
     <div className="overflow-scroll w-full h-full p-4">
       <h1 className="font-extralight text-xl text-center pb-6 text-stone-300">
@@ -12,10 +14,11 @@ const IdeasContent = () => {
       {Object.entries(frequent).map(([category, items]) => (
         <Group
           setFrequent={setFrequent}
-          frequent={frequent}
           key={category}
           category={category}
           items={items}
+          activeGroup={activeGroup}
+          setActiveGroup={setActiveGroup}
         />
       ))}
     </div>
