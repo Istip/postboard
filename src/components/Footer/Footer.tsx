@@ -56,7 +56,7 @@ export default function Footer() {
   };
 
   let toastID: string;
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent, isMarked?: boolean) => {
     e.preventDefault();
 
     const texts = text.split(",").map((t) => t.trim());
@@ -65,7 +65,7 @@ export default function Footer() {
       text,
       createdAt: new Date(),
       type: formattedPathname,
-      marked: false,
+      marked: isMarked || false,
       done: false,
       displayName: user?.displayName,
       email: user?.email,
