@@ -10,8 +10,8 @@ const Message: React.FC<{
 }> = ({ children, type = "success" }) => {
   const tokens = {
     warning: {
-      bg: "bg-stone-600",
-      border: "border-stone-500",
+      bg: "bg-stone-800",
+      border: "border-stone-700",
       text: "text-stone-300",
       icon: <InfoCircledIcon />,
     },
@@ -31,9 +31,9 @@ const Message: React.FC<{
 
   return (
     <div
-      className={`w-full rounded-md flex font-semibold text-sm p-4 border text-opacity-75 ${tokens[type].text} ${tokens[type].bg} ${tokens[type].border}`}
+      className={`w-full rounded-xl flex font-semibold text-sm p-4 border text-opacity-75 ${tokens[type].text} ${tokens[type].bg} ${tokens[type].border}`}
     >
-      <div className="pr-4 pt-[3px]">{tokens[type].icon}</div>
+      <div className="pr-4 pt-[3px] animate-pulse">{tokens[type].icon}</div>
       <div className="w-full">{children}</div>
     </div>
   );
